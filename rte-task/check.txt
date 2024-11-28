@@ -1,0 +1,20 @@
+// func ValidatePhoneNumber(number string) (no string, err error) {
+// 	if len(number) > 10 {
+// 		return "", err
+// 	}
+// 	if len(number) < 10 {
+// 		return "", err
+// 	}
+
+// 	return no, nil
+// }
+
+
+
+// func ValidRoleType(roletype string) ( name string, err error) {
+// 	if roletype != "USER" && roletype != "ADMIN" {
+// 		return "", err
+// 	}
+// 	return
+// }
+
