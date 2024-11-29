@@ -84,3 +84,51 @@ func (databaseconnect UserRepository) RepoCreateNewPost(user *models.JobCreation
 	}
 	return nil
 }
+
+func (databaseconnect UserRepository) RepoGetAllPosts(user *[]models.JobCreation) error {
+	dbvalues := databaseconnect.DB.Find(&user)
+	if dbvalues.Error != nil {
+		return dbvalues.Error
+	}
+	return nil
+}
+
+func (database UserRepository) RepoGetByJobRole(user *[]models.JobCreation, jobs string) error {
+	dbValue := database.DB.Where(&models.JobCreation{JobTitle: jobs}).Find(&user)
+	if dbValue.Error != nil {
+		return dbValue.Error
+	}
+	return nil
+}
+
+func (database UserRepository) RepoGetByCountryDetails(user *[]models.JobCreation, country string) error {
+	dbvalue := database.DB.Where(&models.JobCreation{Country: country}).Find(&user)
+	if dbvalue.Error != nil {
+		return dbvalue.Error
+	}
+	return nil
+}
+
+func (databaseconnect UserRepository) RepoApplyJobPost(user *models.UserJobDetails) error {
+	dbvalues := databaseconnect.DB.Create(user)
+	if dbvalues.Error != nil {
+		return dbvalues.Error
+	}
+	return nil
+}
+
+func (databaseconnectdata UserRepository) RepoGetJobAppliedDetails(user *[]models.UserJobDetails, roletype string) error {
+	dbvalue := databaseconnectdata.DB.Where(&models.UserJobDetails{JobRole: roletype}).Find(&user)
+	if dbvalue.Error != nil {
+		return dbvalue.Error
+	}
+	return nil
+}
+
+func (databaseconnectdata UserRepository) RepoGetJobAppliedAllJobs(user *[]models.UserJobDetails, roletype string) error {
+	dbvalue := databaseconnectdata.DB.Where(&models.UserJobDetails{JobRole: roletype}).Find(&user)
+	if dbvalue.Error != nil {
+		return dbvalue.Error
+	}
+	return nil
+}

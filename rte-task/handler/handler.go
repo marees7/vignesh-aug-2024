@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -32,7 +33,7 @@ func (database UserHandler) SignUp(c *gin.Context) {
 			"Error": err.Error()})
 		return
 	}
-
+	// datas := validation.ValidationStructValues(user)
 	if validatonErr := validate.Struct(user); validatonErr != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Errors": validatonErr.Error()})
@@ -45,6 +46,12 @@ func (database UserHandler) SignUp(c *gin.Context) {
 			"Error": "Error occured in this validation of email"})
 		return
 	}
+	// _, err := validation.ValidationFields(user.Email)
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"Error": "Error occured in this validation of email"})
+	// 	return
+	// }
 
 	counts, err := database.DB.ServiceRepoemail(&user, count)
 	if err != nil {
@@ -95,6 +102,7 @@ func (database UserHandler) SignUp(c *gin.Context) {
 			"Error": "Phonenumber should be  equal to ten numbers"})
 		return
 	}
+
 	countPhone, DbPhone := database.DB.ServicePhoneForm(&user, count)
 	if DbPhone != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -210,6 +218,12 @@ func (database UserHandler) GetUser(c *gin.Context) {
 func (database UserHandler) CreateJobPost(c *gin.Context) {
 	var userPost models.JobCreation
 
+	if err := helpers.CheckuserType(c, "ADMIN"); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Errors": err.Error()})
+		return
+	}
+
 	if err := c.BindJSON(&userPost); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": err.Error()})
@@ -238,4 +252,139 @@ func (database UserHandler) CreateJobPost(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"Message": "Sucessfully Created the Details",
 		"Data":    userPost})
+}
+
+func (database UserHandler) GetJobPost(c *gin.Context) {
+	var user []models.JobCreation
+
+	dataOfJobs := database.DB.ServiceGetAllPostDetails(&user)
+	if dataOfJobs != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": dataOfJobs.Error})
+		return
+	}
+	for _, values := range user {
+		c.JSON(http.StatusOK, gin.H{
+			"Message": "Sucessfully Get the details",
+			"Data":    values,
+		})
+	}
+}
+
+func (database UserHandler) GetJobByRole(c *gin.Context) {
+	var user []models.JobCreation
+	jobs := c.Param("job_title")
+
+	fmt.Println("jobs", jobs)
+	dbValues := database.DB.ServiceGetJobDetailsByRole(&user, jobs)
+	if dbValues != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": dbValues.Error})
+		return
+	}
+	for _, values := range user {
+		c.JSON(http.StatusOK, gin.H{
+			"Message": "Sucessfully Get the details",
+			"Data":    values,
+		})
+	}
+}
+
+func (database UserHandler) GetJobByCountry(c *gin.Context) {
+	var user []models.JobCreation
+	jobs := c.Param("country")
+
+	dbValues := database.DB.ServiceGetDetailsByCountry(&user, jobs)
+	if dbValues != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": dbValues.Error})
+		return
+	}
+	for _, values := range user {
+		c.JSON(http.StatusOK, gin.H{
+			"Message": "Sucessfully Get the details",
+			"Data":    values,
+		})
+	}
+}
+
+func (database UserHandler) ApplyJob(c *gin.Context) {
+	var user models.UserJobDetails
+
+	if err := helpers.CheckuserType(c, "USER"); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Errors": err.Error()})
+		return
+	}
+	if err := c.BindJSON(&user); err != nil {
+		c.JSON(http.StatusOK, gin.H{
+			"Errors": err.Error()})
+		return
+	}
+	// _, err := validation.ValidationFields(user.)
+	// if err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"Error": "Error occured in this validation of email"})
+	// 	return
+	// }
+
+	Dbvalues := database.DB.ApplyJobPost(&user)
+	if Dbvalues != nil {
+		c.JSON(500, gin.H{
+			"Error": "Error occured while creating values"})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"Message": "Sucessfully Applied Job ",
+		"Data":    user})
+}
+
+func (database UserHandler) GetJobAppliedDetails(c *gin.Context) {
+	var user []models.UserJobDetails
+
+	if err := helpers.CheckuserType(c, "ADMIN"); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Errors": err.Error()})
+		return
+	}
+
+	value := c.Param("job_role")
+	dbvalues := database.DB.ServiceGetJobAppliedDetails(&user, value)
+	if dbvalues != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": dbvalues.Error})
+		return
+	}
+
+	for _, values := range user {
+		c.JSON(http.StatusOK, gin.H{
+			"Message": "Sucessfully Get the details",
+			"Data":    values,
+		})
+	}
+}
+
+func (database UserHandler) GetAllJobDetails(c *gin.Context) {
+	var user []models.UserJobDetails
+
+	if err := helpers.CheckuserType(c, "ADMIN"); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Errors": err.Error()})
+		return
+	}
+
+	value := c.Param("job_role")
+	dbvalues := database.DB.ServiceGetJobAppliedAllJobs(&user, value)
+	if dbvalues != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": dbvalues.Error})
+		return
+	}
+
+	for _, values := range user {
+		c.JSON(http.StatusOK, gin.H{
+			"Message": "Sucessfully Get the details",
+			"Data":    values,
+		})
+	}
 }

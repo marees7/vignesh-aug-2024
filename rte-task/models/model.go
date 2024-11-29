@@ -22,23 +22,31 @@ type JobCreation struct {
 	CompanyEmail string `json:"company_email" gorm:"column:company_email ;type:varchar(100)"`
 	JobTitle     string `json:"job_title" gorm:"column:job_title ;type:varchar(100)"`
 	JobType      string `json:"job_type" gorm:"column:job_type ;type:varchar(100)"`
-	JobStatus    string `json:"job_status" gorm:"column:job_status ;type:varchar(10); constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	JobStatus    string `json:"job_status" gorm:"column:job_status ;type:varchar(20); constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
 	JobTime      string `json:"job_time" gorm:"column:job_time ;type:varchar(20)"`
 	Description  string `json:"description" gorm:"column:description ;type:varchar(255)"`
 	Skills       string `json:"skills" gorm:"column:skills ;type:varchar(255)"`
+	Address      string `json:"address" gorm:"column:address ;type:varchar(255)"`
 	City         string `json:"city" gorm:"column:city ;type:varchar(100)"`
 	State        string `json:"state" gorm:"column:state ;type:varchar(100)"`
-	Address      string `json:"address" gorm:"column:address ;type:varchar(255)"`
-	Country      string `json:"country" gorm:"column:country ;type:varchar(10)"`
+	Country      string `json:"country" gorm:"column:country ;type:varchar(20)"`
+	Vacancy      int    `json:"vacancy" gorm:"column:vacancy;type:int"`
+	// Addresses Address `json:"addresses" gorm:"foreignKey:Address"`
 }
 
 type UserJobDetails struct {
-	UserId      int `json:"id" gorm:"primaryKey"`
-	JobID       int
-	JobCreateId JobCreation `json:"job_id" gorm:"foreignKey:JobID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
-	Experience  int         `json:"experience" gorm:"column:experience;type:int"`
-	Skills      string      `json:"skills" gorm:"column:skills;type:varchar(255)"`
-	Language    string      `json:"language" gorm:"column:language;type:varchar(255)"`
-	Country     string      `json:"country" gorm:"column:country;type:varchar(255)"`
-	JobRole     string      `json:"job_role" gorm:"column:job_role;type:varchar(255)"`
+	UserId     int `json:"id" gorm:"primaryKey"`
+	JobID      int
+	JobIdS     JobCreation `json:"job_id" gorm:"foreignKey:JobID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL;"`
+	Experience int         `json:"experience" gorm:"column:experience;type:int"`
+	Skills     string      `json:"skills" gorm:"column:skills;type:varchar(255)"`
+	Language   string      `json:"language" gorm:"column:language;type:varchar(255)"`
+	Country    string      `json:"country" gorm:"column:country;type:varchar(255)"`
+	JobRole    string      `json:"job_role" gorm:"column:job_role;type:varchar(255)"`
 }
+
+// type Address struct {
+// 	City    string `json:"city" gorm:"column:city ;type:varchar(100)"`
+// 	State   string `json:"state" gorm:"column:state ;type:varchar(100)"`
+// 	Country string `json:"country" gorm:"column:country ;type:varchar(10)"`
+// }

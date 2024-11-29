@@ -44,3 +44,28 @@ func (service UserService) ServiceFindSpecificUser(user *models.UsersTable, role
 func (service UserService) ServiceCreatePost(user *models.JobCreation) error {
 	return service.DB.RepoCreateNewPost(user)
 }
+
+func (service UserService) ServiceGetAllPostDetails(user *[]models.JobCreation) error {
+	return service.DB.RepoGetAllPosts(user)
+}
+
+func (service UserService) ServiceGetJobDetailsByRole(user *[]models.JobCreation, jobrole string) error {
+	return service.DB.RepoGetByJobRole(user, jobrole)
+}
+
+func (service UserService) ServiceGetDetailsByCountry(user *[]models.JobCreation, country string) error {
+	return service.DB.RepoGetByCountryDetails(user, country)
+}
+
+func (service UserService) ApplyJobPost(user *models.UserJobDetails) error {
+	
+	return service.DB.RepoApplyJobPost(user)
+}
+
+func (service UserService) ServiceGetJobAppliedDetails(user *[]models.UserJobDetails, roletype string) error {
+	return service.DB.RepoGetJobAppliedDetails(user, roletype)
+}
+
+func (service UserService) ServiceGetJobAppliedAllJobs(user *[]models.UserJobDetails, roletype string) error {
+	return service.DB.RepoGetJobAppliedAllJobs(user, roletype)
+}
