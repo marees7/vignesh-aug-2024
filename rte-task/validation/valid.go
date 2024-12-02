@@ -33,12 +33,3 @@ func HashPassword(password string) string {
 
 	return string(bytes)
 }
-
-// func FullVaidation(user *models.JobCreation) (final *models.JobCreation, err error) {
-// 	_, err = mail.ParseAddress(user.CompanyEmail)
-// 	if err != nil {
-// 		// fmt.Println("Error occured", err)
-// 		return nil, err
-// 	}
-// 	return
-// }

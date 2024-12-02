@@ -17,9 +17,9 @@ func (service UserService) ServiceRepoemail(user *models.UsersTable, count int64
 	return service.DB.RepoEmailForm(user, count)
 }
 
-func (service UserService) ServicePhoneForm(user *models.UsersTable, count int64) (int64, error) {
-	return service.DB.RepoPhoneForm(user, count)
-}
+// func (service UserService) ServicePhoneForm(user *models.UsersTable, count int64) (int64, error) {
+// 	return service.DB.RepoPhoneForm(user, count)
+// }
 
 func (service UserService) ServiceCreate(user *models.UsersTable) error {
 	return service.DB.RepoCreate(user)
@@ -57,15 +57,33 @@ func (service UserService) ServiceGetDetailsByCountry(user *[]models.JobCreation
 	return service.DB.RepoGetByCountryDetails(user, country)
 }
 
-func (service UserService) ApplyJobPost(user *models.UserJobDetails) error {
-	
-	return service.DB.RepoApplyJobPost(user)
+func (service UserService) ApplyJobPost(user *models.UserJobDetails, jobtype string) error {
+	return service.DB.RepoApplyJobPost(user, jobtype)
 }
 
-func (service UserService) ServiceGetJobAppliedDetails(user *[]models.UserJobDetails, roletype string) error {
-	return service.DB.RepoGetJobAppliedDetails(user, roletype)
+func (service UserService) ServiceGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, roletype string) error {
+	return service.DB.RepoGetJobAppliedDetailsbyrole(user, roletype)
 }
 
-func (service UserService) ServiceGetJobAppliedAllJobs(user *[]models.UserJobDetails, roletype string) error {
-	return service.DB.RepoGetJobAppliedAllJobs(user, roletype)
+func (service UserService) ServiceGetJobAppliedAllJobs(user *[]models.UserJobDetails) error {
+	return service.DB.RepoGetJobAppliedAllJobs(user)
+}
+
+func (service UserService) ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, roleid int) error {
+	return service.DB.RepoGetJobAppliedDetailsByJobId(user, roleid)
+}
+func (service UserService) ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int) error {
+	return service.DB.RepoGetJobAppliedDetailsByUserId(user, roleid)
+}
+
+func (service UserService) UpdatePosts(user *models.JobCreation, jobid int, roletype string) error {
+	return service.DB.RepoUpdateJobPost(user, jobid, roletype)
+}
+
+// func (service UserService) DeletedPostsByadmin(user *models.JobCreation, jobid int, roletype string) error {
+// 	return service.DB.RepoDeleteJobPost(user, jobid, roletype)
+// }
+
+func (service UserService) GetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int) error {
+	return service.DB.RepoGetJobAppliedDetailsByUserId(user, roleid)
 }
