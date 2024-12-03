@@ -1,30 +1,26 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
-	"github.com/Vigneshwartt/golang-rte-task/helpers"
-	"github.com/Vigneshwartt/golang-rte-task/models"
-	"github.com/Vigneshwartt/golang-rte-task/service"
-	"github.com/Vigneshwartt/golang-rte-task/validation"
+	"github.com/Vigneshwartt/golang-rte-task/api/service"
+	"github.com/Vigneshwartt/golang-rte-task/api/validation"
+	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator"
 	"github.com/google/uuid"
 )
 
-type UserHandler struct {
-	DB service.UserService
-}
-
-func NewHandlerRepository(db service.UserService) UserHandler {
-	return UserHandler{DB: db}
-}
-
 var validate = validator.New()
 
-func (database UserHandler) SignUp(c *gin.Context) {
-	var user models.UsersTable
+type AuthConnect struct {
+	service.AuthService
+}
+
+func (database AuthConnect) SignUp(c *gin.Context) {
+	var user models.UserDetails
 	var count int64
 
 	if err := c.BindJSON(&user); err != nil {
@@ -45,7 +41,7 @@ func (database UserHandler) SignUp(c *gin.Context) {
 		return
 	}
 
-	counts, err := database.DB.ServiceRepoemail(&user, count)
+	counts, err := database.ServiceRepoemail(&user, count)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": "Error occured in this email"})
@@ -96,11 +92,11 @@ func (database UserHandler) SignUp(c *gin.Context) {
 
 	user.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 	user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
-	token, _ := helpers.GenerateToken(user.Email, user.Name, user.RoleType, user.UserId)
-	user.Token = token
+	// token, _ := helpers.GenerateToken(user.Email, user.Name, user.RoleType, user.UserId)
+	// user.Token = token
 	user.RoleId = uuid.New().String()
 
-	Dbvalues := database.DB.ServiceCreate(&user)
+	Dbvalues := database.ServiceCreate(&user)
 	if Dbvalues != nil {
 		c.JSON(500, gin.H{
 			"Error": "Error occured while creating values"})
@@ -111,9 +107,9 @@ func (database UserHandler) SignUp(c *gin.Context) {
 		"Data":    user})
 }
 
-func (database UserHandler) Login(c *gin.Context) {
-	var user models.UsersTable
-	var founduser models.UsersTable
+func (database AuthConnect) Login(c *gin.Context) {
+	var user models.UserDetails
+	var founduser models.UserDetails
 
 	if err := c.BindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -121,7 +117,7 @@ func (database UserHandler) Login(c *gin.Context) {
 		return
 	}
 
-	value := database.DB.ServiceLoginEmail(&user, &founduser)
+	value := database.ServiceLoginEmail(&user, &founduser)
 	if value != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Email is incorrect": value.Error})
@@ -134,9 +130,11 @@ func (database UserHandler) Login(c *gin.Context) {
 			"error": data})
 		return
 	}
+	fmt.Println("founduserid", founduser.UserId)
+	token, err := validation.GenerateToken(founduser.Email, founduser.Name, founduser.RoleType, founduser.UserId)
+	user.Token = token
 
-	_, err := helpers.GenerateToken(founduser.Email, founduser.Name, founduser.RoleType, founduser.UserId)
-	values := database.DB.ServiceFindRoleID(&user, &founduser)
+	values := database.ServiceFindRoleID(&user, &founduser)
 
 	if values != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
@@ -145,7 +143,7 @@ func (database UserHandler) Login(c *gin.Context) {
 
 	c.JSON(http.StatusAccepted, gin.H{
 		"Message":  "Login Sucessfully",
-		"Token":    founduser.Token,
+		"Token":    user.Token,
 		"RoleId":   founduser.UserId,
 		"RoleType": founduser.RoleType,
 	})

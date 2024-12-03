@@ -2,8 +2,8 @@ package models
 
 import "time"
 
-type UsersTable struct {
-	UserId      int       `gorm:"primarykey;autoIncrement"`
+type UserDetails struct {
+	UserId      int       `json:"user_id" gorm:"primarykey;autoIncrement"`
 	Name        string    `json:"name" validate:"required" gorm:"column:name;type:varchar(100)"`
 	Email       string    `json:"email" validate:"required" gorm:"unique;type:varchar(100)"`
 	Password    string    `json:"password" validate:"required" gorm:"column:password;type:varchar(255)"`
@@ -16,7 +16,8 @@ type UsersTable struct {
 }
 
 type JobCreation struct {
-	JobId        int       `gorm:"primarykey;autoIncrement"`
+	JobId        int       `json:"job_id" gorm:"primarykey;autoIncrement"`
+	UserID       int       `json:"user_id" gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	CompanyName  string    `json:"company_name" gorm:"column:company_name;type:varchar(100)"`
 	CompanyEmail string    `json:"company_email" gorm:"column:company_email;type:varchar(100)"`
 	JobTitle     string    `json:"job_title" gorm:"column:job_title;type:varchar(100)"`
@@ -49,7 +50,7 @@ type UserJobDetails struct {
 	JobRole    string       `json:"job_role" gorm:"column:job_role;type:varchar(255)"`
 	CreatedAt  time.Time    `json:"created_at"`
 	UpdatedAt  time.Time    `json:"updated_at"`
-	User       *UsersTable  `json:"User" gorm:"foreignKey:UserID"`
+	User       *UserDetails `json:"User" gorm:"foreignKey:UserID"`
 	Job        *JobCreation `json:"Job" gorm:"foreignKey:JobID"`
 }
 

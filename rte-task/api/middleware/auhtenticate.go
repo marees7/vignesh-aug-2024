@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/Vigneshwartt/golang-rte-task/helpers"
+	"github.com/Vigneshwartt/golang-rte-task/api/validation"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +17,7 @@ func Authenticate() gin.HandlerFunc {
 			return
 		}
 
-		claims, err := helpers.ValidateToken(clientToken)
+		claims, err := validation.ValidateToken(clientToken)
 		if err != "" {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err})
 			c.Abort()
@@ -26,6 +26,6 @@ func Authenticate() gin.HandlerFunc {
 		c.Set("email", claims.Email)
 		c.Set("name", claims.Name)
 		c.Set("role_type", claims.RoleType)
-		c.Set("role_id", claims.RoleId)
+		c.Set("user_id", claims.UserID)
 	}
 }

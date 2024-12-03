@@ -1,4 +1,4 @@
-package helpers
+package validation
 
 import (
 	"fmt"
@@ -12,16 +12,15 @@ type Signedvalues struct {
 	Email    string
 	Name     string
 	RoleType string
-	RoleId   string
 	UserID   int
 	jwt.StandardClaims
 }
 
 var SECRET_KEY string = os.Getenv("SECRET_KEY")
 
-func GenerateToken(email, name, roletype string, roleid int) (token string, err error) {
+func GenerateToken(email, name, roletype string, userid int) (token string, err error) {
 	claims := &Signedvalues{
-		UserID:   roleid,
+		UserID:   userid,
 		Email:    email,
 		Name:     name,
 		RoleType: roletype,
@@ -29,6 +28,9 @@ func GenerateToken(email, name, roletype string, roleid int) (token string, err 
 			ExpiresAt: time.Now().Local().Add(time.Hour * time.Duration(2)).Unix(),
 		},
 	}
+	fmt.Println("userid", userid)
+	fmt.Println("name", name)
+	fmt.Println("roletype", roletype)
 	token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(SECRET_KEY))
 	if err != nil {
 		fmt.Println("Error occured")
