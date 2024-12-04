@@ -12,9 +12,9 @@ type AdminRepository interface {
 	RepoCreateNewPost(user *models.JobCreation, roletype string, userid int, applyuserid int) error
 	RepoUpdateJobPost(user *models.JobCreation, jobID int, role string, userid int, useridvalues int) error
 	RepoGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, roletype string, usertype string, userid int, applyuserid int) error
-	// RepoGetJobAppliedAllJobs(user *[]models.UserJobDetails, roletype string, userid int, applyuserid int)
 	RepoGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, roletype string, userid int, jobID int, applyuserid int) error
 	RepoGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int, usertype string, applyid int, adminid int) error
+	RepoGetPostedDetailsByAdmin(user *[]models.JobCreation, usertype string, userid int, adminid int) error
 }
 type adminRepo struct {
 	*gorm.DB
@@ -43,8 +43,8 @@ func (database *adminRepo) RepoCreateNewPost(user *models.JobCreation, roletype 
 }
 
 func (database *adminRepo) RepoUpdateJobPost(user *models.JobCreation, jobID int, role string, userid int, useridvalues int) error {
-	var existingPost models.JobCreation
-	result := database.Where("job_id= ?", jobID).First(&existingPost)
+	var newuser models.JobCreation
+	result := database.Where("job_id= ?", jobID).First(&newuser)
 	if result.Error != nil {
 		return result.Error
 	}
@@ -57,14 +57,13 @@ func (database *adminRepo) RepoUpdateJobPost(user *models.JobCreation, jobID int
 		})
 
 		if updateResult.Error != nil {
-			return updateResult.Error
+			return fmt.Errorf("can't able to update the jobids")
 		} else if updateResult.RowsAffected == 0 {
 			return fmt.Errorf("no rows affected for job_id: %d", jobID)
 		}
 	} else {
-		return fmt.Errorf("unauthorized role: %s", role)
+		return fmt.Errorf("unauthorized Role Here : %s", role)
 	}
-
 	return nil
 }
 
@@ -84,18 +83,6 @@ func (database *adminRepo) RepoGetJobAppliedDetailsbyrole(user *[]models.UserJob
 	}
 	return nil
 }
-
-// func (database *adminRepo) RepoGetJobAppliedAllJobs(user *[]models.UserJobDetails, roletype string, userid int, applyuserid int) error {
-// 	if roletype == "ADMIN" && applyuserid == userid {
-// 		dbvalue := database.Preload("User").Find(&user)
-// 		if dbvalue.Error != nil {
-// 			return dbvalue.Error
-// 		}
-// 	} else {
-// 		return fmt.Errorf("could not able to apply post")
-// 	}
-// 	return nil
-// }
 
 func (database *adminRepo) RepoGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, roletype string, userid int, jobID int, applyuserid int) error {
 	data := database.Where("job_id=?", jobID).First(&user)
@@ -139,21 +126,25 @@ func (database *adminRepo) RepoGetJobAppliedDetailsByUserId(user *[]models.UserJ
 	return nil
 }
 
-// func (databaseconnectdata UserRepository) RepoDeleteJobPost(user *models.JobCreation, jobID int, role string) error {
-// 	var existingPost models.JobCreation
-// 	result := databaseconnectdata.DB.Where("job_id = ?", jobID).First(&existingPost)
-// 	if result.Error != nil {
-// 		return result.Error
-// 	}
-// 	if role == "ADMIN" {
-// 		updateResult := databaseconnectdata.DB.Model(&models.JobCreation{}).Where("job_id = ?", jobID).Delete(&user)
-// 		if updateResult.Error != nil {
-// 			return updateResult.Error
-// 		} else if updateResult.RowsAffected == 0 {
-// 			return fmt.Errorf("no rows affected for job_id: %d", jobID)
-// 		}
-// 	} else {
-// 		return fmt.Errorf("unauthorized role: %s", role)
-// 	}
-// 	return nil
-// }
+func (database *adminRepo) RepoGetPostedDetailsByAdmin(user *[]models.JobCreation, usertype string, userid int, adminid int) error {
+	// var founduser models.JobCreation
+	// fmt.Println("founduser", founduser.UserID)
+	// fmt.Println("dbid", adminid)
+	// fmt.Println("dbuserid", userid)
+	data := database.Where("user_id=?", adminid).First(&user)
+	if data.Error != nil {
+		return data.Error
+	}
+	if usertype == "ADMIN" && userid == adminid {
+		dbvalue := database.
+			Where("user_id = ?", adminid).
+			Find(&user)
+
+		if dbvalue.Error != nil {
+			return dbvalue.Error
+		}
+	} else {
+		return fmt.Errorf("could get that post")
+	}
+	return nil
+}

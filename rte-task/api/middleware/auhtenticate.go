@@ -9,10 +9,19 @@ import (
 
 func Authenticate() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		clientToken := c.Request.Header.Get("token")
+		clientToken := c.Request.Header.Get("Authorization")
 		if clientToken == "" {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"error": "Invalid token generating"})
+				"error": "Token is required"})
+			c.Abort()
+			return
+		}
+
+		if len(clientToken) > 7 && clientToken[:7] == "Bearer " {
+			clientToken = clientToken[7:]
+		} else {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"error": "Token must be prefixed with 'Bearer '"})
 			c.Abort()
 			return
 		}
@@ -23,6 +32,7 @@ func Authenticate() gin.HandlerFunc {
 			c.Abort()
 			return
 		}
+
 		c.Set("email", claims.Email)
 		c.Set("name", claims.Name)
 		c.Set("role_type", claims.RoleType)

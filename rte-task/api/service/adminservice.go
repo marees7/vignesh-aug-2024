@@ -10,10 +10,9 @@ type AdminService interface {
 	ServiceCreatePost(user *models.JobCreation, userType string, userid int, applyuserid int) error
 	UpdatePosts(user *models.JobCreation, jobid int, roletype string, userid int, useridvalues int) error
 	ServiceGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, roletype string, usertype string, userid int, applyuserid int) error
-	// ServiceGetJobAppliedAllJobs(user *[]models.UserJobDetails, usertype string, userid int, applyuserid int) error
 	ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, usertype string, userid int, roleid int, applyuserid int) error
 	ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, usertype string, userid int, adminid int) error
-	// DeletedPostsByadmin(user *models.JobCreation, jobid int, roletype string) error
+	ServiceGetPostedDetailsByAdmin(user *[]models.JobCreation, usertype string, userid int, adminid int) error
 }
 type adminservice struct {
 	*repository.UserRepository
@@ -34,17 +33,12 @@ func (service *adminservice) ServiceGetJobAppliedDetailsbyrole(user *[]models.Us
 	return service.Admin.RepoGetJobAppliedDetailsbyrole(user, roletype, usertype, userid, applyuserid)
 }
 
-// func (service *adminservice) ServiceGetJobAppliedAllJobs(user *[]models.UserJobDetails, usertype string, userid int, applyuserid int) error {
-// 	return service.DB.RepoGetJobAppliedAllJobs(user, usertype, userid, applyuserid)
-// }
-
 func (service *adminservice) ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, usertype string, userid int, roleid int, applyuserid int) error {
 	return service.Admin.RepoGetJobAppliedDetailsByJobId(user, usertype, userid, roleid, applyuserid)
 }
 func (service *adminservice) ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, usertype string, userid int, adminid int) error {
 	return service.Admin.RepoGetJobAppliedDetailsByUserId(user, roleid, usertype, userid, adminid)
 }
-
-// func (service *adminservice) DeletedPostsByadmin(user *models.JobCreation, jobid int, roletype string) error {
-// 	return service.Admin.RepoDeleteJobPost(user, jobid, roletype)
-// }
+func (service *adminservice) ServiceGetPostedDetailsByAdmin(user *[]models.JobCreation, usertype string, userid int, adminid int) error {
+	return service.Admin.RepoGetPostedDetailsByAdmin(user, usertype, userid, adminid)
+}

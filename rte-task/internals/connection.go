@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -20,7 +21,7 @@ func ConnectingDatabase() *gorm.DB {
 	port := os.Getenv("DB_port")
 	password := os.Getenv("DB_password")
 	dbname := os.Getenv("DB_dbname")
-	
+
 	path := fmt.Sprintf("host=%s user=%s port=%s password=%s dbname=%s", host, user, port, password, dbname)
 	Connection, err := gorm.Open(postgres.Open(path), &gorm.Config{})
 	if err != nil {
@@ -28,7 +29,9 @@ func ConnectingDatabase() *gorm.DB {
 	}
 	GlobalConnection = Connection
 	Automigration()
+	defer HandlePanic()
 	fmt.Println("Connection make sucessfully")
+	loggers.InfoData.Println("Connected sucessfully")
 	return Connection
 }
 

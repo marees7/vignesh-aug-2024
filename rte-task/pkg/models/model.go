@@ -4,13 +4,13 @@ import "time"
 
 type UserDetails struct {
 	UserId      int       `json:"user_id" gorm:"primarykey;autoIncrement"`
-	Name        string    `json:"name" validate:"required" gorm:"column:name;type:varchar(100)"`
-	Email       string    `json:"email" validate:"required" gorm:"unique;type:varchar(100)"`
-	Password    string    `json:"password" validate:"required" gorm:"column:password;type:varchar(255)"`
-	PhoneNumber string    `json:"phone_number" validate:"required" gorm:"column:phone_number;type:varchar(15)"`
-	RoleType    string    `json:"role_type" gorm:"column:role_type;type:varchar(25)"`
+	Name        string    `json:"name"  gorm:"column:name;type:varchar(100)"`
+	Email       string    `json:"email"  gorm:"unique;type:varchar(100)"`
+	Password    string    `json:"password"  gorm:"column:password;type:varchar(255)"`
+	PhoneNumber string    `json:"phone_number"  gorm:"column:phone_number;type:varchar(15)"`
+	RoleType    string    `json:"role_type"  gorm:"column:role_type;type:varchar(25)"`
 	RoleId      string    `json:"role_id" gorm:"column:role_id;type:varchar(255)"`
-	Token       string    `json:"token" gorm:"column:token;type:varchar(255)"`
+	Token       string    `json:"token,omitempty" gorm:"column:token;type:varchar(255)"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
@@ -55,7 +55,7 @@ type UserJobDetails struct {
 }
 
 type CommonResponse struct {
-	Message string `json:"message,omitempty"`
-	Error   any    `json:"error,omitempty"`
-	Data    any    `json:"data,omitempty"`
+	Message string      `json:"message,omitempty"`
+	Error   interface{} `json:"error,omitempty"`
+	Data    interface{} `json:"data,omitempty"`
 }

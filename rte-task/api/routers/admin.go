@@ -8,25 +8,25 @@ import (
 )
 
 func AdminRouter(router *gin.Engine, service *service.UserService) {
-	user := &handler.AdminHand{AdminService: service.Admin}
+	admin := &handler.AdminHand{AdminService: service.Admin}
 	r := router.Group("/admin")
 	{
 		r.Use(middleware.Authenticate())
-		// r.GET("users", user.MultipleUsers)
-		r.POST("insert/jobs/:user_id", middleware.Authenticate(), user.CreateJobPost)
-		// r.GET("users/:user_id/:admin_id", userhands.GetUser)
+		r.POST("insert/:admin_id", admin.CreateJobPost)
 
-		// r.GET("admin/alljobs/:user_id", user.GetAllAppliedJobDetails)
+		//admin get by jobid userid
+		r.GET("userjobsbyid/:job_id/:admin_id", admin.GetJobAppliedDetailsByJobId)
 
-		//admin get by jobid userid--yes
-		r.GET("userjobsbyid/admin/:job_id/:user_id", user.GetJobAppliedDetailsByJobId)
-		//admin get by userid --yes
-		r.GET("userid/admin/:user_id/:admin_id", user.GetJobAppliedDetailsByUserId)
+		//admin get by userid
+		r.GET("userid/:user_id/:admin_id", admin.GetJobAppliedDetailsByUserId)
+
 		//get by role and userid
-		r.GET("userdetails/admin/:job_role/:user_id", user.GetJobAppliedDetailsbyrole)
-		//users get by id
+		r.GET("userdetails/:job_role/:admin_id", admin.GetJobAppliedDetailsbyrole)
 
-		r.PUT("/update/:job_id/:user_id", user.UpdatePost)
-		// r.DELETE("/delete/:job_id", user.DeletePost)
+		//admins update by jobid and amin id
+		r.PUT("/update/:job_id/:admin_id", admin.UpdatePost)
+
+		//admin get by his id to know about how many psot created
+		r.GET("postdetails/:admin_id", admin.GetJobsByAdmin)
 	}
 }

@@ -7,11 +7,11 @@ import (
 )
 
 func AuthRoutes(router *gin.Engine, service *service.UserService) {
-	user := &handler.AuthConnect{AuthService: service.Auth}
+	auth := &handler.AuthConnect{AuthService: service.Auth}
 	r := router.Group("/auth")
 	{
-		r.POST("users/signup", user.SignUp)
-		r.POST("users/login", user.Login)
+		r.POST("/signup", auth.SignUp)
+		r.POST("/login", auth.Login)
 	}
 
 }
