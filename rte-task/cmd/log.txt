@@ -1,310 +1,435 @@
-ERROR: 2024/12/04 10:48:29.846281 usershandler.go:136: Error occured while creating values
-ERROR: 2024/12/04 10:48:52.211499 usershandler.go:136: Error occured while creating values
-ERROR: 2024/12/04 10:50:32.736558 usershandler.go:136: Error occured while creating values
-ERROR: 2024/12/04 10:50:38.905588 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:50:45.602761 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:51:19.353255 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:51:42.381319 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:53:53.714712 adminhandler.go:109: Failed to update post
-ERROR: 2024/12/04 10:53:57.602700 adminhandler.go:109: Failed to update post
-ERROR: 2024/12/04 10:54:33.870813 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 10:54:42.622971 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 10:56:15.884945 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 10:56:24.693462 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 10:57:21.878039 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 10:57:49.603685 usershandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:58:03.169308 usershandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:59:46.848820 usershandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 10:59:55.229789 usershandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:00:12.621194 usershandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:01:26.818708 usershandler.go:168: Error occured while getting values
-ERROR: 2024/12/04 11:01:30.126286 usershandler.go:168: Error occured while getting values
-ERROR: 2024/12/04 11:01:34.350565 usershandler.go:168: Error occured while getting values
-ERROR: 2024/12/04 11:07:08.720768 adminhandler.go:62: Error occured while creating values
-ERROR: 2024/12/04 11:08:22.307561 usershandler.go:136: Error occured while creating values
-ERROR: 2024/12/04 11:08:34.997495 usershandler.go:136: Error occured while creating values
-ERROR: 2024/12/04 11:08:50.153858 usershandler.go:136: Error occured while creating values
-ERROR: 2024/12/04 11:10:28.439160 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:10:34.850905 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:10:59.272916 adminhandler.go:109: Failed to update post
-ERROR: 2024/12/04 11:11:13.160070 adminhandler.go:109: Failed to update post
-ERROR: 2024/12/04 11:12:01.795642 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 11:12:05.506774 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 11:12:09.274911 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 11:12:27.341474 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 11:15:35.181872 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 11:15:39.925710 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 11:15:44.793889 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 11:16:11.071229 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 11:16:58.486320 usershandler.go:168: Error occured while getting values
-ERROR: 2024/12/04 11:17:24.806042 usershandler.go:168: Error occured while getting values
-ERROR: 2024/12/04 11:30:05.213110 usershandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 11:30:10.966943 usershandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 11:30:25.622252 usershandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 11:37:31.951795 usershandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 11:41:45.127948 usershandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 11:41:52.916091 usershandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 11:46:58.112879 adminhandler.go:62: Error occured while creating values
-WARN:2024/12/04 11:47:19.023456 adminhandler.go:42: Error occured while getting values
-ERROR: 2024/12/04 11:48:17.111954 usershandler.go:110: Error occured while creating values
-ERROR: 2024/12/04 11:49:38.462830 usershandler.go:110: Error occured while creating values
-ERROR: 2024/12/04 11:49:49.156250 usershandler.go:110: Error occured while creating values
-ERROR: 2024/12/04 11:51:59.246986 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:52:14.887901 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:52:21.024427 adminhandler.go:150: Error occured while getting values
-ERROR: 2024/12/04 11:54:47.610828 adminhandler.go:109: Failed to update post
-ERROR: 2024/12/04 11:55:19.746234 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 11:55:23.405902 adminhandler.go:236: Error occured while getting values
-ERROR: 2024/12/04 11:56:21.009173 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 11:56:24.394125 adminhandler.go:282: Error occured while getting values
-ERROR: 2024/12/04 11:57:00.722891 usershandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 11:57:08.007742 usershandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 11:57:10.561462 usershandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 11:58:47.105379 adminhandler.go:109: Failed to update post
-INFO: 2024/12/04 14:51:31.382770 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 15:13:31.058714 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 15:18:31.745688 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 15:20:35.523379 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 15:21:14.553689 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 15:21:50.210652 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 15:27:04.065966 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 15:27:53.637806 usershandler.go:110: Error occured while creating values
-ERROR: 2024/12/04 15:28:06.474262 usershandler.go:110: Error occured while creating values
-ERROR: 2024/12/04 15:28:23.546505 adminhandler.go:150: Error occured while getting values
-INFO: 2024/12/04 15:56:46.840731 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:12:00.104319 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:30:06.129603 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:31:13.662339 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:34:02.197405 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:35:02.086098 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:57:11.012218 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:58:20.828178 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 16:58:51.995135 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 17:07:28.728658 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 17:12:10.242799 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 17:14:06.969523 adminhandler.go:69: Error occured while creating values
-INFO: 2024/12/04 17:22:37.951202 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 17:22:42.276716 usershandler.go:27: Error occured while getting values
-ERROR: 2024/12/04 17:23:04.187182 usershandler.go:27: Error occured while getting values
-ERROR: 2024/12/04 17:23:18.758601 usershandler.go:27: Error occured while getting values
-INFO: 2024/12/04 17:25:03.491595 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 17:25:33.876068 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 17:33:20.595666 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 17:33:42.311870 usershandler.go:50: Error occured while getting values
-INFO: 2024/12/04 17:59:10.950813 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 17:59:52.939831 adminhandler.go:252: Error occured while getting values
-ERROR: 2024/12/04 17:59:57.531154 adminhandler.go:252: Error occured while getting values
-INFO: 2024/12/04 18:16:24.888412 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 18:20:00.149198 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 18:21:35.547330 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 18:25:15.864380 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 18:27:48.133210 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 18:29:52.798143 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 18:30:25.404404 adminhandler.go:62: Error occured while creating values
-ERROR: 2024/12/04 18:33:49.280870 usershandler.go:89: Error occured while creating values
-ERROR: 2024/12/04 18:34:12.980032 usershandler.go:89: Error occured while creating values
-ERROR: 2024/12/04 18:34:28.743510 usershandler.go:89: Error occured while creating values
-ERROR: 2024/12/04 18:34:51.102395 adminhandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 18:35:35.678148 adminhandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 18:36:30.813427 adminhandler.go:109: Failed to update post
-ERROR: 2024/12/04 18:38:09.888420 adminhandler.go:221: Error occured while getting values
-ERROR: 2024/12/04 18:38:23.311779 adminhandler.go:221: Error occured while getting values
-ERROR: 2024/12/04 18:38:44.012288 usershandler.go:103: Error occured while getting values
-ERROR: 2024/12/04 18:39:04.987990 usershandler.go:124: Error occured while getting values
-ERROR: 2024/12/04 18:39:35.075359 adminhandler.go:252: Error occured while getting values
-ERROR: 2024/12/04 18:39:55.408782 adminhandler.go:252: Error occured while getting values
-ERROR: 2024/12/04 18:40:10.649324 adminhandler.go:252: Error occured while getting values
-ERROR: 2024/12/04 18:40:15.412480 adminhandler.go:252: Error occured while getting values
-INFO: 2024/12/04 18:44:56.339493 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 18:45:03.208825 adminhandler.go:252: Error occured while getting values
-INFO: 2024/12/04 18:45:27.769667 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 18:45:33.661186 adminhandler.go:252: Error occured while getting values
-INFO: 2024/12/04 18:48:48.843923 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 18:48:59.330995 adminhandler.go:252: Error occured while getting values
-INFO: 2024/12/04 18:49:19.472226 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 18:49:21.585150 adminhandler.go:252: Error occured while getting values
-ERROR: 2024/12/04 18:49:28.695770 adminhandler.go:252: Error occured while getting values
-INFO: 2024/12/04 18:58:43.263202 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:01:06.567812 adminhandler.go:62: Error occured while creating values
-ERROR: 2024/12/04 19:03:08.185764 usershandler.go:89: Error occured while creating values
-ERROR: 2024/12/04 19:03:34.068307 usershandler.go:89: Error occured while creating values
-ERROR: 2024/12/04 19:04:02.980773 adminhandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 19:04:13.501900 adminhandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 19:04:45.564782 adminhandler.go:142: Error occured while getting values
-ERROR: 2024/12/04 19:05:04.053215 adminhandler.go:253: Error occured while getting values
-ERROR: 2024/12/04 19:05:07.593645 adminhandler.go:253: Error occured while getting values
-ERROR: 2024/12/04 19:05:15.200765 adminhandler.go:253: Error occured while getting values
-INFO: 2024/12/04 19:08:38.897756 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:09:01.503351 adminhandler.go:253: Error occured while getting values
-INFO: 2024/12/04 19:11:24.774507 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:11:27.570455 adminhandler.go:253: Error occured while getting values
-INFO: 2024/12/04 19:12:14.771516 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:12:17.180299 adminhandler.go:253: Error occured while getting values
-INFO: 2024/12/04 19:13:27.416133 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 19:13:39.345722 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:13:43.654489 adminhandler.go:253: Error occured while getting values
-INFO: 2024/12/04 19:16:52.111244 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 19:22:36.496415 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:22:49.482796 usershandler.go:50: Error occured while getting values
-ERROR: 2024/12/04 19:23:03.996180 usershandler.go:50: Error occured while getting values
-INFO: 2024/12/04 19:24:22.709488 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:24:30.467412 usershandler.go:50: Error occured while getting values
-ERROR: 2024/12/04 19:24:38.525585 usershandler.go:50: Error occured while getting values
-ERROR: 2024/12/04 19:25:13.142763 usershandler.go:89: Error occured while creating values
-ERROR: 2024/12/04 19:25:17.228796 usershandler.go:89: Error occured while creating values
-INFO: 2024/12/04 19:39:14.712665 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 19:40:02.438577 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 19:43:40.382571 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 19:56:07.835029 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 19:56:36.193773 authhandler.go:70: Error occured in this validation of Password
-ERROR: 2024/12/04 19:56:43.883010 authhandler.go:70: Error occured in this validation of Password
-ERROR: 2024/12/04 19:56:47.479401 authhandler.go:70: Error occured in this validation of Password
-INFO: 2024/12/04 19:56:51.953174 authhandler.go:122: Sucessfully Created the Details
-INFO: 2024/12/04 19:57:27.351214 authhandler.go:122: Sucessfully Created the Details
-INFO: 2024/12/04 19:57:54.843241 authhandler.go:165: Login Sucessfully
-ERROR: 2024/12/04 19:58:19.243833 adminhandler.go:62: Can't able to create JobPost Details
-ERROR: 2024/12/04 19:59:49.363276 adminhandler.go:62: Can't able to create JobPost Details
-INFO: 2024/12/04 20:00:12.545996 authhandler.go:165: Login Sucessfully
-INFO: 2024/12/04 20:00:24.621967 adminhandler.go:68: Sucessfully Created the Details
-ERROR: 2024/12/04 20:00:29.510339 adminhandler.go:62: Can't able to create JobPost Details
-INFO: 2024/12/04 20:00:36.686463 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:00:38.441249 adminhandler.go:62: OOPS! Your Id is Mismatching Here,Check It once again
-ERROR: 2024/12/04 20:01:06.610861 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 20:02:42.732971 adminhandler.go:110: Failed to update post
-INFO: 2024/12/04 20:02:46.403545 adminhandler.go:120: Sucessfully Updated the Details
-ERROR: 2024/12/04 20:02:52.332273 adminhandler.go:110: Failed to update post
-INFO: 2024/12/04 20:03:48.577127 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:03:50.703755 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 20:04:23.747010 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 20:04:31.475865 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 20:06:09.048056 adminhandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 20:06:14.073945 adminhandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 20:09:30.562844 adminhandler.go:186: Error occured while getting values
-ERROR: 2024/12/04 20:09:37.054625 adminhandler.go:186: Error occured while getting values
-ERROR: 2024/12/04 20:10:05.450031 adminhandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 20:10:08.331356 adminhandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 20:10:12.112564 adminhandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 20:10:25.651877 adminhandler.go:145: Error occured while getting values
-ERROR: 2024/12/04 20:10:50.457011 adminhandler.go:145: Error occured while getting values
-INFO: 2024/12/04 20:10:56.048360 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:10:58.304502 adminhandler.go:145: Can't able to get the Details Properly
-ERROR: 2024/12/04 20:11:27.005494 adminhandler.go:145: Can't able to get the Details Properly
-ERROR: 2024/12/04 20:12:00.790029 adminhandler.go:145: Can't able to get the Details Properly
-ERROR: 2024/12/04 20:12:04.804579 adminhandler.go:145: Can't able to get the Details Properly
-ERROR: 2024/12/04 20:12:26.870542 adminhandler.go:145: Can't able to get the Details Properly
-INFO: 2024/12/04 20:16:12.041137 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:16:17.086319 adminhandler.go:145: Can't able to get the Details Properly
-ERROR: 2024/12/04 20:16:55.523827 usershandler.go:91: Error occured while creating values
-ERROR: 2024/12/04 20:17:11.954961 usershandler.go:91: Error occured while creating values
-ERROR: 2024/12/04 20:17:32.552044 usershandler.go:91: Error occured while creating values
-INFO: 2024/12/04 20:18:42.234531 authhandler.go:122: Sucessfully Created the Details
-INFO: 2024/12/04 20:18:53.163449 usershandler.go:97: Sucessfully Applied the Job
-ERROR: 2024/12/04 20:21:02.688129 usershandler.go:51: Error occured while getting values
-INFO: 2024/12/04 20:46:04.934042 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:46:13.867359 authhandler.go:54: This email is already registred and Enter another mail
-ERROR: 2024/12/04 20:46:19.449641 authhandler.go:85: Phonenumber should be equal to 10
-ERROR: 2024/12/04 20:46:36.833082 authhandler.go:99: PhoneNumber is already registred ,Enter another PhoneNumber
-WARN:2024/12/04 20:46:45.804196 authhandler.go:61: Role should be Either USER or ADMIN
-ERROR: 2024/12/04 20:46:54.614621 authhandler.go:85: Phonenumber should be equal to 10
-INFO: 2024/12/04 20:50:16.067045 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:50:25.602119 authhandler.go:99: PhoneNumber is already registred ,Enter another PhoneNumber
-ERROR: 2024/12/04 20:50:35.094735 authhandler.go:85: Phonenumber should be equal to 10
-ERROR: 2024/12/04 20:50:44.898848 authhandler.go:85: Phonenumber should be equal to 10
-ERROR: 2024/12/04 20:52:22.076022 authhandler.go:85: Phonenumber should be equal to 10
-INFO: 2024/12/04 20:52:53.226225 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:52:58.195833 authhandler.go:85: Phonenumber should be equal to 10
-ERROR: 2024/12/04 20:53:03.633492 authhandler.go:85: Phonenumber should be equal to 10
-INFO: 2024/12/04 20:53:48.039783 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 20:53:53.024662 authhandler.go:85: Phonenumber should be equal to 10
-INFO: 2024/12/04 21:06:21.604609 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:06:25.226074 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:06:37.645896 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:07:00.768156 authhandler.go:69: Error occured in this validation of Password
-INFO: 2024/12/04 21:07:38.859468 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:07:41.947459 authhandler.go:93: Phonenumber should be equal to 10
-INFO: 2024/12/04 21:07:57.790943 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:07:59.424920 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:08:54.915410 authhandler.go:69: Error occured in this validation of Password
-INFO: 2024/12/04 21:09:03.146740 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:09:06.000232 authhandler.go:93: Phonenumber should be equal to 10
-ERROR: 2024/12/04 21:09:12.446256 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:09:23.500453 authhandler.go:69: Error occured in this validation of Password
-INFO: 2024/12/04 21:09:30.455433 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:09:33.419199 authhandler.go:93: Phonenumber should be equal to 10
-ERROR: 2024/12/04 21:09:36.467079 authhandler.go:69: Error occured in this validation of Password
-INFO: 2024/12/04 21:09:50.776530 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:09:57.033286 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:10:01.804449 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:10:05.561695 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:10:10.674233 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:10:27.332639 authhandler.go:93: Phonenumber should be equal to 10
-INFO: 2024/12/04 21:10:59.668315 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:11:02.633458 authhandler.go:93: Phonenumber should be equal to 10
-ERROR: 2024/12/04 21:11:10.317414 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:11:13.864381 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:11:17.890729 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:11:24.346609 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:11:28.998473 authhandler.go:69: Error occured in this validation of Password
-ERROR: 2024/12/04 21:11:36.016783 authhandler.go:93: Phonenumber should be equal to 10
-ERROR: 2024/12/04 21:11:41.360861 authhandler.go:93: Phonenumber should be equal to 10
-ERROR: 2024/12/04 21:11:45.520588 authhandler.go:93: Phonenumber should be equal to 10
-INFO: 2024/12/04 21:11:50.483577 authhandler.go:124: Sucessfully Created the Details
-INFO: 2024/12/04 21:25:21.362355 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 21:27:02.856415 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 21:27:40.723134 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:27:43.748390 authhandler.go:51: This email is already registred and Enter another mail
-ERROR: 2024/12/04 21:28:06.644065 authhandler.go:51: This email is already registred and Enter another mail
-ERROR: 2024/12/04 21:28:15.796911 authhandler.go:91: PhoneNumber is already registred ,Enter another PhoneNumber
-INFO: 2024/12/04 21:28:30.925720 authhandler.go:108: Sucessfully Created the Details
-INFO: 2024/12/04 21:29:29.330474 connection.go:34: Connected sucessfully
-INFO: 2024/12/04 21:29:41.548312 authhandler.go:150: Login Sucessfully
-ERROR: 2024/12/04 21:30:16.712607 usershandler.go:91: Error occured while creating values
-INFO: 2024/12/04 21:30:20.420334 usershandler.go:97: Sucessfully Applied the Job
-ERROR: 2024/12/04 21:30:48.011819 authhandler.go:66: Error occured in this validation of Password
-INFO: 2024/12/04 21:30:54.086018 authhandler.go:108: Sucessfully Created the Details
-INFO: 2024/12/04 21:31:18.315856 authhandler.go:150: Login Sucessfully
-ERROR: 2024/12/04 21:31:30.994515 adminhandler.go:62: OOPS! Your Id is Mismatching Here,Check It Once Again
-INFO: 2024/12/04 21:31:56.437361 adminhandler.go:68: Sucessfully Created the Details
-INFO: 2024/12/04 21:32:06.943777 usershandler.go:36: Sucessfuly Get the all created Post Details
-ERROR: 2024/12/04 21:32:22.353507 usershandler.go:51: Error occured while getting values
-INFO: 2024/12/04 21:32:26.461207 usershandler.go:60: Sucessfully Get the JobDetails By thier roles
-ERROR: 2024/12/04 21:32:35.533888 usershandler.go:91: Error occured while creating values
-INFO: 2024/12/04 21:33:21.744167 authhandler.go:108: Sucessfully Created the Details
-INFO: 2024/12/04 21:33:32.101312 authhandler.go:150: Login Sucessfully
-ERROR: 2024/12/04 21:33:56.002111 usershandler.go:91: Error occured while creating values
-INFO: 2024/12/04 21:34:00.009749 usershandler.go:97: Sucessfully Applied the Job
-INFO: 2024/12/04 21:34:06.542878 usershandler.go:97: Sucessfully Applied the Job
-INFO: 2024/12/04 21:35:22.346836 adminhandler.go:68: Sucessfully Created the Details
-INFO: 2024/12/04 21:35:42.977667 usershandler.go:97: Sucessfully Applied the Job
-INFO: 2024/12/04 21:35:55.410483 adminhandler.go:155: Sucessfully Get the Details
-ERROR: 2024/12/04 21:35:58.191898 adminhandler.go:145: Can't able to get the Details Properly
-ERROR: 2024/12/04 21:36:06.835256 adminhandler.go:145: Can't able to get the Details Properly
-INFO: 2024/12/04 21:36:10.129812 adminhandler.go:155: Sucessfully Get the Details
-ERROR: 2024/12/04 21:36:40.786329 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 21:37:07.295530 adminhandler.go:110: Failed to update post
-INFO: 2024/12/04 21:42:22.096587 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:42:27.485045 adminhandler.go:110: Failed to update post
-INFO: 2024/12/04 21:42:33.429480 adminhandler.go:120: Sucessfully Updated the Details
-ERROR: 2024/12/04 21:42:45.942504 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 21:42:52.693518 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 21:44:31.591133 adminhandler.go:145: Can't able to get the Details Properly
-INFO: 2024/12/04 21:44:51.684377 adminhandler.go:155: Sucessfully Get the Details
-ERROR: 2024/12/04 21:45:08.596710 adminhandler.go:110: Failed to update post
-ERROR: 2024/12/04 21:45:13.603852 adminhandler.go:110: Failed to update post
-INFO: 2024/12/04 21:45:18.512257 adminhandler.go:120: Sucessfully Updated the Details
-ERROR: 2024/12/04 21:45:27.242480 adminhandler.go:186: Error occured while getting values
-ERROR: 2024/12/04 21:47:59.429541 adminhandler.go:186: Error occured while getting values
-ERROR: 2024/12/04 21:48:03.417101 adminhandler.go:186: Error occured while getting values
-INFO: 2024/12/04 21:48:06.931391 adminhandler.go:196: Sucessfully Get the Details
-ERROR: 2024/12/04 21:48:12.372947 adminhandler.go:186: Error occured while getting values
-ERROR: 2024/12/04 21:48:22.420830 adminhandler.go:186: Error occured while getting values
-ERROR: 2024/12/04 21:50:24.531578 adminhandler.go:226: Cant able to get the job Applied Details By theirs ID
-ERROR: 2024/12/04 21:50:29.833570 adminhandler.go:226: Cant able to get the job Applied Details By theirs ID
-ERROR: 2024/12/04 21:50:33.748386 adminhandler.go:226: Cant able to get the job Applied Details By theirs ID
-ERROR: 2024/12/04 21:51:01.190013 adminhandler.go:226: Cant able to get the job Applied Details By theirs ID
-INFO: 2024/12/04 21:51:47.379358 connection.go:34: Connected sucessfully
-ERROR: 2024/12/04 21:51:49.561377 adminhandler.go:226: Cant able to get the job Applied Details By theirs ID
-INFO: 2024/12/04 21:51:55.909049 adminhandler.go:236: Sucessfully Get the Details by their IDs
-ERROR: 2024/12/04 21:53:10.207098 usershandler.go:127: Error occured while getting values
-INFO: 2024/12/04 21:53:18.085268 usershandler.go:137: Sucessfully Get the details by thier own userIds
-INFO: 2024/12/04 21:54:32.607209 adminhandler.go:269: Sucessfully Get the Details by Admin
+INFO: 2024/12/05 11:04:56 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 11:05:24 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 11:13:30 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 11:13:38 authhandler.go:150: Login Sucessfully
+ERROR: 2024/12/05 11:14:01 adminhandler.go:62: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+ERROR: 2024/12/05 11:14:06 adminhandler.go:62: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+INFO: 2024/12/05 11:17:35 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 11:23:20 authhandler.go:38: Error occured in this validation of email
+ERROR: 2024/12/05 11:23:37 authhandler.go:38: Error occured in this validation of email
+ERROR: 2024/12/05 11:23:46 authhandler.go:38: Error occured in this validation of email
+ERROR: 2024/12/05 11:23:56 authhandler.go:66: Error occured in this validation of Password
+ERROR: 2024/12/05 11:24:37 authhandler.go:66: Error occured in this validation of Password
+ERROR: 2024/12/05 11:24:52 authhandler.go:66: Error occured in this validation of Password
+ERROR: 2024/12/05 11:25:03 authhandler.go:66: Error occured in this validation of Password
+ERROR: 2024/12/05 11:25:20 authhandler.go:66: Error occured in this validation of Password
+ERROR: 2024/12/05 11:25:33 authhandler.go:77: Phonenumber should be equal to 10
+ERROR: 2024/12/05 11:25:52 authhandler.go:77: Phonenumber should be equal to 10
+WARN:2024/12/05 11:25:59 authhandler.go:58: Role should be Either USER or ADMIN
+WARN:2024/12/05 11:26:00 authhandler.go:58: Role should be Either USER or ADMIN
+WARN:2024/12/05 11:26:08 authhandler.go:58: Role should be Either USER or ADMIN
+ERROR: 2024/12/05 11:27:14 authhandler.go:77: Phonenumber should be equal to 10
+INFO: 2024/12/05 11:27:20 authhandler.go:108: Sucessfully Created the Details
+ERROR: 2024/12/05 11:28:44 authhandler.go:51: This email is already registred and Enter another mail
+ERROR: 2024/12/05 11:29:19 authhandler.go:125: Mail is Invalid
+ERROR: 2024/12/05 11:29:35 authhandler.go:125: Mail is Invalid
+INFO: 2024/12/05 11:30:41 authhandler.go:150: Login Sucessfully
+INFO: 2024/12/05 11:33:30 adminhandler.go:68: Sucessfully Created the Details
+WARN:2024/12/05 11:33:48 adminhandler.go:42: Error occured while getting values
+WARN:2024/12/05 11:34:03 adminhandler.go:49: Time should be either PART TIME or FULL TIME
+WARN:2024/12/05 11:34:21 adminhandler.go:49: Time should be either PART TIME or FULL TIME
+INFO: 2024/12/05 11:34:29 adminhandler.go:68: Sucessfully Created the Details
+INFO: 2024/12/05 11:34:51 adminhandler.go:68: Sucessfully Created the Details
+INFO: 2024/12/05 11:35:41 adminhandler.go:269: Sucessfully Get the Details by Admin
+INFO: 2024/12/05 11:41:56 usershandler.go:36: Sucessfuly Get the all created Post Details
+INFO: 2024/12/05 11:42:22 authhandler.go:108: Sucessfully Created the Details
+INFO: 2024/12/05 11:42:32 authhandler.go:150: Login Sucessfully
+ERROR: 2024/12/05 11:42:56 adminhandler.go:62: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+INFO: 2024/12/05 11:43:14 adminhandler.go:68: Sucessfully Created the Details
+INFO: 2024/12/05 11:43:31 adminhandler.go:269: Sucessfully Get the Details by Admin
+INFO: 2024/12/05 11:44:08 usershandler.go:36: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/05 11:45:52 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:45:56 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:45:59 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:46:04 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:46:17 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:46:48 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:47:07 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:47:12 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:47:17 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:47:22 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:49:34 adminhandler.go:110: Failed to update post
+ERROR: 2024/12/05 11:49:37 adminhandler.go:110: Failed to update post
+INFO: 2024/12/05 11:49:44 adminhandler.go:120: Sucessfully Updated the Details
+INFO: 2024/12/05 11:51:43 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 11:52:32 authhandler.go:108: Sucessfully Created the Details
+INFO: 2024/12/05 11:52:41 authhandler.go:150: Login Sucessfully
+ERROR: 2024/12/05 11:53:25 adminhandler.go:62: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+INFO: 2024/12/05 11:53:32 adminhandler.go:68: Sucessfully Created the Details
+INFO: 2024/12/05 11:53:51 adminhandler.go:68: Sucessfully Created the Details
+INFO: 2024/12/05 11:54:00 adminhandler.go:269: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 11:54:05 adminhandler.go:259: Error occured while getting values by admin
+INFO: 2024/12/05 11:54:08 adminhandler.go:269: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 11:54:46 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 11:54:50 adminhandler.go:186: Error occured while getting values
+INFO: 2024/12/05 11:55:03 usershandler.go:36: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/05 11:55:41 authhandler.go:91: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 11:55:46 authhandler.go:108: Sucessfully Created the Details
+INFO: 2024/12/05 11:55:57 authhandler.go:150: Login Sucessfully
+INFO: 2024/12/05 11:56:31 usershandler.go:36: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/05 11:58:01 usershandler.go:91: Error occured while creating values
+ERROR: 2024/12/05 11:59:00 authhandler.go:51: This email is already registred and Enter another mail
+ERROR: 2024/12/05 11:59:08 authhandler.go:91: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 11:59:12 authhandler.go:108: Sucessfully Created the Details
+INFO: 2024/12/05 11:59:19 authhandler.go:150: Login Sucessfully
+ERROR: 2024/12/05 12:00:03 usershandler.go:91: Error occured while creating values
+ERROR: 2024/12/05 12:00:24 usershandler.go:91: Error occured while creating values
+ERROR: 2024/12/05 12:00:25 usershandler.go:91: Error occured while creating values
+ERROR: 2024/12/05 12:00:35 usershandler.go:91: Error occured while creating values
+INFO: 2024/12/05 12:01:05 usershandler.go:97: Sucessfully Applied the Job
+ERROR: 2024/12/05 12:01:32 usershandler.go:127: Error occured while getting values
+ERROR: 2024/12/05 12:01:40 usershandler.go:127: Error occured while getting values
+INFO: 2024/12/05 12:02:01 usershandler.go:97: Sucessfully Applied the Job
+INFO: 2024/12/05 12:02:08 usershandler.go:137: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/05 12:20:00 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:21:05 usershandler.go:97: Sucessfully Applied the Job
+ERROR: 2024/12/05 12:21:48 usershandler.go:127: Error occured while getting values
+INFO: 2024/12/05 12:21:52 usershandler.go:137: Sucessfully Get the details by thier own userIds
+ERROR: 2024/12/05 12:22:51 adminhandler.go:186: Error occured while getting values
+ERROR: 2024/12/05 12:23:39 adminhandler.go:186: Error occured while getting values
+INFO: 2024/12/05 12:23:48 adminhandler.go:196: Sucessfully Get the Details
+ERROR: 2024/12/05 12:24:53 adminhandler.go:110: Failed to update post
+ERROR: 2024/12/05 12:25:00 adminhandler.go:110: Failed to update post
+INFO: 2024/12/05 12:25:14 adminhandler.go:120: Sucessfully Updated the Details
+ERROR: 2024/12/05 12:26:04 usershandler.go:51: Error occured while getting values
+INFO: 2024/12/05 12:47:02 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:47:07 adminhandler.go:68: Sucessfully Created the Details
+INFO: 2024/12/05 12:49:46 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:51:56 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:52:46 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:53:02 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:53:59 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 12:54:14 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 13:09:38 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 13:10:34 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 13:10:36 adminhandler.go:58: Error occured in this validation of postdetails
+INFO: 2024/12/05 13:13:35 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 13:13:44 adminhandler.go:52: Error occured in this validation of postdetails
+ERROR: 2024/12/05 13:13:54 adminhandler.go:52: Error occured in this validation of postdetails
+INFO: 2024/12/05 13:57:25 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 13:58:34 authhandler.go:114: Sucessfully Created the Details
+ERROR: 2024/12/05 13:58:48 authhandler.go:57: This email is already registred and Enter another mail
+ERROR: 2024/12/05 13:58:53 authhandler.go:97: PhoneNumber is already registred ,Enter another PhoneNumber
+ERROR: 2024/12/05 13:59:16 authhandler.go:97: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 13:59:21 authhandler.go:114: Sucessfully Created the Details
+INFO: 2024/12/05 13:59:42 authhandler.go:156: Login Sucessfully
+ERROR: 2024/12/05 13:59:56 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:00:30 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:00:47 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:01:05 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:01:13 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:01:17 adminhandler.go:55: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+ERROR: 2024/12/05 14:01:21 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:01:57 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:02:07 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:02:26 adminhandler.go:34: Cant able to get the JobPost Details
+ERROR: 2024/12/05 14:02:33 adminhandler.go:55: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+ERROR: 2024/12/05 14:02:50 adminhandler.go:55: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+ERROR: 2024/12/05 14:03:20 adminhandler.go:55: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+INFO: 2024/12/05 14:06:11 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 14:06:13 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 14:06:19 adminhandler.go:55: OOPS! Your Id or roletype is Mismatching Here,Check It Once Again
+INFO: 2024/12/05 14:07:09 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 14:40:01 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 14:40:03 adminhandler.go:62: Sucessfully Created the Details
+ERROR: 2024/12/05 14:40:26 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 14:40:35 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 14:45:12 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 14:45:25 authhandler.go:57: This email is already registred and Enter another mail
+ERROR: 2024/12/05 14:45:29 authhandler.go:97: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 14:45:34 authhandler.go:114: Sucessfully Created the Details
+INFO: 2024/12/05 14:45:47 authhandler.go:114: Sucessfully Created the Details
+INFO: 2024/12/05 14:46:09 authhandler.go:156: Login Sucessfully
+ERROR: 2024/12/05 14:46:25 usershandler.go:79: Failed to Invalid request payload
+ERROR: 2024/12/05 14:46:32 usershandler.go:79: Failed to Invalid request payload
+ERROR: 2024/12/05 14:46:42 usershandler.go:91: Error occured while creating values
+ERROR: 2024/12/05 14:46:47 usershandler.go:91: Error occured while creating values
+INFO: 2024/12/05 14:47:02 usershandler.go:97: Sucessfully Applied the Job
+ERROR: 2024/12/05 14:47:07 usershandler.go:79: Failed to Invalid request payload
+INFO: 2024/12/05 16:16:05 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 16:16:22 authhandler.go:43: This email is already registred and Enter another mail
+ERROR: 2024/12/05 16:16:26 authhandler.go:60: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 16:16:31 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 16:16:56 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 16:17:17 usershandler.go:98: Error occured while creating values
+ERROR: 2024/12/05 16:17:25 usershandler.go:98: Error occured while creating values
+ERROR: 2024/12/05 16:17:44 usershandler.go:98: Error occured while creating values
+ERROR: 2024/12/05 16:17:58 usershandler.go:98: Error occured while creating values
+INFO: 2024/12/05 16:18:52 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:21:20 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:21:33 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:22:13 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:22:15 usershandler.go:112: Sucessfully Applied the Job
+ERROR: 2024/12/05 16:22:23 usershandler.go:98: Error occured while creating values
+INFO: 2024/12/05 16:22:28 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:23:21 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 16:23:23 usershandler.go:106: Error occured while creating values
+INFO: 2024/12/05 16:24:27 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 16:24:29 usershandler.go:106: Error occured while creating values
+INFO: 2024/12/05 16:25:41 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 16:25:43 usershandler.go:106: Error occured while creating values
+INFO: 2024/12/05 16:26:58 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:27:13 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:27:15 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:27:36 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:27:38 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:29:00 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:29:14 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:29:50 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:29:52 usershandler.go:112: Sucessfully Applied the Job
+ERROR: 2024/12/05 16:29:57 usershandler.go:98: Error occured while creating values
+INFO: 2024/12/05 16:30:01 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:32:38 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:32:40 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:38:56 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:39:57 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:45:12 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:45:16 usershandler.go:112: Sucessfully Applied the Job
+ERROR: 2024/12/05 16:45:59 usershandler.go:98: Error occured while creating values
+INFO: 2024/12/05 16:46:04 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:48:17 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:48:26 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 16:48:46 authhandler.go:93: Cant't Match Your MailId
+INFO: 2024/12/05 16:48:51 authhandler.go:118: Login Sucessfully
+INFO: 2024/12/05 16:50:11 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:50:17 usershandler.go:112: Sucessfully Applied the Job
+INFO: 2024/12/05 16:52:17 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:52:23 usershandler.go:114: Sucessfully Applied the Job
+INFO: 2024/12/05 16:53:07 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 16:53:09 usershandler.go:114: Sucessfully Applied the Job
+INFO: 2024/12/05 16:56:34 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 16:56:39 usershandler.go:109: Error occured while creating values
+ERROR: 2024/12/05 16:57:12 usershandler.go:94: Error occured while creating values
+ERROR: 2024/12/05 16:57:16 usershandler.go:94: Error occured while creating values
+ERROR: 2024/12/05 16:57:25 authhandler.go:60: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 16:57:29 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 16:57:38 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 16:57:51 usershandler.go:94: Error occured while creating values
+INFO: 2024/12/05 16:58:46 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 16:59:02 usershandler.go:94: Error occured while creating values
+INFO: 2024/12/05 17:00:04 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:00:06 usershandler.go:115: Sucessfully Applied the Job
+INFO: 2024/12/05 17:00:10 usershandler.go:115: Sucessfully Applied the Job
+INFO: 2024/12/05 17:00:29 usershandler.go:115: Sucessfully Applied the Job
+INFO: 2024/12/05 17:07:00 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:07:09 usershandler.go:115: Sucessfully Applied the Job
+INFO: 2024/12/05 17:07:21 usershandler.go:115: Sucessfully Applied the Job
+INFO: 2024/12/05 17:07:54 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:09:40 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:09:57 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 17:10:15 authhandler.go:43: This email is already registred and Enter another mail
+INFO: 2024/12/05 17:10:20 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 17:10:30 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 17:10:48 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 17:11:00 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 17:11:09 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 17:11:10 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 17:11:12 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 17:11:17 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 17:14:52 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:15:04 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 17:15:19 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 17:15:23 adminhandler.go:62: Sucessfully Created the Details
+ERROR: 2024/12/05 17:15:34 adminhandler.go:104: Failed to update post
+ERROR: 2024/12/05 17:15:40 adminhandler.go:104: Failed to update post
+INFO: 2024/12/05 17:15:43 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:16:37 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:16:40 adminhandler.go:114: Sucessfully Updated the Details
+ERROR: 2024/12/05 17:16:47 adminhandler.go:104: Failed to update post
+INFO: 2024/12/05 17:17:12 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:17:14 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:29:20 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:30:14 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:31:57 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:32:47 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:32:54 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:33:19 usershandler.go:37: Sucessfuly Get the all created Post Details
+INFO: 2024/12/05 17:33:47 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:33:53 usershandler.go:37: Sucessfuly Get the all created Post Details
+INFO: 2024/12/05 17:34:42 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:43:23 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:45:07 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:45:32 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:48:20 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:49:53 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:50:31 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:51:59 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:52:24 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:52:37 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:52:39 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:52:49 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:52:55 adminhandler.go:114: Sucessfully Updated the Details
+INFO: 2024/12/05 17:53:04 usershandler.go:37: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/05 17:54:03 usershandler.go:95: Error occured while creating values
+INFO: 2024/12/05 17:55:51 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:56:25 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 17:59:30 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 18:34:44 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 18:35:07 authhandler.go:76: Sucessfully Created the Details
+ERROR: 2024/12/05 18:35:19 authhandler.go:43: This email is already registred and Enter another mail
+ERROR: 2024/12/05 18:35:25 authhandler.go:60: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 18:35:29 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 18:35:42 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 18:36:01 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 18:36:12 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 18:36:22 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 18:36:28 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 18:36:51 usershandler.go:37: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/05 18:37:05 usershandler.go:52: Error occured while getting values
+INFO: 2024/12/05 18:38:04 adminhandler.go:263: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 18:38:11 adminhandler.go:253: Error occured while getting values by admin
+ERROR: 2024/12/05 18:39:04 adminhandler.go:253: Error occured while getting values by admin
+INFO: 2024/12/05 18:49:27 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 18:50:03 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 18:50:29 authhandler.go:76: Sucessfully Created the Details
+ERROR: 2024/12/05 18:50:34 authhandler.go:93: Cant't Match Your MailId
+INFO: 2024/12/05 18:50:41 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 18:50:51 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 18:51:00 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 18:51:03 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 18:51:19 adminhandler.go:270: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 18:51:23 adminhandler.go:260: Error occured while getting values by admin
+ERROR: 2024/12/05 18:51:28 adminhandler.go:260: Error occured while getting values by admin
+INFO: 2024/12/05 18:51:44 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 18:52:04 usershandler.go:95: Error occured while creating values
+ERROR: 2024/12/05 18:52:13 usershandler.go:95: Error occured while creating values
+ERROR: 2024/12/05 18:52:16 usershandler.go:95: Error occured while creating values
+ERROR: 2024/12/05 18:52:25 usershandler.go:95: Error occured while creating values
+INFO: 2024/12/05 18:53:42 usershandler.go:116: Sucessfully Applied the Job
+ERROR: 2024/12/05 18:54:48 usershandler.go:95: Error occured while creating values
+ERROR: 2024/12/05 18:54:55 usershandler.go:95: Error occured while creating values
+INFO: 2024/12/05 18:55:33 adminhandler.go:121: Sucessfully Updated the Details
+ERROR: 2024/12/05 18:56:05 adminhandler.go:104: Error occured in this validation of postdetails
+INFO: 2024/12/05 18:56:10 adminhandler.go:121: Sucessfully Updated the Details
+INFO: 2024/12/05 18:56:32 usershandler.go:37: Sucessfuly Get the all created Post Details
+INFO: 2024/12/05 18:58:03 adminhandler.go:270: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 18:58:15 adminhandler.go:260: Error occured while getting values by admin
+INFO: 2024/12/05 20:05:53 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:06:45 authhandler.go:76: Sucessfully Created the Details
+ERROR: 2024/12/05 20:07:05 authhandler.go:60: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 20:07:12 authhandler.go:76: Sucessfully Created the Details
+ERROR: 2024/12/05 20:07:35 authhandler.go:60: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 20:07:57 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 20:08:01 authhandler.go:93: Cant't Match Your MailId
+INFO: 2024/12/05 20:08:30 authhandler.go:118: Login Sucessfully
+INFO: 2024/12/05 20:08:37 authhandler.go:118: Login Sucessfully
+INFO: 2024/12/05 20:08:55 adminhandler.go:62: Sucessfully Created the Details
+ERROR: 2024/12/05 20:09:11 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:09:42 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:10:03 authhandler.go:76: Sucessfully Created the Details
+ERROR: 2024/12/05 20:10:07 authhandler.go:43: This email is already registred and Enter another mail
+ERROR: 2024/12/05 20:10:12 authhandler.go:60: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/05 20:10:31 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 20:10:50 authhandler.go:76: Sucessfully Created the Details
+INFO: 2024/12/05 20:10:56 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 20:11:25 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:11:53 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:11:59 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:12:06 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:12:13 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:12:32 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:12:39 adminhandler.go:62: Sucessfully Created the Details
+ERROR: 2024/12/05 20:14:03 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:14:10 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:14:22 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:14:32 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:14:43 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:14:47 adminhandler.go:34: Cant able to get the JobPost Details
+INFO: 2024/12/05 20:14:58 adminhandler.go:62: Sucessfully Created the Details
+ERROR: 2024/12/05 20:15:08 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:15:14 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:15:18 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 20:15:31 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 20:21:51 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 20:21:52 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:21:58 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 20:22:04 adminhandler.go:62: Sucessfully Created the Details
+INFO: 2024/12/05 20:22:16 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 20:22:21 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:22:26 adminhandler.go:48: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:22:30 adminhandler.go:48: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:22:34 adminhandler.go:62: Sucessfully Created the Details
+ERROR: 2024/12/05 20:23:16 adminhandler.go:104: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:23:30 adminhandler.go:122: Sucessfully Updated the Details
+INFO: 2024/12/05 20:24:45 adminhandler.go:122: Sucessfully Updated the Details
+ERROR: 2024/12/05 20:25:22 adminhandler.go:281: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:25:26 adminhandler.go:299: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 20:25:36 adminhandler.go:281: Error occured in this validation of postdetails
+INFO: 2024/12/05 20:25:39 adminhandler.go:299: Sucessfully Get the Details by Admin
+INFO: 2024/12/05 20:27:02 adminhandler.go:299: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 20:27:13 adminhandler.go:154: Can't able to get the Details Properly
+ERROR: 2024/12/05 20:27:35 adminhandler.go:147: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:27:40 adminhandler.go:154: Can't able to get the Details Properly
+ERROR: 2024/12/05 20:27:48 adminhandler.go:154: Can't able to get the Details Properly
+ERROR: 2024/12/05 20:27:52 adminhandler.go:154: Can't able to get the Details Properly
+ERROR: 2024/12/05 20:28:17 adminhandler.go:154: Can't able to get the Details Properly
+INFO: 2024/12/05 20:28:59 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:29:01 adminhandler.go:164: Sucessfully Get the Details
+INFO: 2024/12/05 20:29:14 adminhandler.go:164: Sucessfully Get the Details
+INFO: 2024/12/05 20:29:23 adminhandler.go:164: Sucessfully Get the Details
+INFO: 2024/12/05 20:29:28 adminhandler.go:164: Sucessfully Get the Details
+INFO: 2024/12/05 20:29:36 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 20:29:37 adminhandler.go:154: Can't able to get the Details Properly
+INFO: 2024/12/05 20:30:47 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 20:30:53 adminhandler.go:153: Can't able to get the Details Properly
+ERROR: 2024/12/05 20:30:59 adminhandler.go:153: Can't able to get the Details Properly
+INFO: 2024/12/05 20:32:04 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 20:32:08 adminhandler.go:153: Can't able to get the Details Properly
+INFO: 2024/12/05 20:33:55 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 20:34:01 adminhandler.go:153: Can't able to get the Details Properly
+INFO: 2024/12/05 20:35:32 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:35:36 adminhandler.go:163: Sucessfully Get the Details
+INFO: 2024/12/05 20:41:13 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:41:16 authhandler.go:118: Login Sucessfully
+ERROR: 2024/12/05 20:41:40 usershandler.go:108: Error occured while creating values
+ERROR: 2024/12/05 20:41:49 usershandler.go:108: Error occured while creating values
+INFO: 2024/12/05 20:43:18 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:46:53 usershandler.go:129: Sucessfully Applied the Job
+INFO: 2024/12/05 20:55:56 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 20:56:05 usershandler.go:129: Sucessfully Applied the Job
+ERROR: 2024/12/05 20:57:11 usershandler.go:157: Error occured while getting values
+INFO: 2024/12/05 20:57:26 usershandler.go:167: Sucessfully Get the details by thier own userIds
+ERROR: 2024/12/05 20:57:59 usershandler.go:28: Error occured in this validation of postdetails
+ERROR: 2024/12/05 20:58:16 usershandler.go:58: Error occured in this validation of postdetails
+INFO: 2024/12/05 21:03:06 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 21:03:09 usershandler.go:58: Error occured in this validation of postdetails
+INFO: 2024/12/05 21:04:14 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 21:04:16 usershandler.go:58: Error occured in this validation of postdetails
+INFO: 2024/12/05 21:10:58 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 21:11:05 usershandler.go:61: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/05 21:11:16 usershandler.go:37: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/05 21:11:21 usershandler.go:52: Error occured while getting values
+INFO: 2024/12/05 21:11:26 usershandler.go:61: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/05 21:11:27 usershandler.go:52: Error occured while getting values
+INFO: 2024/12/05 21:11:30 usershandler.go:61: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/05 21:11:37 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 21:11:45 adminhandler.go:298: Sucessfully Get the Details by Admin
+ERROR: 2024/12/05 21:11:48 adminhandler.go:280: Error occured in this validation of postdetails
+INFO: 2024/12/05 21:11:51 adminhandler.go:298: Sucessfully Get the Details by Admin
+INFO: 2024/12/05 21:11:55 adminhandler.go:163: Sucessfully Get the Details
+ERROR: 2024/12/05 21:11:57 adminhandler.go:146: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:12:04 adminhandler.go:146: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:12:07 adminhandler.go:146: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:12:11 adminhandler.go:146: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:12:18 adminhandler.go:153: Can't able to get the Details Properly
+ERROR: 2024/12/05 21:13:09 adminhandler.go:153: Can't able to get the Details Properly
+INFO: 2024/12/05 21:13:15 adminhandler.go:163: Sucessfully Get the Details
+ERROR: 2024/12/05 21:13:21 adminhandler.go:194: Error occured in this validation of postdetails
+INFO: 2024/12/05 21:13:25 adminhandler.go:211: Sucessfully Get the Details
+ERROR: 2024/12/05 21:13:30 adminhandler.go:201: Error occured while getting values
+INFO: 2024/12/05 21:13:34 adminhandler.go:211: Sucessfully Get the Details
+ERROR: 2024/12/05 21:13:41 adminhandler.go:247: Cant able to get the job Applied Details By theirs ID
+ERROR: 2024/12/05 21:13:46 adminhandler.go:240: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:13:50 adminhandler.go:240: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:13:53 adminhandler.go:240: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:14:15 adminhandler.go:240: Error occured in this validation of postdetails
+INFO: 2024/12/05 21:17:46 connection.go:34: Connected sucessfully
+ERROR: 2024/12/05 21:17:48 adminhandler.go:240: Error occured in this validation of postdetails
+ERROR: 2024/12/05 21:18:14 adminhandler.go:247: Cant able to get the job Applied Details By theirs ID
+INFO: 2024/12/05 21:18:20 adminhandler.go:257: Sucessfully Get the Details by their IDs
+INFO: 2024/12/05 21:19:33 connection.go:34: Connected sucessfully
+INFO: 2024/12/05 21:19:38 usershandler.go:153: Sucessfully Get the details by thier own userIds
+ERROR: 2024/12/05 21:19:43 usershandler.go:143: Error occured while getting values
+ERROR: 2024/12/05 21:20:08 usershandler.go:143: Error occured while getting values
+ERROR: 2024/12/05 21:20:16 usershandler.go:143: Error occured while getting values
+INFO: 2024/12/05 21:20:20 usershandler.go:153: Sucessfully Get the details by thier own userIds

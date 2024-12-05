@@ -10,8 +10,9 @@ import (
 type UserRepo interface {
 	RepoGetAllPosts(user *[]models.JobCreation, usertype string) error
 	RepoGetByJobRole(user *[]models.JobCreation, jobs string, country string, usertype string) error
-	RepoApplyJobPost(user *models.UserJobDetails, roletype string, userid int, applyuserid int) error
+	RepoApplyJobPost(user *models.UserJobDetails) error
 	UserGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int, tokenid int) error
+	CheckUserJobId(user *models.UserJobDetails, newpost *models.JobCreation) error
 }
 
 type userrepo struct {
@@ -34,33 +35,26 @@ func (db *userrepo) RepoGetByJobRole(user *[]models.JobCreation, jobs string, co
 	if usertype == "ADMIN" || usertype == "USER" {
 		data := db.Where("job_title=?", jobs).First(&user)
 		if data.Error != nil {
-			return data.Error
+			return fmt.Errorf("cant'able to find your jobs Properly,Give him correctly")
 		}
 		dbvalue := db.Where(&models.JobCreation{Country: country}).First(&user)
 		if dbvalue.Error != nil {
-			return dbvalue.Error
+			return fmt.Errorf("cant'able to find your country Properly,Give him correctly")
 		}
 		dbValue := db.Where(&models.JobCreation{JobTitle: jobs, Country: country}).Find(&user)
 		if dbValue.Error != nil {
-			return dbValue.Error
+			return fmt.Errorf("cant'able to find your details properly,Give him correctly")
 		}
-		return nil
 	} else {
 		return fmt.Errorf("could not able to Get the details")
 	}
-
+	return nil
 }
 
-func (db *userrepo) RepoApplyJobPost(user *models.UserJobDetails, roletype string, userid int, applyuserid int) error {
-	if roletype == "USER" && applyuserid == userid {
-		dbvalues := db.Create(user)
-		if dbvalues.Error != nil {
-			return dbvalues.Error
-		} else if dbvalues.RowsAffected == 0 {
-			return fmt.Errorf("could not apply post id:%d", userid)
-		}
-	} else {
-		return fmt.Errorf("could not able to get details")
+func (db *userrepo) RepoApplyJobPost(user *models.UserJobDetails) error {
+	dbvalues := db.Create(user)
+	if dbvalues.Error != nil {
+		return fmt.Errorf("can't able to apply the job post here,please Check")
 	}
 	return nil
 }
@@ -68,7 +62,7 @@ func (db *userrepo) RepoApplyJobPost(user *models.UserJobDetails, roletype strin
 func (db *userrepo) UserGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int, tokenid int) error {
 	data := db.Where("user_id=?", userId).First(&user)
 	if data.Error != nil {
-		return data.Error
+		return fmt.Errorf("cant'able to find your UserId ,Give him correctly")
 	}
 	if tokenid == userId {
 		dbvalue := db.
@@ -77,10 +71,32 @@ func (db *userrepo) UserGetJobAppliedDetailsByUserId(user *[]models.UserJobDetai
 			Find(&user)
 
 		if dbvalue.Error != nil {
-			return dbvalue.Error
+			return fmt.Errorf("cant'able to create your details ,Give him correctly")
 		}
 	} else {
 		return fmt.Errorf("could get that post")
+	}
+	return nil
+}
+
+func (db *userrepo) CheckUserJobId(user *models.UserJobDetails, newuser *models.JobCreation) error {
+	var count int64
+	fmt.Println("newuser", newuser)
+
+	jobid := db.Model(&models.JobCreation{}).Where("job_id=? ", user.JobID).First(&newuser)
+	if jobid.Error != nil {
+		return fmt.Errorf("unable to fetch Job Details properly,Check it JobId once")
+	}
+	if newuser.JobStatus == "COMPLETED" {
+		return fmt.Errorf(" invalid job-this Job Application is closed")
+	}
+
+	data := db.Model(&models.UserJobDetails{}).Where("user_id=? AND job_id=?", user.UserID, user.JobID).Count(&count)
+	if count > 0 {
+		return fmt.Errorf("already registered,You have applied for this job")
+	}
+	if data.Error != nil {
+		return fmt.Errorf("error occured,While creating new values")
 	}
 	return nil
 }

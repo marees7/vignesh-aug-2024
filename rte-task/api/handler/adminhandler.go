@@ -19,14 +19,14 @@ type AdminHand struct {
 func (database AdminHand) CreateJobPost(c *gin.Context) {
 	var userPost models.JobCreation
 
-	value := c.Param("admin_id")
-	applyuserid, err := strconv.Atoi(value)
+	adminId := c.Param("admin_id")
+	paramid, err := strconv.Atoi(adminId)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
-	fmt.Println("values", applyuserid)
+	fmt.Println("payloadid", paramid)
 
 	if err := c.BindJSON(&userPost); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -34,34 +34,28 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 		loggers.ErrorData.Println("Cant able to get the JobPost Details")
 		return
 	}
+	fmt.Println("checkdetails", userPost)
+	tokentype := c.GetString("role_type")
+	tokenid := c.GetInt("user_id")
 
-	ok := validation.ValidationFields(userPost.CompanyEmail)
-	if !ok {
+	fmt.Println("userid", tokenid)
+	fmt.Println("usertype", tokentype)
+
+	err = validation.ValidationJobPost(userPost, paramid, tokenid, tokentype)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Error occured in this validation of email"})
-		loggers.WarnData.Println("Error occured while getting values")
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
 		return
 	}
-
-	if userPost.JobTime != "PART TIME" && userPost.JobTime != "FULL TIME" {
-		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Time should be either PART TIME or FULL TIME"})
-		loggers.WarnData.Println("Time should be either PART TIME or FULL TIME")
-		return
-	}
-	userType := c.GetString("role_type")
-	userid := c.GetInt("user_id")
-
-	fmt.Println("userid", userid)
-	fmt.Println("usertype", userType)
-
-	Dbvalues := database.ServiceCreatePost(&userPost, userType, userid, applyuserid)
+	Dbvalues := database.ServiceCreatePost(&userPost)
 	if Dbvalues != nil {
 		c.JSON(500, models.CommonResponse{
-			Error: "OOPS! Your Id is Mismatching Here,Check It Once Again"})
-		loggers.ErrorData.Println("OOPS! Your Id is Mismatching Here,Check It Once Again")
+			Error: Dbvalues.Error()})
+		loggers.ErrorData.Println("OOPS! Your Id or roletype is Mismatching Here,Check It Once Again")
 		return
 	}
+
 	c.JSON(http.StatusOK, models.CommonResponse{
 		Message: "Sucessfully Created the Details",
 		Data:    userPost})
@@ -81,15 +75,15 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 		return
 	}
 
-	userids := c.Param("admin_id")
-	useridvalues, err := strconv.Atoi(userids)
+	adminid := c.Param("admin_id")
+	useridvalues, err := strconv.Atoi(adminid)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: "Error occured while String Convertion,Please check properly",
 		})
 	}
-	fmt.Println("useridvalues", useridvalues)
-	fmt.Println("jobid", jobID)
+	// fmt.Println("useridvalues", useridvalues)
+	// fmt.Println("jobid", jobID)
 	if err := c.ShouldBindJSON(&post); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
@@ -101,9 +95,17 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
-	fmt.Println("userid", userid)
-	fmt.Println("usertype", userType)
-	if err := database.UpdatePosts(&post, jobID, userType, userid, useridvalues); err != nil {
+	// fmt.Println("userid", userid)
+	// fmt.Println("usertype", userType)
+	err = validation.ValidationAdminFields(post, userType, userid, useridvalues)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		return
+	}
+
+	if err := database.UpdatePosts(&post, jobID); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -124,24 +126,30 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 	var user []models.UserJobDetails
 
-	value := c.Param("job_role")
+	jobrole := c.Param("job_role")
 	valueuserid := c.Param("admin_id")
-	applyuserid, err := strconv.Atoi(valueuserid)
+	useridvalues, err := strconv.Atoi(valueuserid)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
-	fmt.Println("values", applyuserid)
+	fmt.Println("values", useridvalues)
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
-	fmt.Println("userid", userid)
-	fmt.Println("usertype", userType)
-	dbvalues := database.ServiceGetJobAppliedDetailsbyrole(&user, value, userType, userid, applyuserid)
-	if dbvalues != nil {
+	fmt.Println("roletype", jobrole)
+	err = validation.ValidationCheck(userType, userid, useridvalues)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Can't able to get the Details Properly"})
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		return
+	}
+	err = database.ServiceGetJobAppliedDetailsbyrole(&user, jobrole)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Can't able to get the Details Properly")
 		return
 	}
@@ -159,7 +167,7 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 	var user []models.UserJobDetails
 
 	value := c.Param("job_id")
-	values, err := strconv.Atoi(value)
+	jobId, err := strconv.Atoi(value)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: "Error occured while String Convertion,Please check properly",
@@ -179,10 +187,17 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 
 	fmt.Println("userid", userid)
 	fmt.Println("usertype", userType)
-	dbvalues := database.ServiceGetJobAppliedDetailsByJobId(&user, userType, userid, values, applyuserid)
-	if dbvalues != nil {
+	err = validation.ValidationCheck(userType, userid, applyuserid)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Cant able to Get the JobId Properly"})
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		return
+	}
+	err = database.ServiceGetJobAppliedDetailsByJobId(&user, jobId)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured while getting values")
 		return
 	}
@@ -218,11 +233,17 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 	fmt.Println("values", values)
 	fmt.Println("useridfromtoken", userid)
 	fmt.Println("usertype", userType)
-
-	dbvalues := database.ServiceGetJobAppliedDetailsByUserId(&user, values, userType, userid, adminvalues)
-	if dbvalues != nil {
+	err = validation.ValidationCheck(userType, userid, adminvalues)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Cant able to get the job Applied Details By theirs ID"})
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		return
+	}
+	err = database.ServiceGetJobAppliedDetailsByUserId(&user, values)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Cant able to get the job Applied Details By theirs ID")
 		return
 	}
@@ -240,7 +261,7 @@ func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 	var user []models.JobCreation
 
 	adminid := c.Param("admin_id")
-	adminvalues, err := strconv.Atoi(adminid)
+	adminId, err := strconv.Atoi(adminid)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
@@ -248,14 +269,22 @@ func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 	}
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
-	fmt.Println("adminid", adminvalues)
+	fmt.Println("adminid", adminId)
 	fmt.Println("useridfromtoken", userid)
 	fmt.Println("usertype", userType)
 
-	dbvalues := database.ServiceGetPostedDetailsByAdmin(&user, userType, userid, adminvalues)
-	if dbvalues != nil {
+	err = validation.ValidationCheck(userType, userid, adminId)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Can't able to Get the applied job details by Admin"})
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		return
+	}
+
+	err = database.ServiceGetPostedDetailsByAdmin(&user, adminId)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured while getting values by admin")
 		return
 	}

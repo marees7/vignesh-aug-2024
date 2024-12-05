@@ -9,7 +9,6 @@ import (
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 )
 
 type AuthConnect struct {
@@ -25,17 +24,10 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 			"Error": err.Error()})
 		return
 	}
-	err := validation.ValidationName(user.Name)
+	err := validation.ValidationSignUp(user)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": err.Error()})
-		return
-	}
-	ok := validation.ValidationFields(user.Email)
-	if !ok {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Error occured in this validation of email"})
-		loggers.ErrorData.Println("Error occured in this validation of email")
 		return
 	}
 
@@ -47,36 +39,13 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	}
 	if counts > 0 {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"Error": "This email is already registred and Enter another mail"})
+			"Error": "Email is already registered by someones's ,Try another mail"})
 		loggers.ErrorData.Println("This email is already registred and Enter another mail")
-		return
-	}
-
-	if user.RoleType != "USER" && user.RoleType != "ADMIN" {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Role should be Either USER or ADMIN"})
-		loggers.WarnData.Println("Role should be Either USER or ADMIN")
-		return
-	}
-
-	err = validation.ValidationPassword(user.Password)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of Password")
 		return
 	}
 
 	password := validation.HashPassword(user.Password)
 	user.Password = password
-
-	err = validation.ValidationPhoneNumber(user.PhoneNumber)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": err.Error()})
-		loggers.ErrorData.Println("Phonenumber should be equal to 10")
-		return
-	}
 
 	countPhone, DbPhone := database.ServicePhoneForm(&user, count)
 	if DbPhone != nil {
@@ -95,7 +64,6 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	user.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 	user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
-	user.RoleId = uuid.New().String()
 	Dbvalues := database.ServiceCreate(&user)
 	if Dbvalues != nil {
 		c.JSON(500, gin.H{
@@ -121,8 +89,8 @@ func (database AuthConnect) Login(c *gin.Context) {
 	value := database.ServiceLoginEmail(&user, &founduser)
 	if value != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Mail is invalid"})
-		loggers.ErrorData.Println("Mail is Invalid")
+			"Error": "Cant't Find Your MailId"})
+		loggers.ErrorData.Println("Cant't Find Your MailId")
 		return
 	}
 
@@ -133,18 +101,18 @@ func (database AuthConnect) Login(c *gin.Context) {
 		return
 	}
 	token, err := validation.GenerateToken(founduser.Email, founduser.Name, founduser.RoleType, founduser.UserId)
-	user.Token = token
-
-	values := database.ServiceFindRoleID(&user, &founduser)
-	if values != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Error": "Cant't Match Your MailId"})
+		loggers.ErrorData.Println("Cant't Match Your MailId")
 		return
 	}
+	user.Token = token
 
 	c.JSON(http.StatusAccepted, gin.H{
 		"Message":  "Login Sucessfully",
 		"Token":    user.Token,
-		"RoleId":   founduser.UserId,
+		"UserId":   founduser.UserId,
 		"RoleType": founduser.RoleType,
 	})
 	loggers.InfoData.Println("Login Sucessfully")

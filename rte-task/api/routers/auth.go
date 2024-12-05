@@ -10,7 +10,10 @@ func AuthRoutes(router *gin.Engine, service *service.UserService) {
 	auth := &handler.AuthConnect{AuthService: service.Auth}
 	r := router.Group("/auth")
 	{
+		//sign up their details
 		r.POST("/signup", auth.SignUp)
+
+		//login their details
 		r.POST("/login", auth.Login)
 	}
 

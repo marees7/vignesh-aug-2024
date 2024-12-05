@@ -9,7 +9,6 @@ type AuthService interface {
 	ServiceRepoemail(user *models.UserDetails, count int64) (int64, error)
 	ServiceCreate(user *models.UserDetails) error
 	ServiceLoginEmail(user *models.UserDetails, founduser *models.UserDetails) error
-	ServiceFindRoleID(user *models.UserDetails, founduser *models.UserDetails) error
 	ServicePhoneForm(user *models.UserDetails, count int64) (int64, error)
 }
 
@@ -31,8 +30,4 @@ func (service *authservice) ServiceCreate(user *models.UserDetails) error {
 
 func (service *authservice) ServiceLoginEmail(user *models.UserDetails, founduser *models.UserDetails) error {
 	return service.Auth.RepoLoginEmail(user, founduser)
-}
-
-func (service *authservice) ServiceFindRoleID(user *models.UserDetails, founduser *models.UserDetails) error {
-	return service.Auth.RepoFindRoleID(user, founduser)
 }

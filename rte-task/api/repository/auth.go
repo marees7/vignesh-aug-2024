@@ -9,7 +9,6 @@ type AuthInterface interface {
 	RepoEmailForm(user *models.UserDetails, count int64) (int64, error)
 	RepoCreate(user *models.UserDetails) error
 	RepoLoginEmail(user *models.UserDetails, founduser *models.UserDetails) error
-	RepoFindRoleID(user *models.UserDetails, founduser *models.UserDetails) error
 	RepoPhoneForm(user *models.UserDetails, count int64) (int64, error)
 }
 
@@ -47,11 +46,4 @@ func (databaseconnect *authrepo) RepoPhoneForm(user *models.UserDetails, count i
 		return 0, DbPhone.Error
 	}
 	return count, nil
-}
-func (db *authrepo) RepoFindRoleID(user *models.UserDetails, founduser *models.UserDetails) error {
-	value := db.Where("role_id=?", founduser.RoleId).First(&founduser)
-	if value.Error != nil {
-		return value.Error
-	}
-	return nil
 }

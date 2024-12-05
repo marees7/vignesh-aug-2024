@@ -18,7 +18,7 @@ func init() {
 		fmt.Println("Error Occured", err)
 		return
 	}
-	InfoData = log.New(file, "INFO: ", log.Lmicroseconds|log.Lshortfile|log.LstdFlags)
-	ErrorData = log.New(file, "ERROR: ", log.Lmicroseconds|log.Lshortfile|log.LstdFlags)
-	WarnData = log.New(file, "WARN:", log.Lmicroseconds|log.Lshortfile|log.LstdFlags)
+	InfoData = log.New(file, "INFO: ", log.Lshortfile|log.LstdFlags)
+	ErrorData = log.New(file, "ERROR: ", log.Lshortfile|log.LstdFlags)
+	WarnData = log.New(file, "WARN:", log.Lshortfile|log.LstdFlags)
 }

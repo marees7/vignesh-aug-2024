@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/Vigneshwartt/golang-rte-task/api/service"
+	"github.com/Vigneshwartt/golang-rte-task/api/validation"
 	"github.com/Vigneshwartt/golang-rte-task/common/helpers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
@@ -20,16 +21,16 @@ func (database UserHan) GetAllJobPosts(c *gin.Context) {
 	var user []models.JobCreation
 	userType := c.GetString("role_type")
 
-	dataOfJobs := database.ServiceGetAllPostDetails(&user, userType)
-	if dataOfJobs != nil {
+	err := database.ServiceGetAllPostDetails(&user, userType)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: dataOfJobs.Error})
-		loggers.ErrorData.Println("Error occured while getting values")
+			Error: err.Error()})
+		loggers.ErrorData.Println("Sorry! I can't get your all posts details properly")
 		return
 	}
 	for _, values := range user {
 		c.JSON(http.StatusOK, models.CommonResponse{
-			Message: "Sucessfully Get the details",
+			Message: "Hurray!,Sucessfully Get the details",
 			Data:    values,
 		})
 	}
@@ -41,13 +42,13 @@ func (database UserHan) GetJobByRole(c *gin.Context) {
 	jobs := c.Param("job_title")
 	country := c.Param("country")
 
-	fmt.Println("jobs", jobs)
+	// fmt.Println("jobs", jobs)
 	userType := c.GetString("role_type")
 
-	dbValues := database.ServiceGetJobDetailsByRole(&user, jobs, country, userType)
-	if dbValues != nil {
+	err := database.ServiceGetJobDetailsByRole(&user, jobs, country, userType)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "Could not able to get the details"})
+			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured while getting values")
 		return
 	}
@@ -62,16 +63,17 @@ func (database UserHan) GetJobByRole(c *gin.Context) {
 
 func (database UserHan) ApplyJob(c *gin.Context) {
 	var user models.UserJobDetails
+	var newpost models.JobCreation
 
 	value := c.Param("user_id")
-	applyuserid, err := strconv.Atoi(value)
+	paramid, err := strconv.Atoi(value)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
 
-	fmt.Println("values", applyuserid)
+	// fmt.Println("values", paramid)
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
@@ -79,15 +81,31 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 		loggers.ErrorData.Println("Failed to Invalid request payload")
 		return
 	}
-	userType := c.GetString("role_type")
-	userid := c.GetInt("user_id")
 
-	fmt.Println("userid", userid)
-	fmt.Println("usertype", userType)
-	Dbvalues := database.ApplyJobPost(&user, userType, userid, applyuserid)
-	if Dbvalues != nil {
+	tokentype := c.GetString("role_type")
+	tokenid := c.GetInt("user_id")
+
+	// fmt.Println("userid", tokenid)
+	// fmt.Println("usertype", tokentype)
+	err = validation.ValidationUserJob(user, tokentype, tokenid, paramid)
+	if err != nil {
 		c.JSON(500, models.CommonResponse{
-			Error: "Error occured while creating values"})
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured while creating values")
+		return
+	}
+
+	err = database.CheckJobId(&user, &newpost)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
+		return
+	}
+
+	err = database.ApplyJobPost(&user)
+	if err != nil {
+		c.JSON(500, models.CommonResponse{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured while creating values")
 		return
 	}
@@ -114,16 +132,14 @@ func (database UserHan) HandlerGetJobAppliedDetailsByUserId(c *gin.Context) {
 			Error: err,
 		})
 	}
-	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 	fmt.Println("values", values)
 	fmt.Println("userid", userid)
-	fmt.Println("usertype", userType)
 
-	dbvalues := database.GetJobAppliedDetailsByUserId(&user, values, userid)
-	if dbvalues != nil {
+	err = database.GetJobAppliedDetailsByUserId(&user, values, userid)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: "OOPS! ID is mismatching here,Enter properly"})
+			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured while getting values")
 		return
 	}

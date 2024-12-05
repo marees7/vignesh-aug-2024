@@ -8,8 +8,9 @@ import (
 type UserServices interface {
 	ServiceGetAllPostDetails(user *[]models.JobCreation, usertype string) error
 	ServiceGetJobDetailsByRole(user *[]models.JobCreation, jobrole string, country string, usertype string) error
-	ApplyJobPost(user *models.UserJobDetails, jobtype string, userid int, applyuserid int) error
+	ApplyJobPost(user *models.UserJobDetails) error
 	GetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, userid int) error
+	CheckJobId(user *models.UserJobDetails, newpost *models.JobCreation) error
 }
 
 type userservice struct {
@@ -24,10 +25,13 @@ func (service *userservice) ServiceGetJobDetailsByRole(user *[]models.JobCreatio
 	return service.User.RepoGetByJobRole(user, jobrole, country, usertype)
 }
 
-func (service *userservice) ApplyJobPost(user *models.UserJobDetails, jobtype string, userid int, applyuserid int) error {
-	return service.User.RepoApplyJobPost(user, jobtype, userid, applyuserid)
+func (service *userservice) ApplyJobPost(user *models.UserJobDetails) error {
+	return service.User.RepoApplyJobPost(user)
 }
 
 func (service *userservice) GetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, userid int) error {
 	return service.User.UserGetJobAppliedDetailsByUserId(user, roleid, userid)
+}
+func (service *userservice) CheckJobId(user *models.UserJobDetails, newpost *models.JobCreation) error {
+	return service.User.CheckUserJobId(user, newpost)
 }
