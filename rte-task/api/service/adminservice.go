@@ -8,10 +8,10 @@ import (
 type AdminService interface {
 	ServiceFindAllUsers(user *[]models.UserDetails) error
 	ServiceCreatePost(user *models.JobCreation) error
-	UpdatePosts(user *models.JobCreation, jobid int) error
+	UpdatePosts(user *models.JobCreation, jobid int, adminId int) error
 	ServiceGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, roletype string) error
 	ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int) error
-	ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int) error
+	ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error
 	ServiceGetPostedDetailsByAdmin(user *[]models.JobCreation, adminid int) error
 }
 type adminservice struct {
@@ -26,8 +26,8 @@ func (service *adminservice) ServiceCreatePost(user *models.JobCreation) error {
 	return service.Admin.RepoCreateNewPost(user)
 }
 
-func (service *adminservice) UpdatePosts(user *models.JobCreation, jobid int) error {
-	return service.Admin.RepoUpdateJobPost(user, jobid)
+func (service *adminservice) UpdatePosts(user *models.JobCreation, jobid int, adminID int) error {
+	return service.Admin.RepoUpdateJobPost(user, jobid, adminID)
 }
 func (service *adminservice) ServiceGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, jobrole string) error {
 	return service.Admin.RepoGetJobAppliedDetailsbyrole(user, jobrole)
@@ -36,8 +36,8 @@ func (service *adminservice) ServiceGetJobAppliedDetailsbyrole(user *[]models.Us
 func (service *adminservice) ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int) error {
 	return service.Admin.RepoGetJobAppliedDetailsByJobId(user, jobid)
 }
-func (service *adminservice) ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int) error {
-	return service.Admin.RepoGetJobAppliedDetailsByUserId(user, roleid)
+func (service *adminservice) ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error {
+	return service.Admin.RepoGetJobAppliedDetailsByUserId(user, roleid, adminvalues)
 }
 func (service *adminservice) ServiceGetPostedDetailsByAdmin(user *[]models.JobCreation, adminid int) error {
 	return service.Admin.RepoGetPostedDetailsByAdmin(user, adminid)

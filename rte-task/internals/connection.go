@@ -30,7 +30,6 @@ func ConnectingDatabase() *gorm.DB {
 	GlobalConnection = Connection
 	Automigration()
 	defer HandlePanic()
-	fmt.Println("Connection make sucessfully")
 	loggers.InfoData.Println("Connected sucessfully")
 	return Connection
 }

@@ -10,10 +10,10 @@ import (
 type AdminRepository interface {
 	RepoFindAllUsers(user *[]models.UserDetails) error
 	RepoCreateNewPost(user *models.JobCreation) error
-	RepoUpdateJobPost(user *models.JobCreation, jobID int) error
+	RepoUpdateJobPost(user *models.JobCreation, jobID int, adminID int) error
 	RepoGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, jobrole string) error
 	RepoGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, jobID int) error
-	RepoGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int) error
+	RepoGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int, adminvalues int) error
 	RepoGetPostedDetailsByAdmin(user *[]models.JobCreation, adminid int) error
 }
 type adminRepo struct {
@@ -39,21 +39,25 @@ func (database *adminRepo) RepoCreateNewPost(user *models.JobCreation) error {
 }
 
 // Admin updates their job posts
-func (database *adminRepo) RepoUpdateJobPost(user *models.JobCreation, jobID int) error {
-	var newuser models.JobCreation
-	result := database.Where("job_id= ?", jobID).First(&newuser)
+func (database *adminRepo) RepoUpdateJobPost(user *models.JobCreation, jobID int, adminID int) error {
+	var job models.JobCreation
+
+	result := database.Where("job_id = ?", jobID).First(&job)
 	if result.Error != nil {
-		return fmt.Errorf("cant'able to find your JobId Properly,Give Correct Details")
+		return fmt.Errorf("cannot find the job with JobID: %d, please provide correct details", jobID)
 	}
 
-	updateResult := database.Model(&models.JobCreation{}).Where("job_id= ?", jobID).Updates(map[string]interface{}{
+	if job.DomainID != adminID {
+		return fmt.Errorf("you are not authorized to update this job post")
+	}
+
+	updateResult := database.Model(&models.JobCreation{}).Where("job_id = ?", jobID).Updates(map[string]interface{}{
 		"JobStatus": user.JobStatus,
-		"JobTime":   user.JobTime,
 		"Vacancy":   user.Vacancy,
 	})
 
 	if updateResult.Error != nil {
-		return fmt.Errorf("can't able to update the jobids")
+		return fmt.Errorf("unable to update the job post")
 	}
 	return nil
 }
@@ -63,7 +67,7 @@ func (database *adminRepo) RepoGetJobAppliedDetailsbyrole(user *[]models.UserJob
 
 	data := database.Where("job_role=?", roletype).First(&user)
 	if data.Error != nil {
-		return fmt.Errorf("cant'able to find your roleltype Properly,Give him correctly")
+		return fmt.Errorf("no one can apply for this job ")
 	}
 
 	dbvalue := database.Preload("User").
@@ -78,11 +82,10 @@ func (database *adminRepo) RepoGetJobAppliedDetailsbyrole(user *[]models.UserJob
 func (database *adminRepo) RepoGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, jobID int) error {
 	data := database.Where("job_id=?", jobID).First(&user)
 	if data.Error != nil {
-		return fmt.Errorf("cant'able to find your JobId Properly,Give him correctly")
+		return fmt.Errorf("no one can apply for this job")
 	}
 
-	dbvalue := database.
-		Preload("User").
+	dbvalue := database.Preload("User").
 		Where("job_id = ?", jobID).
 		Find(&user)
 
@@ -93,30 +96,30 @@ func (database *adminRepo) RepoGetJobAppliedDetailsByJobId(user *[]models.UserJo
 }
 
 // Admin get Job applied details by USER ID
-func (database *adminRepo) RepoGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int) error {
-	data := database.Where("user_id=?", userId).First(&user)
-	if data.Error != nil {
-		return fmt.Errorf("cant'able to find your UserId ,Give him correctly")
-	}
-	dbvalue := database.
-		Preload("Job").
-		Where("user_id = ?", userId).
+func (database *adminRepo) RepoGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int, adminid int) error {
+	result := database.Preload("Job").
+		Where("user_id = ? AND job_id IN (SELECT job_id FROM job_creations WHERE domain_id = ?)", userId, adminid).
 		Find(&user)
 
-	if dbvalue.Error != nil {
-		return fmt.Errorf("cant'able to find your Details Properly,Give him correctly")
+	if result.Error != nil {
+		return fmt.Errorf("failed to fetch job details: %s", result.Error)
 	}
+
+	if result.RowsAffected == 0 {
+		return fmt.Errorf("no job details found for the given user")
+	}
+
 	return nil
 }
 
 // Admin get their Own Post details
 func (database *adminRepo) RepoGetPostedDetailsByAdmin(user *[]models.JobCreation, adminid int) error {
-	data := database.Where("user_id=?", adminid).First(&user)
+	data := database.Where("domain_id=?", adminid).First(&user)
 	if data.Error != nil {
-		return fmt.Errorf("cant'able to find your UserId ,Give him correctly")
+		return fmt.Errorf("no one can apply for this job")
 	}
 	dbvalue := database.
-		Where("user_id = ?", adminid).
+		Where("domain_id = ?", adminid).
 		Find(&user)
 
 	if dbvalue.Error != nil {

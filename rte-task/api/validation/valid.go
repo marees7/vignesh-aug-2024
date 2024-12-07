@@ -9,11 +9,11 @@ import (
 )
 
 func ValidationSignUp(user models.UserDetails) error {
-	if len(user.Name) < 3 {
-		return fmt.Errorf(" invalid Name,I need much Longer !Buddy")
+	if len(user.Name) == 0 {
+		return fmt.Errorf(" missing Name,I need much Longer !Buddy")
 	}
-	if len(user.Name) > 20 {
-		return fmt.Errorf(" invalid Name,I need much shorter, !Buddy")
+	if len(user.Name) > 30 {
+		return fmt.Errorf(" your Name should be larger,I need much shorter, !Buddy")
 	}
 
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
@@ -80,14 +80,17 @@ func ValidationJobPost(post models.JobCreation, paramid int, tokenid int, tokent
 	if tokenid != paramid {
 		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
 	}
-	if post.UserID != paramid {
+
+	if post.DomainID != paramid {
 		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
 	}
-	if len(post.CompanyName) < 3 {
-		return fmt.Errorf(" invalid Name,I need much Longer !Buddy")
+
+	if len(post.CompanyName) == 0 {
+		return fmt.Errorf("missing CompanyName,I need much Longer !Buddy")
 	}
-	if len(post.CompanyName) > 20 {
-		return fmt.Errorf(" invalid Name,I need much shorter, !Buddy")
+
+	if len(post.CompanyName) > 30 {
+		return fmt.Errorf("your CompanyName should be larger,I need much shorter, !Buddy")
 	}
 
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
@@ -95,45 +98,52 @@ func ValidationJobPost(post models.JobCreation, paramid int, tokenid int, tokent
 		return fmt.Errorf("invalid Email Id-Your EmailId is not in proper way")
 	}
 
-	if len(post.JobTitle) < 3 {
-		return fmt.Errorf(" invalid JobTitle,I need much Longer !Buddy")
+	if len(post.JobTitle) == 0 {
+		return fmt.Errorf(" missing JobTitle,I need much Longer !Buddy")
 	}
+
 	if len(post.JobTitle) > 20 {
-		return fmt.Errorf(" invalid JobTitle,I need much shorter, !Buddy")
+		return fmt.Errorf(" your JobTitle should be larger,I need much shorter, !Buddy")
 	}
-	if post.JobStatus != "ON GOING" && post.JobStatus != "CLOSED" {
-		return fmt.Errorf("invalid jobstatus-It should be either ONGOING or CLOSED")
+	if post.JobStatus != "IN PROGRESS" && post.JobStatus != "COMPLETED" && post.JobStatus != "ON GOING" {
+		return fmt.Errorf("invalid jobstatus-It should be either IN PROGRESS OR ON GOING")
 	}
 	if post.JobTime != "PART TIME" && post.JobTime != "FULL TIME" {
 		return fmt.Errorf("invalid JobTime-Time should be either PART TIME or FULL TIME")
 	}
-	if len(post.Description) < 3 {
-		return fmt.Errorf(" invalid Description,I need much Longer !Buddy")
+	if len(post.Description) == 0 {
+		return fmt.Errorf(" missing Description,I need much Longer !Buddy")
 	}
-	if len(post.Skills) < 3 {
-		return fmt.Errorf(" invalid Skills,I need much Longer !Buddy")
+	if len(post.Description) < 3 {
+		return fmt.Errorf(" your Description is very small,I need much Longer !Buddy")
+	}
+	if len(post.Skills) == 0 {
+		return fmt.Errorf(" missing Skills,I need much Longer !Buddy")
 	}
 	if post.Vacancy < 0 {
-		return fmt.Errorf(" invalid Vacnacy,You can Enter some Vacancy Here")
+		return fmt.Errorf(" missing Vacnacy,You can Enter some Vacancy Here")
 	}
-	if len(post.Country) < 3 {
-		return fmt.Errorf(" invalid Country,I need much Longer !Buddy")
+	if len(post.Country) == 0 {
+		return fmt.Errorf(" missing Country,I need much Longer !Buddy")
 	}
-	if len(post.Address.Street) < 3 {
-		return fmt.Errorf("invalid Street,I need much Longer !Buddy")
+	if len(post.Address.Street) == 0 {
+		return fmt.Errorf("missing Street,I need much Longer !Buddy")
 	}
-	if len(post.Address.City) < 3 {
-		return fmt.Errorf("invalid city,I need much Longer !Buddy")
+	if len(post.Address.City) == 0 {
+		return fmt.Errorf("missing city,I need much Longer !Buddy")
 	}
-	if len(post.Address.State) < 3 {
-		return fmt.Errorf("invalid city,I need much Longer !Buddy")
+	if len(post.Address.State) == 0 {
+		return fmt.Errorf("missing state,I need much Longer !Buddy")
 	}
 
+	if len(post.Address.ZipCode) == 0 {
+		return fmt.Errorf("missing ZipCode,I need much Longer,!Buddy")
+	}
 	if len(post.Address.ZipCode) < 6 {
-		return fmt.Errorf("invalid pincode,I need much Longer,!Buddy")
+		return fmt.Errorf("your ZipCode is smaller,I need much Longer,!Buddy")
 	}
 	if len(post.Address.ZipCode) > 6 {
-		return fmt.Errorf("invalid pincode,I need only Six Numbers,!Buddy")
+		return fmt.Errorf("your ZipCode is larger,I need only Six Numbers,!Buddy")
 	}
 	return nil
 }
@@ -142,27 +152,32 @@ func ValidationUserJob(user models.UserJobDetails, tokentype string, tokenid int
 	if tokentype != "USER" {
 		return fmt.Errorf("invalid Admin-Admin cannot have access to apply the post")
 	}
+
 	if tokenid != parmid {
 		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
 	}
-	if user.UserID != parmid {
+
+	if user.UserId != parmid {
 		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
 	}
 
 	if user.Experience < 0 {
-		return fmt.Errorf("invalid experience,Experience shoud be in Two Digits")
+		return fmt.Errorf("missing experience,Experience shoud be in Two Digits")
 	}
-	if len(user.Skills) < 3 {
-		return fmt.Errorf(" invalid Skills,I need much Longer !Buddy")
+
+	if len(user.Skills) == 0 {
+		return fmt.Errorf(" missing Skills,I need your skills !Buddy")
 	}
-	if len(user.Language) < 3 {
-		return fmt.Errorf(" invalid Skills,I need much Longer !Buddy")
+
+	if len(user.Language) == 0 {
+		return fmt.Errorf(" missing Language,I need your Languages !Buddy")
 	}
-	if len(user.Country) < 1 {
-		return fmt.Errorf(" invalid Country name,I need much Longer !Buddy")
+
+	if len(user.Country) == 0 {
+		return fmt.Errorf(" missing Country ,I need your country !Buddy")
 	}
-	if len(user.Country) > 20 {
-		return fmt.Errorf(" invalid Country,I need much shorter, !Buddy")
+	if len(user.JobRole) == 0 {
+		return fmt.Errorf(" missing JobRole ,I need some Jobrole here !Buddy")
 	}
 	return nil
 }
@@ -174,7 +189,7 @@ func ValidationAdminFields(post models.JobCreation, tokentype string, tokenid in
 	if tokenid != parmid {
 		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
 	}
-	if post.UserID != parmid {
+	if post.DomainID != parmid {
 		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
 	}
 	return nil
@@ -190,13 +205,12 @@ func ValidationCheck(tokentype string, tokenid int, parmid int) error {
 	return nil
 }
 
-// func ValidateRoletype(usertype string) error {
-// 	if usertype != "ADMIN" {
-// 		return fmt.Errorf("invalid Authorization,Only admin and users can view this Posts")
-// 	} else if usertype != "USER" {
-// 		return fmt.Errorf("invalid Authorization,Only admin and users can view this Posts")
-// 		// if usertype != "USER" {
-// 	} else {
-// 		return nil
-// 	}
-// }
+func ValidationUpdatePost(post models.JobCreation) error {
+	if post.JobStatus != "COMPLETED" && post.JobStatus != "ON GOING" {
+		return fmt.Errorf("invalid jobstatus,Only Completed or On Going only")
+	}
+	if post.Vacancy != 0 {
+		return fmt.Errorf("invalid vacancy,check it properly")
+	}
+	return nil
+}

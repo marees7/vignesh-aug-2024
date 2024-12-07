@@ -22,7 +22,10 @@ func UserRoutes(router *gin.Engine, service *service.UserService) {
 		//user or admin get all jobrole and country
 		r.GET("jobs/:job_title/:country", user.GetJobByRole)
 
-		// r.GET("usercountry/:country", user.GetJobByCountry)
+		//user or admin get companyName
+		r.GET("company/:company_name", user.GetByCompanyname)
+
+		//user get by their userowndetails
 		r.GET("usersowndetails/user/:user_id", user.HandlerGetJobAppliedDetailsByUserId)
 	}
 }

@@ -10,6 +10,7 @@ import (
 type UserRepo interface {
 	RepoGetAllPosts(user *[]models.JobCreation, usertype string) error
 	RepoGetByJobRole(user *[]models.JobCreation, jobs string, country string, usertype string) error
+	RepoGetByCompanyName(user *[]models.JobCreation, company string, usertype string) error
 	RepoApplyJobPost(user *models.UserJobDetails) error
 	UserGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, userId int, tokenid int) error
 	CheckUserJobId(user *models.UserJobDetails, newpost *models.JobCreation) error
@@ -51,6 +52,23 @@ func (db *userrepo) RepoGetByJobRole(user *[]models.JobCreation, jobs string, co
 	return nil
 }
 
+func (db *userrepo) RepoGetByCompanyName(user *[]models.JobCreation, company string, usertype string) error {
+	if usertype == "ADMIN" || usertype == "USER" {
+		data := db.Where("company_name=?", company).First(&user)
+		if data.Error != nil {
+			return fmt.Errorf("cant'able to find your jobs in that company,Give him correctly")
+		}
+
+		dbValue := db.Where(&models.JobCreation{CompanyName: company}).Find(&user)
+		if dbValue.Error != nil {
+			return fmt.Errorf("cant'able to find your jobs in that company,Give him correctly")
+		}
+	} else {
+		return fmt.Errorf("could not able to Get the details")
+	}
+	return nil
+}
+
 func (db *userrepo) RepoApplyJobPost(user *models.UserJobDetails) error {
 	dbvalues := db.Create(user)
 	if dbvalues.Error != nil {
@@ -74,29 +92,28 @@ func (db *userrepo) UserGetJobAppliedDetailsByUserId(user *[]models.UserJobDetai
 			return fmt.Errorf("cant'able to create your details ,Give him correctly")
 		}
 	} else {
-		return fmt.Errorf("could get that post")
+		return fmt.Errorf("your payload Id and user Id is mismatching here,check it once")
 	}
 	return nil
 }
 
 func (db *userrepo) CheckUserJobId(user *models.UserJobDetails, newuser *models.JobCreation) error {
 	var count int64
-	fmt.Println("newuser", newuser)
 
 	jobid := db.Model(&models.JobCreation{}).Where("job_id=? ", user.JobID).First(&newuser)
 	if jobid.Error != nil {
 		return fmt.Errorf("unable to fetch Job Details properly,Check it JobId once")
 	}
 	if newuser.JobStatus == "COMPLETED" {
-		return fmt.Errorf(" invalid job-this Job Application is closed")
+		return fmt.Errorf("this Job Application is closed")
 	}
 
-	data := db.Model(&models.UserJobDetails{}).Where("user_id=? AND job_id=?", user.UserID, user.JobID).Count(&count)
+	data := db.Model(&models.UserJobDetails{}).Where("user_id=? AND job_id=?", user.UserId, user.JobID).Count(&count)
 	if count > 0 {
 		return fmt.Errorf("already registered,You have applied for this job")
 	}
 	if data.Error != nil {
-		return fmt.Errorf("error occured,While creating new values")
+		return fmt.Errorf("error occured,While applying the post")
 	}
 	return nil
 }

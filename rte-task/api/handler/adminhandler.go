@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -26,7 +25,6 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 			Error: err,
 		})
 	}
-	fmt.Println("payloadid", paramid)
 
 	if err := c.BindJSON(&userPost); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -34,12 +32,8 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 		loggers.ErrorData.Println("Cant able to get the JobPost Details")
 		return
 	}
-	fmt.Println("checkdetails", userPost)
 	tokentype := c.GetString("role_type")
 	tokenid := c.GetInt("user_id")
-
-	fmt.Println("userid", tokenid)
-	fmt.Println("usertype", tokentype)
 
 	err = validation.ValidationJobPost(userPost, paramid, tokenid, tokentype)
 	if err != nil {
@@ -48,6 +42,7 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 		loggers.ErrorData.Println("Error occured in this validation of postdetails")
 		return
 	}
+
 	Dbvalues := database.ServiceCreatePost(&userPost)
 	if Dbvalues != nil {
 		c.JSON(500, models.CommonResponse{
@@ -76,14 +71,13 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	}
 
 	adminid := c.Param("admin_id")
-	useridvalues, err := strconv.Atoi(adminid)
+	adminIdvalues, err := strconv.Atoi(adminid)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: "Error occured while String Convertion,Please check properly",
 		})
 	}
-	// fmt.Println("useridvalues", useridvalues)
-	// fmt.Println("jobid", jobID)
+
 	if err := c.ShouldBindJSON(&post); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
@@ -92,12 +86,17 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 		return
 	}
 
+	err = validation.ValidationUpdatePost(post)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		return
+	}
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
-	// fmt.Println("userid", userid)
-	// fmt.Println("usertype", userType)
-	err = validation.ValidationAdminFields(post, userType, userid, useridvalues)
+	err = validation.ValidationAdminFields(post, userType, userid, adminIdvalues)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -105,7 +104,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 		return
 	}
 
-	if err := database.UpdatePosts(&post, jobID); err != nil {
+	if err := database.UpdatePosts(&post, jobID, adminIdvalues); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -116,11 +115,9 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"Message":   "Post updated successfully",
 		"JobStatus": post.JobStatus,
-		"JobTime":   post.JobTime,
 		"Vacancy":   post.Vacancy,
 	})
 	loggers.InfoData.Println("Sucessfully Updated the Details")
-
 }
 
 func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
@@ -134,11 +131,9 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 			Error: err,
 		})
 	}
-	fmt.Println("values", useridvalues)
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
-	fmt.Println("roletype", jobrole)
 	err = validation.ValidationCheck(userType, userid, useridvalues)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -153,14 +148,35 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 		loggers.ErrorData.Println("Can't able to get the Details Properly")
 		return
 	}
+	var response []gin.H
+	for _, details := range user {
+		userDetails := gin.H{}
+		if details.User != nil {
+			userDetails = gin.H{
+				"name":         details.User.Name,
+				"email":        details.User.Email,
+				"phone_number": details.User.PhoneNumber,
+			}
+		}
 
-	for _, values := range user {
-		c.JSON(http.StatusOK, models.CommonResponse{
-			Message: "Sucessfully Get the details",
-			Data:    values,
+		response = append(response, gin.H{
+			"user_id":    details.UserId,
+			"job_id":     details.JobID,
+			"experience": details.Experience,
+			"skills":     details.Skills,
+			"language":   details.Language,
+			"country":    details.Country,
+			"job_role":   details.JobRole,
+			"created_at": details.CreatedAt,
+			"updated_at": details.UpdatedAt,
+			"user":       userDetails,
 		})
+		c.JSON(http.StatusOK, models.CommonResponse{
+			Message: "Successfully fetched the details",
+			Data:    response,
+		})
+		loggers.InfoData.Println("Successfully fetched job details")
 	}
-	loggers.InfoData.Println("Sucessfully Get the Details")
 }
 
 func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
@@ -169,58 +185,73 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 	value := c.Param("job_id")
 	jobId, err := strconv.Atoi(value)
 	if err != nil {
-		c.JSON(404, models.CommonResponse{
-			Error: "Error occured while String Convertion,Please check properly",
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: "Error occurred while converting job_id to integer",
 		})
+		return
 	}
 
-	valueuserid := c.Param("admin_id")
-	applyuserid, err := strconv.Atoi(valueuserid)
+	valueUserId := c.Param("admin_id")
+	applyUserId, err := strconv.Atoi(valueUserId)
 	if err != nil {
-		c.JSON(404, models.CommonResponse{
-			Error: "Error occured while String Convertion,Please check properly",
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: "Error occurred while converting admin_id to integer",
 		})
+		return
 	}
-	fmt.Println("values", applyuserid)
+
 	userType := c.GetString("role_type")
-	userid := c.GetInt("user_id")
-
-	fmt.Println("userid", userid)
-	fmt.Println("usertype", userType)
-	err = validation.ValidationCheck(userType, userid, applyuserid)
-	if err != nil {
+	userId := c.GetInt("user_id")
+	if err := validation.ValidationCheck(userType, userId, applyUserId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of postdetails")
-		return
-	}
-	err = database.ServiceGetJobAppliedDetailsByJobId(&user, jobId)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured while getting values")
+			Error: err.Error(),
+		})
+		loggers.ErrorData.Println("Validation failed:", err)
 		return
 	}
 
-	for _, values := range user {
-		c.JSON(http.StatusOK, models.CommonResponse{
-			Message: "Sucessfully Get the details",
-			Data:    values,
+	if err := database.ServiceGetJobAppliedDetailsByJobId(&user, jobId); err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error(),
+		})
+		loggers.ErrorData.Println("Failed to fetch job details:", err)
+		return
+	}
+
+	var response []gin.H
+	for _, details := range user {
+		userDetails := gin.H{}
+		if details.User != nil {
+			userDetails = gin.H{
+				"name":         details.User.Name,
+				"email":        details.User.Email,
+				"phone_number": details.User.PhoneNumber,
+			}
+		}
+
+		response = append(response, gin.H{
+			"user_id":    details.UserId,
+			"job_id":     details.JobID,
+			"experience": details.Experience,
+			"skills":     details.Skills,
+			"language":   details.Language,
+			"country":    details.Country,
+			"job_role":   details.JobRole,
+			"created_at": details.CreatedAt,
+			"updated_at": details.UpdatedAt,
+			"user":       userDetails,
 		})
 	}
-	loggers.InfoData.Println("Sucessfully Get the Details")
+
+	c.JSON(http.StatusOK, models.CommonResponse{
+		Message: "Successfully fetched the details",
+		Data:    response,
+	})
+	loggers.InfoData.Println("Successfully fetched job details")
 }
 
 func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 	var user []models.UserJobDetails
-
-	value := c.Param("user_id")
-	values, err := strconv.Atoi(value)
-	if err != nil {
-		c.JSON(404, models.CommonResponse{
-			Error: err,
-		})
-	}
 	adminid := c.Param("admin_id")
 	adminvalues, err := strconv.Atoi(adminid)
 	if err != nil {
@@ -228,33 +259,28 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 			Error: err,
 		})
 	}
-	userType := c.GetString("role_type")
-	userid := c.GetInt("user_id")
-	fmt.Println("values", values)
-	fmt.Println("useridfromtoken", userid)
-	fmt.Println("usertype", userType)
-	err = validation.ValidationCheck(userType, userid, adminvalues)
+	userIdParam := c.Param("user_id")
+	userId, err := strconv.Atoi(userIdParam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of postdetails")
-		return
-	}
-	err = database.ServiceGetJobAppliedDetailsByUserId(&user, values)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, models.CommonResponse{
-			Error: err.Error()})
-		loggers.ErrorData.Println("Cant able to get the job Applied Details By theirs ID")
+			Error: "invalid user_id parameter",
+		})
 		return
 	}
 
-	for _, valuess := range user {
-		c.JSON(http.StatusOK, models.CommonResponse{
-			Message: "Sucessfully Get the details",
-			Data:    valuess,
+	if err := database.ServiceGetJobAppliedDetailsByUserId(&user, userId, adminvalues); err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error(),
 		})
+		loggers.ErrorData.Println("Failed to fetch job applied details:", err)
+		return
 	}
-	loggers.InfoData.Println("Sucessfully Get the Details by their IDs")
+
+	c.JSON(http.StatusOK, models.CommonResponse{
+		Message: "Successfully fetched job details",
+		Data:    user,
+	})
+	loggers.InfoData.Println("Successfully fetched job details")
 }
 
 func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
@@ -269,9 +295,6 @@ func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 	}
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
-	fmt.Println("adminid", adminId)
-	fmt.Println("useridfromtoken", userid)
-	fmt.Println("usertype", userType)
 
 	err = validation.ValidationCheck(userType, userid, adminId)
 	if err != nil {

@@ -5,8 +5,6 @@ go 1.23.1
 require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.10.0
-	github.com/go-playground/validator v9.31.0+incompatible
-	github.com/google/uuid v1.6.0
 	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.23.0
 	gorm.io/driver/postgres v1.5.10
@@ -47,6 +45,5 @@ require (
 	golang.org/x/sys v0.21.0 // indirect
 	golang.org/x/text v0.15.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
-	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

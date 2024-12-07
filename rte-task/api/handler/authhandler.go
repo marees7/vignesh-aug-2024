@@ -112,7 +112,7 @@ func (database AuthConnect) Login(c *gin.Context) {
 	c.JSON(http.StatusAccepted, gin.H{
 		"Message":  "Login Sucessfully",
 		"Token":    user.Token,
-		"UserId":   founduser.UserId,
+		"CommonID": founduser.UserId,
 		"RoleType": founduser.RoleType,
 	})
 	loggers.InfoData.Println("Login Sucessfully")

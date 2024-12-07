@@ -28,9 +28,6 @@ func GenerateToken(email, name, roletype string, userid int) (token string, err 
 			ExpiresAt: time.Now().Local().Add(time.Hour * time.Duration(2)).Unix(),
 		},
 	}
-	fmt.Println("userid", userid)
-	fmt.Println("name", name)
-	fmt.Println("roletype", roletype)
 	token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(SECRET_KEY))
 	if err != nil {
 		fmt.Println("Error occured")

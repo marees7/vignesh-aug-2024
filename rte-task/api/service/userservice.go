@@ -11,6 +11,7 @@ type UserServices interface {
 	ApplyJobPost(user *models.UserJobDetails) error
 	GetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, userid int) error
 	CheckJobId(user *models.UserJobDetails, newpost *models.JobCreation) error
+	ServiceGetByCompanyName(user *[]models.JobCreation, company string, usertype string) error
 }
 
 type userservice struct {
@@ -23,6 +24,9 @@ func (service *userservice) ServiceGetAllPostDetails(user *[]models.JobCreation,
 
 func (service *userservice) ServiceGetJobDetailsByRole(user *[]models.JobCreation, jobrole string, country string, usertype string) error {
 	return service.User.RepoGetByJobRole(user, jobrole, country, usertype)
+}
+func (service *userservice) ServiceGetByCompanyName(user *[]models.JobCreation, company string, usertype string) error {
+	return service.User.RepoGetByCompanyName(user, company, usertype)
 }
 
 func (service *userservice) ApplyJobPost(user *models.UserJobDetails) error {

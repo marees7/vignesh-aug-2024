@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -42,10 +41,31 @@ func (database UserHan) GetJobByRole(c *gin.Context) {
 	jobs := c.Param("job_title")
 	country := c.Param("country")
 
-	// fmt.Println("jobs", jobs)
 	userType := c.GetString("role_type")
 
 	err := database.ServiceGetJobDetailsByRole(&user, jobs, country, userType)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error()})
+		loggers.ErrorData.Println("Error occured while getting values")
+		return
+	}
+	for _, values := range user {
+		c.JSON(http.StatusOK, models.CommonResponse{
+			Message: "Sucessfully Get the details by their JobRole",
+			Data:    values,
+		})
+	}
+	loggers.InfoData.Println("Sucessfully Get the JobDetails By thier roles")
+}
+
+func (database UserHan) GetByCompanyname(c *gin.Context) {
+	var user []models.JobCreation
+	CompanyName := c.Param("company_name")
+
+	userType := c.GetString("role_type")
+
+	err := database.ServiceGetByCompanyName(&user, CompanyName, userType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -73,7 +93,6 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 		})
 	}
 
-	// fmt.Println("values", paramid)
 	if err := c.ShouldBindJSON(&user); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
@@ -85,8 +104,6 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 	tokentype := c.GetString("role_type")
 	tokenid := c.GetInt("user_id")
 
-	// fmt.Println("userid", tokenid)
-	// fmt.Println("usertype", tokentype)
 	err = validation.ValidationUserJob(user, tokentype, tokenid, paramid)
 	if err != nil {
 		c.JSON(500, models.CommonResponse{
@@ -133,8 +150,6 @@ func (database UserHan) HandlerGetJobAppliedDetailsByUserId(c *gin.Context) {
 		})
 	}
 	userid := c.GetInt("user_id")
-	fmt.Println("values", values)
-	fmt.Println("userid", userid)
 
 	err = database.GetJobAppliedDetailsByUserId(&user, values, userid)
 	if err != nil {
