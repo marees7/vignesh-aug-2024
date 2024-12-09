@@ -35,8 +35,6 @@ func Authenticate() gin.HandlerFunc {
 			return
 		}
 
-		c.Set("email", claims.Email)
-		c.Set("name", claims.Name)
 		c.Set("role_type", claims.RoleType)
 		c.Set("user_id", claims.UserID)
 	}

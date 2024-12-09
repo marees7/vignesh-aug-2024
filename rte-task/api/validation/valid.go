@@ -211,31 +211,6 @@ func ValidationUserJob(user models.UserJobDetails, tokentype string, tokenid int
 	return nil
 }
 
-// Valid their Admin JobPosts with Fields
-func ValidationAdminFields(post models.JobCreation, tokentype string, tokenid int, parmid int) error {
-	if tokentype != "ADMIN" {
-		return fmt.Errorf("invalid user-User have not access to view this details")
-	}
-	if tokenid != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
-	}
-	if post.DomainID != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
-	}
-	return nil
-}
-
-// Valid their roles by admin or users
-func ValidationCheck(tokentype string, tokenid int, parmid int) error {
-	if tokentype != "ADMIN" {
-		return fmt.Errorf("invalid user-User have not access to view this details")
-	}
-	if tokenid != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
-	}
-	return nil
-}
-
 // valid their JobFields in JobPosts
 func ValidationUpdatePost(post models.JobCreation) error {
 	if post.JobStatus != "COMPLETED" && post.JobStatus != "ON GOING" {

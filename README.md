@@ -1,7 +1,13 @@
 # vignesh-aug-2024
 
 # Job Site
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+    <img src="https://i.imgur.com/uQXaHzv.png" alt="Logo" width="150" height="60">
 
+  <h3 align="center">Simple Job Site</h3>
+</div>
 
 REST API for JobSite using golang, gin framework & GORM ORM.
 
@@ -11,6 +17,9 @@ REST API for JobSite using golang, gin framework & GORM ORM.
 - A user can apply posts, view their job applied details ,get all job posts (User can see all job updates,view their own details)
 - A admin creates the JobPost,update the job posts,view the applicant details(Admin can update their own posts)
 
+### IDE and Tools I Use
+
+<img height="50" width="50" src="https://img.icons8.com/color/48/000000/visual-studio-code-2019.png"/>    <img height="50" width="50" src="https://i.imgur.com/biFSWGU.png"/> <img height="50" width="50" src="https://i.imgur.com/eOGfY8b.png"/> <img height="50" width="50" src="https://i.imgur.com/8T8BE02.png"/> <img height="50" src="https://i.imgur.com/XU4XCrs.png"/> <img height="50" src="https://i.imgur.com/bHV6tyi.png"/> 
 
 
 ## Features
@@ -20,12 +29,6 @@ REST API for JobSite using golang, gin framework & GORM ORM.
 - Error handling and response formatting
 - Input validation and data sanitization
 - Database integration using PostgreSQL
-
-
-## Requirements
-- Golang 
-- Postgres
-
 
 ## Run Locally
 
@@ -142,15 +145,3 @@ CREATE TABLE IF NOT EXISTS public.user_job_details
         ON DELETE NO ACTION
 )
 ```
-
-## Dependencies
-
-The project utilizes the following third-party libraries:
-
-- `gin-gonic/gin`: HTTP web framework
-- `joho/godotenv`: Environment variable loading
-- `golang-jwt/jwt/v5`: JWT implementation
-- `gorm.io/gorm`: PostgreSQL ORM
-- `gorm.io/driver/postgres`: PostgreSQL extensions for gorm
-
-Make sure to run go mod download as mentioned in the installation steps to fetch these dependencies.

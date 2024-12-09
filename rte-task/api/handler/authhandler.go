@@ -70,8 +70,8 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
 	//create user details By their roles
-	Dbvalues := database.CreateUserDetails(&user)
-	if Dbvalues != nil {
+	err = database.CreateUserDetails(&user)
+	if err != nil {
 		c.JSON(500, gin.H{
 			"Error": "Can't able to create your data"})
 		return
@@ -94,8 +94,8 @@ func (database AuthConnect) Login(c *gin.Context) {
 	}
 
 	//Check Email address while Login with their email ID
-	value := database.CheckEmailWhileLogin(&user, &founduser)
-	if value != nil {
+	err := database.CheckEmailWhileLogin(&user, &founduser)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": "Cant't Find Your MailId"})
 		loggers.ErrorData.Println("Cant't Find Your MailId")

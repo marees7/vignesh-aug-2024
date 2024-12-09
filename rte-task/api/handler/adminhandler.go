@@ -6,6 +6,7 @@ import (
 
 	"github.com/Vigneshwartt/golang-rte-task/api/service"
 	"github.com/Vigneshwartt/golang-rte-task/api/validation"
+	"github.com/Vigneshwartt/golang-rte-task/common/helpers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"github.com/gin-gonic/gin"
@@ -64,8 +65,8 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 func (database AdminHand) UpdatePost(c *gin.Context) {
 	var post models.JobCreation
 
-	value := c.Param("job_id")
-	jobID, err := strconv.Atoi(value)
+	paramid := c.Param("job_id")
+	jobID, err := strconv.Atoi(paramid)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: "Error occured while String Convertion,Please check properly",
@@ -74,8 +75,8 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 		return
 	}
 
-	adminid := c.Param("admin_id")
-	adminIdvalues, err := strconv.Atoi(adminid)
+	adminparamid := c.Param("admin_id")
+	adminId, err := strconv.Atoi(adminparamid)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: "Error occured while String Convertion,Please check properly",
@@ -102,7 +103,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	userid := c.GetInt("user_id")
 
 	// Valid their Admin JobPosts with Fields
-	err = validation.ValidationAdminFields(post, userType, userid, adminIdvalues)
+	err = helpers.CheckRoleType(post, userType, userid, adminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -111,7 +112,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	}
 
 	//update their job post by their IDs
-	if err := database.UpdatePosts(&post, jobID, adminIdvalues); err != nil {
+	if err := database.UpdatePosts(&post, jobID, adminId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -131,19 +132,19 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 	var user []models.UserJobDetails
 
-	jobrole := c.Param("job_role")
-	valueuserid := c.Param("admin_id")
-	useridvalues, err := strconv.Atoi(valueuserid)
+	paramJobRole := c.Param("job_role")
+	paramAdminId := c.Param("admin_id")
+	adminId, err := strconv.Atoi(paramAdminId)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
-	userType := c.GetString("role_type")
-	userid := c.GetInt("user_id")
+	tokenType := c.GetString("role_type")
+	tokenId := c.GetInt("user_id")
 
-	//Valid their roles by admin or users
-	err = validation.ValidationCheck(userType, userid, useridvalues)
+	// Check their roles by admin or users
+	err = helpers.ValidationCheckForRoleType(tokenType, tokenId, adminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -152,7 +153,7 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 	}
 
 	//get their jobDetailsBy role
-	err = database.GetJobAppliedDetailsbyRole(&user, jobrole, useridvalues)
+	err = database.GetJobAppliedDetailsbyRole(&user, paramJobRole, adminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -194,8 +195,8 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 	var user []models.UserJobDetails
 
-	value := c.Param("job_id")
-	jobId, err := strconv.Atoi(value)
+	parmaJobId := c.Param("job_id")
+	jobId, err := strconv.Atoi(parmaJobId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: "Error occurred while converting job_id to integer",
@@ -203,8 +204,8 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 		return
 	}
 
-	valueUserId := c.Param("admin_id")
-	applyUserId, err := strconv.Atoi(valueUserId)
+	paramAdminId := c.Param("admin_id")
+	adminId, err := strconv.Atoi(paramAdminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: "Error occurred while converting admin_id to integer",
@@ -212,11 +213,11 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 		return
 	}
 
-	userType := c.GetString("role_type")
-	userId := c.GetInt("user_id")
+	tokenType := c.GetString("role_type")
+	tokenId := c.GetInt("user_id")
 
-	//Valid their roles by admin or users
-	if err := validation.ValidationCheck(userType, userId, applyUserId); err != nil {
+	//Check their roles by admin or users
+	if err := helpers.ValidationCheckForRoleType(tokenType, tokenId, adminId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -225,7 +226,7 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 	}
 
 	//get their applied details by their JobIds
-	if err := database.GetAppliedDetailsByJobId(&user, jobId, applyUserId); err != nil {
+	if err := database.GetAppliedDetailsByJobId(&user, jobId, adminId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -268,19 +269,19 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 // admin get their jobs by UserId
 func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 	var user []models.UserJobDetails
-	adminid := c.Param("admin_id")
-	adminvalues, err := strconv.Atoi(adminid)
+	paramAdminId := c.Param("admin_id")
+	adminId, err := strconv.Atoi(paramAdminId)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
 
-	userType := c.GetString("role_type")
-	userIdnew := c.GetInt("user_id")
+	tokenType := c.GetString("role_type")
+	tokenId := c.GetInt("user_id")
 
-	userIdParam := c.Param("user_id")
-	userId, err := strconv.Atoi(userIdParam)
+	parmUserId := c.Param("user_id")
+	userId, err := strconv.Atoi(parmUserId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: "invalid user_id parameter",
@@ -288,8 +289,8 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 		return
 	}
 
-	//Valid their roles by admin or users
-	if err := validation.ValidationCheck(userType, userIdnew, adminvalues); err != nil {
+	//Check their roles by admin or users
+	if err := helpers.ValidationCheckForRoleType(tokenType, tokenId, adminId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -298,7 +299,7 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 	}
 
 	//get their User's particular jobs By their userID's
-	if err := database.GetPostDetailsByUserId(&user, userId, adminvalues); err != nil {
+	if err := database.GetPostDetailsByUserId(&user, userId, adminId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -317,18 +318,18 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 	var user []models.JobCreation
 
-	adminid := c.Param("admin_id")
-	adminId, err := strconv.Atoi(adminid)
+	paramAdminId := c.Param("admin_id")
+	adminId, err := strconv.Atoi(paramAdminId)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
-	userType := c.GetString("role_type")
-	userid := c.GetInt("user_id")
+	tokenType := c.GetString("role_type")
+	tokenId := c.GetInt("user_id")
 
-	// Valid their roles by admin or users
-	err = validation.ValidationCheck(userType, userid, adminId)
+	// Check their roles by admin or users
+	err = helpers.ValidationCheckForRoleType(tokenType, tokenId, adminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
