@@ -13,8 +13,7 @@ func AuthRoutes(router *gin.Engine, service *service.UserService) {
 		//sign up their details
 		r.POST("/signup", auth.SignUp)
 
-		//login their details
+		// Login with their Details
 		r.POST("/login", auth.Login)
 	}
-
 }

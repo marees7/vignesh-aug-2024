@@ -16,11 +16,13 @@ type UserHan struct {
 	service.UserServices
 }
 
+// user or admin get all job details
 func (database UserHan) GetAllJobPosts(c *gin.Context) {
 	var user []models.JobCreation
 	userType := c.GetString("role_type")
 
-	err := database.ServiceGetAllPostDetails(&user, userType)
+	// get their all post details by admin or users
+	err := database.GetAllPostsByAdminOrUsers(&user, userType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -36,6 +38,7 @@ func (database UserHan) GetAllJobPosts(c *gin.Context) {
 	loggers.InfoData.Println("Sucessfuly Get the all created Post Details")
 }
 
+// user or admin get all jobrole and country
 func (database UserHan) GetJobByRole(c *gin.Context) {
 	var user []models.JobCreation
 	jobs := c.Param("job_title")
@@ -43,7 +46,8 @@ func (database UserHan) GetJobByRole(c *gin.Context) {
 
 	userType := c.GetString("role_type")
 
-	err := database.ServiceGetJobDetailsByRole(&user, jobs, country, userType)
+	//get thier job details by their JobRole
+	err := database.GetPostDetailsByTheirRoles(&user, jobs, country, userType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -59,19 +63,22 @@ func (database UserHan) GetJobByRole(c *gin.Context) {
 	loggers.InfoData.Println("Sucessfully Get the JobDetails By thier roles")
 }
 
+// user or admin get companyName
 func (database UserHan) GetByCompanyname(c *gin.Context) {
 	var user []models.JobCreation
-	CompanyName := c.Param("company_name")
 
+	CompanyName := c.Param("company_name")
 	userType := c.GetString("role_type")
 
-	err := database.ServiceGetByCompanyName(&user, CompanyName, userType)
+	//users get by thier Company Names by particular Details
+	err := database.GetPostDetailsByCompanyNames(&user, CompanyName, userType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured while getting values")
 		return
 	}
+
 	for _, values := range user {
 		c.JSON(http.StatusOK, models.CommonResponse{
 			Message: "Sucessfully Get the details by their JobRole",
@@ -81,7 +88,8 @@ func (database UserHan) GetByCompanyname(c *gin.Context) {
 	loggers.InfoData.Println("Sucessfully Get the JobDetails By thier roles")
 }
 
-func (database UserHan) ApplyJob(c *gin.Context) {
+// user apply the job in that posts
+func (database UserHan) UsersApplyForJobs(c *gin.Context) {
 	var user models.UserJobDetails
 	var newpost models.JobCreation
 
@@ -104,6 +112,7 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 	tokentype := c.GetString("role_type")
 	tokenid := c.GetInt("user_id")
 
+	// Valid their User JobPost with Fields
 	err = validation.ValidationUserJob(user, tokentype, tokenid, paramid)
 	if err != nil {
 		c.JSON(500, models.CommonResponse{
@@ -112,6 +121,7 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 		return
 	}
 
+	// Check if user ID is applied for the Job or Not
 	err = database.CheckJobId(&user, &newpost)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -119,6 +129,7 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 		return
 	}
 
+	// user apply the job in that posts
 	err = database.ApplyJobPost(&user)
 	if err != nil {
 		c.JSON(500, models.CommonResponse{
@@ -126,13 +137,15 @@ func (database UserHan) ApplyJob(c *gin.Context) {
 		loggers.ErrorData.Println("Error occured while creating values")
 		return
 	}
+	
 	c.JSON(http.StatusOK, models.CommonResponse{
 		Message: "Sucessfully Applied Job ",
 		Data:    user})
 	loggers.InfoData.Println("Sucessfully Applied the Job")
 }
 
-func (database UserHan) HandlerGetJobAppliedDetailsByUserId(c *gin.Context) {
+// user get by their userowndetails
+func (database UserHan) UsersGetTheirDetailsByTheirownIds(c *gin.Context) {
 	var user []models.UserJobDetails
 
 	if err := helpers.CheckuserType(c, "USER"); err != nil {
@@ -151,6 +164,7 @@ func (database UserHan) HandlerGetJobAppliedDetailsByUserId(c *gin.Context) {
 	}
 	userid := c.GetInt("user_id")
 
+	//get their Details by userIds
 	err = database.GetJobAppliedDetailsByUserId(&user, values, userid)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{

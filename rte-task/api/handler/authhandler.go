@@ -15,6 +15,7 @@ type AuthConnect struct {
 	service.AuthService
 }
 
+// create their details
 func (database AuthConnect) SignUp(c *gin.Context) {
 	var user models.UserDetails
 	var count int64
@@ -24,6 +25,7 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 			"Error": err.Error()})
 		return
 	}
+	//signup their each fields
 	err := validation.ValidationSignUp(user)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -31,7 +33,8 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 		return
 	}
 
-	counts, err := database.ServiceRepoemail(&user, count)
+	//check email is exixts or not in DB
+	counts, err := database.CheckEmailIsExists(&user, count)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": "Error occured in this email"})
@@ -44,11 +47,13 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 		return
 	}
 
+	//Hashing the password here
 	password := validation.HashPassword(user.Password)
 	user.Password = password
 
-	countPhone, DbPhone := database.ServicePhoneForm(&user, count)
-	if DbPhone != nil {
+	//check phone number is exists or not in DB
+	countPhone, err := database.CheckPhoneNumberIsExists(&user, count)
+	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": "Error occured in this PhoneNumber"})
 		loggers.ErrorData.Println("Error occured in this PhoneNumber")
@@ -64,7 +69,8 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	user.CreatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 	user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
-	Dbvalues := database.ServiceCreate(&user)
+	//create user details By their roles
+	Dbvalues := database.CreateUserDetails(&user)
 	if Dbvalues != nil {
 		c.JSON(500, gin.H{
 			"Error": "Can't able to create your data"})
@@ -76,6 +82,7 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	loggers.InfoData.Println("Sucessfully Created the Details")
 }
 
+// Login with their Details
 func (database AuthConnect) Login(c *gin.Context) {
 	var user models.UserDetails
 	var founduser models.UserDetails
@@ -86,7 +93,8 @@ func (database AuthConnect) Login(c *gin.Context) {
 		return
 	}
 
-	value := database.ServiceLoginEmail(&user, &founduser)
+	//Check Email address while Login with their email ID
+	value := database.CheckEmailWhileLogin(&user, &founduser)
 	if value != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Error": "Cant't Find Your MailId"})
@@ -94,12 +102,14 @@ func (database AuthConnect) Login(c *gin.Context) {
 		return
 	}
 
+	//verify their password is match with signup password
 	Password, data := validation.VerifyPassword(user.Password, founduser.Password)
 	if !Password {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": data})
 		return
 	}
+	//Generate new token here
 	token, err := validation.GenerateToken(founduser.Email, founduser.Name, founduser.RoleType, founduser.UserId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

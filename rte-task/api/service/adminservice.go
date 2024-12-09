@@ -6,39 +6,43 @@ import (
 )
 
 type AdminService interface {
-	ServiceFindAllUsers(user *[]models.UserDetails) error
-	ServiceCreatePost(user *models.JobCreation) error
+	CreatePostForUsers(user *models.JobCreation) error
 	UpdatePosts(user *models.JobCreation, jobid int, adminId int) error
-	ServiceGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, roletype string) error
-	ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int) error
-	ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error
-	ServiceGetPostedDetailsByAdmin(user *[]models.JobCreation, adminid int) error
+	GetJobAppliedDetailsbyRole(user *[]models.UserJobDetails, roletype string, adminid int) error
+	GetAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int, adminid int) error
+	GetPostDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error
+	GetPostDetailsByAdmin(user *[]models.JobCreation, adminid int) error
 }
 type adminservice struct {
 	*repository.UserRepository
 }
 
-func (service *adminservice) ServiceFindAllUsers(user *[]models.UserDetails) error {
-	return service.Admin.RepoFindAllUsers(user)
+// create their Jobposts
+func (service *adminservice) CreatePostForUsers(user *models.JobCreation) error {
+	return service.Admin.CreatePostDetailsByAdmin(user)
 }
 
-func (service *adminservice) ServiceCreatePost(user *models.JobCreation) error {
-	return service.Admin.RepoCreateNewPost(user)
-}
-
+// update their job post by their IDs
 func (service *adminservice) UpdatePosts(user *models.JobCreation, jobid int, adminID int) error {
-	return service.Admin.RepoUpdateJobPost(user, jobid, adminID)
-}
-func (service *adminservice) ServiceGetJobAppliedDetailsbyrole(user *[]models.UserJobDetails, jobrole string) error {
-	return service.Admin.RepoGetJobAppliedDetailsbyrole(user, jobrole)
+	return service.Admin.UpdateJobPostsByAdmin(user, jobid, adminID)
 }
 
-func (service *adminservice) ServiceGetJobAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int) error {
-	return service.Admin.RepoGetJobAppliedDetailsByJobId(user, jobid)
+// get their postdetails jobDetailsBy role
+func (service *adminservice) GetJobAppliedDetailsbyRole(user *[]models.UserJobDetails, jobrole string, adminid int) error {
+	return service.Admin.GetDetailsByRoleByAdmin(user, jobrole, adminid)
 }
-func (service *adminservice) ServiceGetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error {
-	return service.Admin.RepoGetJobAppliedDetailsByUserId(user, roleid, adminvalues)
+
+// get their applied details by their JobIds
+func (service *adminservice) GetAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int, adminid int) error {
+	return service.Admin.GetJobDetailsByJobIdByAdmin(user, jobid, adminid)
 }
-func (service *adminservice) ServiceGetPostedDetailsByAdmin(user *[]models.JobCreation, adminid int) error {
-	return service.Admin.RepoGetPostedDetailsByAdmin(user, adminid)
+
+// get their User's particular jobs By their userID's
+func (service *adminservice) GetPostDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error {
+	return service.Admin.GetJobDetailsByUserIdByAdmin(user, roleid, adminvalues)
+}
+
+// get thier own post details By admin
+func (service *adminservice) GetPostDetailsByAdmin(user *[]models.JobCreation, adminid int) error {
+	return service.Admin.GetOwnPostDetailsByAdmin(user, adminid)
 }

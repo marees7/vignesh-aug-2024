@@ -18,6 +18,7 @@ type Signedvalues struct {
 
 var SECRET_KEY string = os.Getenv("SECRET_KEY")
 
+// Generate new token here
 func GenerateToken(email, name, roletype string, userid int) (token string, err error) {
 	claims := &Signedvalues{
 		UserID:   userid,
@@ -36,6 +37,7 @@ func GenerateToken(email, name, roletype string, userid int) (token string, err 
 	return token, err
 }
 
+// Validate their token with their details
 func ValidateToken(signedToken string) (claims *Signedvalues, msg string) {
 	token, err := jwt.ParseWithClaims(
 		signedToken,

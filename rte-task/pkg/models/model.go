@@ -23,7 +23,7 @@ type JobCreation struct {
 	JobStatus    string    `json:"job_status"   gorm:"column:job_status;type:varchar(100);constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	JobTime      string    `json:"job_time"   gorm:"column:job_time;type:varchar(50);constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	Description  string    `json:"description"   gorm:"column:description;type:text"`
-	Experience   int       `json:"experience"   gorm:"column:experience;type:int"`
+	Experience   string    `json:"experience"   gorm:"column:experience;type:varchar(50)"`
 	Skills       string    `json:"skills"   gorm:"column:skills;type:varchar(255)"`
 	Vacancy      int       `json:"vacancy"   validate:"required" gorm:"column:vacancy;type:int;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	Country      string    `json:"country"   gorm:"column:country ;type:varchar(20)"`
@@ -49,8 +49,8 @@ type UserJobDetails struct {
 	JobRole    string       `json:"job_role" gorm:"column:job_role;type:varchar(255)"`
 	CreatedAt  time.Time    `json:"created_at"`
 	UpdatedAt  time.Time    `json:"updated_at"`
-	User       *UserDetails `json:"User" gorm:"foreignKey:UserId"`
-	Job        *JobCreation `json:"Job" gorm:"foreignKey:JobID"`
+	User       *UserDetails `json:"User,omitempty" gorm:"foreignKey:UserId"`
+	Job        *JobCreation `json:"Job,omitempty" gorm:"foreignKey:JobID"`
 }
 
 type CommonResponse struct {

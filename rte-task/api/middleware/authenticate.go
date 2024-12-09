@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Authenticate the users with their given token
 func Authenticate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		clientToken := c.Request.Header.Get("Authorization")
@@ -26,6 +27,7 @@ func Authenticate() gin.HandlerFunc {
 			return
 		}
 
+		//Validate their token with their details
 		claims, err := validation.ValidateToken(clientToken)
 		if err != "" {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err})

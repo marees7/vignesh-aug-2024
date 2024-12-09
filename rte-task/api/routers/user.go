@@ -14,7 +14,7 @@ func UserRoutes(router *gin.Engine, service *service.UserService) {
 	{
 		r.Use(middleware.Authenticate())
 		//user apply the job in that posts
-		r.POST("post/:user_id", user.ApplyJob)
+		r.POST("post/:user_id", user.UsersApplyForJobs)
 
 		//user or admin get all job details
 		r.GET("users/allposts", user.GetAllJobPosts)
@@ -26,6 +26,6 @@ func UserRoutes(router *gin.Engine, service *service.UserService) {
 		r.GET("company/:company_name", user.GetByCompanyname)
 
 		//user get by their userowndetails
-		r.GET("usersowndetails/user/:user_id", user.HandlerGetJobAppliedDetailsByUserId)
+		r.GET("usersowndetails/user/:user_id", user.UsersGetTheirDetailsByTheirownIds)
 	}
 }

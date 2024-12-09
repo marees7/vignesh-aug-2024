@@ -15,6 +15,7 @@ type AdminHand struct {
 	service.AdminService
 }
 
+// admin creates new JobPost
 func (database AdminHand) CreateJobPost(c *gin.Context) {
 	var userPost models.JobCreation
 
@@ -35,6 +36,7 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 	tokentype := c.GetString("role_type")
 	tokenid := c.GetInt("user_id")
 
+	//validate each fields in Jobpost
 	err = validation.ValidationJobPost(userPost, paramid, tokenid, tokentype)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -43,10 +45,11 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 		return
 	}
 
-	Dbvalues := database.ServiceCreatePost(&userPost)
-	if Dbvalues != nil {
+	//create their Jobposts
+	err = database.CreatePostForUsers(&userPost)
+	if err != nil {
 		c.JSON(500, models.CommonResponse{
-			Error: Dbvalues.Error()})
+			Error: err.Error()})
 		loggers.ErrorData.Println("OOPS! Your Id or roletype is Mismatching Here,Check It Once Again")
 		return
 	}
@@ -57,6 +60,7 @@ func (database AdminHand) CreateJobPost(c *gin.Context) {
 	loggers.InfoData.Println("Sucessfully Created the Details")
 }
 
+// admin updates their own JobPost
 func (database AdminHand) UpdatePost(c *gin.Context) {
 	var post models.JobCreation
 
@@ -86,6 +90,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 		return
 	}
 
+	//Validate each fields
 	err = validation.ValidationUpdatePost(post)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -96,6 +101,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
+	// Valid their Admin JobPosts with Fields
 	err = validation.ValidationAdminFields(post, userType, userid, adminIdvalues)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -104,6 +110,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 		return
 	}
 
+	//update their job post by their IDs
 	if err := database.UpdatePosts(&post, jobID, adminIdvalues); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
@@ -120,6 +127,7 @@ func (database AdminHand) UpdatePost(c *gin.Context) {
 	loggers.InfoData.Println("Sucessfully Updated the Details")
 }
 
+// admin get their jobs by Role
 func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 	var user []models.UserJobDetails
 
@@ -134,6 +142,7 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
+	//Valid their roles by admin or users
 	err = validation.ValidationCheck(userType, userid, useridvalues)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -141,7 +150,9 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 		loggers.ErrorData.Println("Error occured in this validation of postdetails")
 		return
 	}
-	err = database.ServiceGetJobAppliedDetailsbyrole(&user, jobrole)
+
+	//get their jobDetailsBy role
+	err = database.GetJobAppliedDetailsbyRole(&user, jobrole, useridvalues)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -179,6 +190,7 @@ func (database AdminHand) GetJobAppliedDetailsbyrole(c *gin.Context) {
 	}
 }
 
+// admin get applied details their jobs by Id
 func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 	var user []models.UserJobDetails
 
@@ -202,6 +214,8 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 
 	userType := c.GetString("role_type")
 	userId := c.GetInt("user_id")
+
+	//Valid their roles by admin or users
 	if err := validation.ValidationCheck(userType, userId, applyUserId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
@@ -210,7 +224,8 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 		return
 	}
 
-	if err := database.ServiceGetJobAppliedDetailsByJobId(&user, jobId); err != nil {
+	//get their applied details by their JobIds
+	if err := database.GetAppliedDetailsByJobId(&user, jobId, applyUserId); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -250,6 +265,7 @@ func (database AdminHand) GetJobAppliedDetailsByJobId(c *gin.Context) {
 	loggers.InfoData.Println("Successfully fetched job details")
 }
 
+// admin get their jobs by UserId
 func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 	var user []models.UserJobDetails
 	adminid := c.Param("admin_id")
@@ -259,6 +275,10 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 			Error: err,
 		})
 	}
+
+	userType := c.GetString("role_type")
+	userIdnew := c.GetInt("user_id")
+
 	userIdParam := c.Param("user_id")
 	userId, err := strconv.Atoi(userIdParam)
 	if err != nil {
@@ -268,7 +288,17 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 		return
 	}
 
-	if err := database.ServiceGetJobAppliedDetailsByUserId(&user, userId, adminvalues); err != nil {
+	//Valid their roles by admin or users
+	if err := validation.ValidationCheck(userType, userIdnew, adminvalues); err != nil {
+		c.JSON(http.StatusBadRequest, models.CommonResponse{
+			Error: err.Error(),
+		})
+		loggers.ErrorData.Println("Validation failed:", err)
+		return
+	}
+
+	//get their User's particular jobs By their userID's
+	if err := database.GetPostDetailsByUserId(&user, userId, adminvalues); err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error(),
 		})
@@ -283,6 +313,7 @@ func (database AdminHand) GetJobAppliedDetailsByUserId(c *gin.Context) {
 	loggers.InfoData.Println("Successfully fetched job details")
 }
 
+// admin get their own posts by Admin
 func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 	var user []models.JobCreation
 
@@ -296,6 +327,7 @@ func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 	userType := c.GetString("role_type")
 	userid := c.GetInt("user_id")
 
+	// Valid their roles by admin or users
 	err = validation.ValidationCheck(userType, userid, adminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
@@ -304,7 +336,8 @@ func (database AdminHand) GetJobsByAdmin(c *gin.Context) {
 		return
 	}
 
-	err = database.ServiceGetPostedDetailsByAdmin(&user, adminId)
+	//get thier own post details By admin
+	err = database.GetPostDetailsByAdmin(&user, adminId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})

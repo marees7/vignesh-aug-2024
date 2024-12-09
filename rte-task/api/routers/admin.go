@@ -12,6 +12,7 @@ func AdminRouter(router *gin.Engine, service *service.UserService) {
 	r := router.Group("/admin")
 	{
 		r.Use(middleware.Authenticate())
+		//admin creates new JobPost
 		r.POST("insert/:admin_id", admin.CreateJobPost)
 
 		//admin get by jobid userid

@@ -10,11 +10,15 @@ import (
 	"gorm.io/gorm"
 )
 
-func ConnectingDatabase() *gorm.DB {
+var (
+	GlobalConnection *gorm.DB
+)
+
+func ConnectingDatabase() {
 	err := godotenv.Load(".env")
 	if err != nil {
-		fmt.Println("Error failed to load the env file ")
-		return nil
+		loggers.ErrorData.Println("Error failed to load the env file ")
+		return
 	}
 	host := os.Getenv("DB_host")
 	user := os.Getenv("DB_user")
@@ -27,15 +31,18 @@ func ConnectingDatabase() *gorm.DB {
 	if err != nil {
 		panic(err)
 	}
+
 	GlobalConnection = Connection
-	Automigration()
 	defer HandlePanic()
 	loggers.InfoData.Println("Connected sucessfully")
-	return Connection
+}
+
+func GetConnection() *gorm.DB {
+	return GlobalConnection
 }
 
 func HandlePanic() {
 	if err := recover(); err != nil {
-		fmt.Println("Recover:", err)
+		loggers.ErrorData.Println("Recover:", err)
 	}
 }

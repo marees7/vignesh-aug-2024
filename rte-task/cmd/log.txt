@@ -6,3 +6,703 @@ ERROR: 2024/12/07 12:30:59 adminhandler.go:286: Failed to fetch job applied deta
 ERROR: 2024/12/07 12:31:13 usershandler.go:115: Error occured while creating values
 ERROR: 2024/12/07 12:31:21 usershandler.go:115: Error occured while creating values
 INFO: 2024/12/07 12:31:39 usershandler.go:136: Sucessfully Applied the Job
+INFO: 2024/12/08 20:14:57 connection.go:37: Connected sucessfully
+INFO: 2024/12/08 20:14:57 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 10:51:56 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 10:51:56 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 10:53:11 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 10:53:32 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 10:53:50 authhandler.go:82: Sucessfully Created the Details
+ERROR: 2024/12/09 10:53:57 authhandler.go:65: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/09 10:54:03 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 10:54:16 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 10:55:01 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 10:55:35 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 10:56:05 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 10:56:07 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 10:56:58 adminhandler.go:44: Error occured in this validation of postdetails
+ERROR: 2024/12/09 10:57:04 adminhandler.go:44: Error occured in this validation of postdetails
+ERROR: 2024/12/09 10:57:21 adminhandler.go:322: Error occured in this validation of postdetails
+ERROR: 2024/12/09 10:57:24 adminhandler.go:331: Error occured while getting values by admin
+ERROR: 2024/12/09 10:57:37 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 11:00:27 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:00:27 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:00:30 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 11:00:36 adminhandler.go:331: Error occured while getting values by admin
+ERROR: 2024/12/09 11:00:56 adminhandler.go:109: Error occured in this validation of postdetails
+ERROR: 2024/12/09 11:00:59 adminhandler.go:109: Error occured in this validation of postdetails
+ERROR: 2024/12/09 11:01:06 adminhandler.go:118: Failed to update post
+ERROR: 2024/12/09 11:01:25 adminhandler.go:118: Failed to update post
+ERROR: 2024/12/09 11:01:42 adminhandler.go:292: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 11:01:52 usershandler.go:38: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/09 11:02:03 usershandler.go:54: Error occured while getting values
+ERROR: 2024/12/09 11:02:14 usershandler.go:78: Error occured while getting values
+INFO: 2024/12/09 11:10:54 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:10:54 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 11:10:58 usershandler.go:38: Sucessfuly Get the all created Post Details
+ERROR: 2024/12/09 11:11:03 usershandler.go:54: Error occured while getting values
+ERROR: 2024/12/09 11:11:13 usershandler.go:78: Error occured while getting values
+INFO: 2024/12/09 11:11:51 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:11:51 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:11:55 usershandler.go:78: Error occured while getting values
+ERROR: 2024/12/09 11:11:59 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 11:12:05 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 11:13:03 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:13:03 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:13:06 usershandler.go:29: Sorry! I can't get your all posts details properly
+INFO: 2024/12/09 11:13:42 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:13:42 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:13:46 usershandler.go:29: Sorry! I can't get your all posts details properly
+INFO: 2024/12/09 11:15:32 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:15:32 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:15:39 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:17:00 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:17:31 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 11:18:01 adminhandler.go:44: Error occured in this validation of postdetails
+ERROR: 2024/12/09 11:18:20 adminhandler.go:44: Error occured in this validation of postdetails
+ERROR: 2024/12/09 11:18:43 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:18:48 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:18:59 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:19:08 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 11:19:22 adminhandler.go:322: Error occured in this validation of postdetails
+ERROR: 2024/12/09 11:19:39 adminhandler.go:322: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:19:46 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 11:19:52 adminhandler.go:322: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:19:53 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 11:20:06 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 11:20:08 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 11:21:31 adminhandler.go:232: Failed to fetch job details: no one can apply for this job
+ERROR: 2024/12/09 11:22:30 usershandler.go:29: Sorry! I can't get your all posts details properly
+ERROR: 2024/12/09 11:22:45 usershandler.go:29: Sorry! I can't get your all posts details properly
+INFO: 2024/12/09 11:23:18 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:23:18 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 11:23:21 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 11:23:35 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:23:44 usershandler.go:54: Error occured while getting values
+ERROR: 2024/12/09 11:23:53 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 11:23:59 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:24:07 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 11:24:18 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:24:25 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 11:24:28 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:24:34 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 11:24:37 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 11:25:01 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:25:06 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 11:25:16 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:25:25 usershandler.go:54: Error occured while getting values
+ERROR: 2024/12/09 11:25:30 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 11:25:32 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 11:26:09 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 11:26:23 usershandler.go:87: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 11:26:31 usershandler.go:87: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:26:36 usershandler.go:78: Error occured while getting values
+INFO: 2024/12/09 11:26:38 usershandler.go:87: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 11:27:03 usershandler.go:119: Error occured while creating values
+ERROR: 2024/12/09 11:27:20 usershandler.go:119: Error occured while creating values
+ERROR: 2024/12/09 11:27:29 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 11:27:36 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 11:28:22 usershandler.go:119: Error occured while creating values
+ERROR: 2024/12/09 11:28:27 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 11:28:32 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 11:28:41 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 11:28:50 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:28:53 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 11:29:06 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 11:29:17 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:29:21 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 11:29:46 usershandler.go:170: Error occured while getting values
+INFO: 2024/12/09 11:29:53 usershandler.go:180: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 11:31:42 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:07 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:12 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:14 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:16 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:18 adminhandler.go:265: Successfully fetched job details
+ERROR: 2024/12/09 11:32:26 adminhandler.go:232: Failed to fetch job details: no one can apply for this job
+INFO: 2024/12/09 11:32:28 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:40 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:42 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:43 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:44 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:46 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:51 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:53 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:54 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:56 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:32:59 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:35:25 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:35:25 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 11:35:41 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 11:35:52 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 11:36:35 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 11:36:46 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 11:37:21 authhandler.go:65: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/09 11:37:26 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 11:37:37 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 11:38:08 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 11:38:23 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 11:38:52 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 11:43:03 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:43:03 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:43:05 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:43:15 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:43:19 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:43:41 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:43:43 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 11:44:08 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 11:44:18 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:44:23 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:44:34 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:44:54 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:44:58 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:45:03 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 11:45:22 adminhandler.go:150: Error occured in this validation of postdetails
+ERROR: 2024/12/09 11:45:27 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:45:34 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:45:34 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:45:34 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:45:34 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:45:34 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:45:34 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 11:45:45 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 11:45:47 adminhandler.go:232: Failed to fetch job details: no one can apply for this job
+INFO: 2024/12/09 11:45:52 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:46:14 adminhandler.go:265: Successfully fetched job details
+ERROR: 2024/12/09 11:46:50 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 11:46:56 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:47:01 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 11:47:16 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 11:47:36 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 11:48:20 adminhandler.go:265: Successfully fetched job details
+ERROR: 2024/12/09 11:48:27 adminhandler.go:232: Failed to fetch job details: no one can apply for this job
+INFO: 2024/12/09 11:48:33 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:52:52 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:52:52 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:52:55 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:53:15 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:53:18 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:53:22 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:53:25 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+INFO: 2024/12/09 11:55:24 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:55:24 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:55:26 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:55:30 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:55:36 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:55:40 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:55:44 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 11:55:49 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+INFO: 2024/12/09 11:56:53 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:56:53 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 11:56:59 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:57:05 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:57:09 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:57:15 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:57:19 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:58:21 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:58:21 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 11:58:23 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:58:30 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 11:58:34 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:58:38 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+ERROR: 2024/12/09 11:58:41 adminhandler.go:232: Failed to fetch job details: cant'able to find your Details Properly,Give him correctly
+INFO: 2024/12/09 11:58:58 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:58:58 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 11:59:00 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:03 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:07 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:10 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:13 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:21 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 11:59:21 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 11:59:23 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:27 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:30 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 11:59:53 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:00:01 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:00:06 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:00:10 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:00:39 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:00:39 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:00:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:03 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:02:03 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:02:06 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:02 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:05:02 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:09 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 12:05:17 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:05:22 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 12:05:58 adminhandler.go:150: Error occured in this validation of postdetails
+ERROR: 2024/12/09 12:06:01 adminhandler.go:150: Error occured in this validation of postdetails
+ERROR: 2024/12/09 12:06:09 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:06:38 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:07:44 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:08:06 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:08:17 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:08:55 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:08:55 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 12:09:05 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:09:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:09:15 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:12:05 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:12:05 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 12:12:06 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 12:12:11 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:13:21 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:13:21 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 12:13:23 adminhandler.go:232: Failed to fetch job details: not able to acces this details
+ERROR: 2024/12/09 12:13:28 adminhandler.go:232: Failed to fetch job details: not able to acces this details
+INFO: 2024/12/09 12:13:31 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:13:37 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:15:16 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:15:16 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 12:15:27 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:15:34 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:15:55 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:16:00 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:16:26 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:16:30 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:17:13 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:17:24 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:17:57 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:18:04 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:18:31 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:18:37 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:19:03 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:19:04 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:19:25 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:19:36 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:19:46 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:20:11 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:20:15 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:20:19 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 12:20:43 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 12:20:51 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 12:21:01 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 12:21:13 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 12:22:33 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 12:22:46 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 12:22:51 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:23:25 adminhandler.go:265: Successfully fetched job details
+ERROR: 2024/12/09 12:24:29 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 12:24:33 adminhandler.go:232: Failed to fetch job details: not able to acces this details
+ERROR: 2024/12/09 12:26:08 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 12:28:54 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:28:54 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 12:28:58 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 12:29:51 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:29:51 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 12:29:53 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:29:53 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 12:30:31 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:30:41 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:30:41 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 12:31:05 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:31:08 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:31:08 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:31:08 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:35:49 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 12:35:49 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 12:35:52 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:36:15 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:36:32 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:36:42 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 12:36:49 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:37:02 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:37:19 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 12:37:34 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 12:38:57 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:40:48 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:41:25 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:42:15 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:42:24 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:42:40 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 12:42:57 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 12:43:50 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 12:44:01 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 12:44:08 usershandler.go:54: Error occured while getting values
+ERROR: 2024/12/09 12:44:12 usershandler.go:54: Error occured while getting values
+ERROR: 2024/12/09 12:44:18 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 12:44:21 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 12:44:30 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 12:44:32 usershandler.go:54: Error occured while getting values
+INFO: 2024/12/09 12:44:34 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 12:44:47 usershandler.go:78: Error occured while getting values
+INFO: 2024/12/09 12:44:59 usershandler.go:87: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 12:45:01 usershandler.go:78: Error occured while getting values
+INFO: 2024/12/09 12:45:23 usershandler.go:87: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 12:45:33 usershandler.go:87: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 12:46:01 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 12:47:30 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:47:56 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:48:33 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:48:55 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:49:10 usershandler.go:142: Sucessfully Applied the Job
+ERROR: 2024/12/09 12:49:30 usershandler.go:170: Error occured while getting values
+INFO: 2024/12/09 12:49:35 usershandler.go:180: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 12:50:23 usershandler.go:180: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 12:50:52 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 12:51:08 adminhandler.go:322: Error occured in this validation of postdetails
+INFO: 2024/12/09 12:51:10 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 12:51:32 adminhandler.go:159: Can't able to get the Details Properly
+INFO: 2024/12/09 12:51:40 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:52:23 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 12:52:27 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 12:53:26 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 12:53:51 adminhandler.go:232: Failed to fetch job details: not have access to view this details
+INFO: 2024/12/09 12:53:56 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 12:54:00 adminhandler.go:265: Successfully fetched job details
+ERROR: 2024/12/09 12:54:02 adminhandler.go:232: Failed to fetch job details: no applications found for this job role
+INFO: 2024/12/09 12:54:21 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:54:47 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:55:26 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:55:55 adminhandler.go:300: Successfully fetched job details
+ERROR: 2024/12/09 12:55:56 adminhandler.go:292: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 12:56:02 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:56:03 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:56:11 adminhandler.go:300: Successfully fetched job details
+ERROR: 2024/12/09 12:56:21 adminhandler.go:292: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 12:56:31 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:56:59 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:57:54 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:57:58 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 12:58:11 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:58:23 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:58:47 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:59:20 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 12:59:31 adminhandler.go:300: Successfully fetched job details
+ERROR: 2024/12/09 12:59:41 adminhandler.go:292: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 12:59:43 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 13:00:08 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 13:00:58 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 13:00:58 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 13:01:25 adminhandler.go:322: Error occured in this validation of postdetails
+INFO: 2024/12/09 13:01:27 adminhandler.go:341: Sucessfully Get the Details by Admin
+INFO: 2024/12/09 13:01:36 adminhandler.go:127: Sucessfully Updated the Details
+INFO: 2024/12/09 13:01:40 adminhandler.go:127: Sucessfully Updated the Details
+ERROR: 2024/12/09 13:01:45 adminhandler.go:109: Error occured in this validation of postdetails
+ERROR: 2024/12/09 13:01:54 adminhandler.go:109: Error occured in this validation of postdetails
+INFO: 2024/12/09 13:02:17 adminhandler.go:127: Sucessfully Updated the Details
+ERROR: 2024/12/09 13:02:31 adminhandler.go:109: Error occured in this validation of postdetails
+ERROR: 2024/12/09 13:02:35 adminhandler.go:109: Error occured in this validation of postdetails
+ERROR: 2024/12/09 13:02:37 adminhandler.go:109: Error occured in this validation of postdetails
+INFO: 2024/12/09 13:02:47 adminhandler.go:127: Sucessfully Updated the Details
+INFO: 2024/12/09 13:02:52 adminhandler.go:127: Sucessfully Updated the Details
+INFO: 2024/12/09 13:03:04 adminhandler.go:341: Sucessfully Get the Details by Admin
+INFO: 2024/12/09 13:03:05 adminhandler.go:341: Sucessfully Get the Details by Admin
+INFO: 2024/12/09 13:03:07 adminhandler.go:341: Sucessfully Get the Details by Admin
+INFO: 2024/12/09 13:03:30 adminhandler.go:341: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 13:03:43 authhandler.go:65: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/09 13:03:52 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 13:03:58 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 13:04:43 usershandler.go:119: Error occured while creating values
+ERROR: 2024/12/09 13:04:53 usershandler.go:119: Error occured while creating values
+INFO: 2024/12/09 13:05:12 usershandler.go:142: Sucessfully Applied the Job
+INFO: 2024/12/09 13:05:44 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 13:06:00 adminhandler.go:300: Successfully fetched job details
+INFO: 2024/12/09 13:07:43 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 13:07:43 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 13:07:48 adminhandler.go:294: Validation failed: invalid user-User have not access to view this details
+ERROR: 2024/12/09 13:07:55 adminhandler.go:294: Validation failed: invalid user-User have not access to view this details
+ERROR: 2024/12/09 13:08:15 adminhandler.go:294: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 13:08:22 adminhandler.go:294: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 13:08:35 adminhandler.go:294: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 13:08:55 adminhandler.go:302: Failed to fetch job applied details: no job details found for the given user
+ERROR: 2024/12/09 13:09:00 adminhandler.go:294: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 13:09:06 adminhandler.go:294: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 13:09:10 adminhandler.go:294: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 13:09:32 usershandler.go:180: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 13:13:42 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 13:13:42 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 13:13:45 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:14:10 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 13:14:13 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:14:43 adminhandler.go:296: Validation failed: invalid user-User have not access to view this details
+INFO: 2024/12/09 13:14:58 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:15:05 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 13:15:09 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:15:40 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:16:19 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:16:57 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 13:16:59 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:20:22 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:20:36 adminhandler.go:304: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 13:20:41 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:20:45 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:21:13 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 13:28:42 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:29:12 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:29:42 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 13:29:46 adminhandler.go:304: Failed to fetch job applied details: no job details found for the given user
+ERROR: 2024/12/09 13:29:50 adminhandler.go:304: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 13:29:56 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:30:03 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:30:07 adminhandler.go:304: Failed to fetch job applied details: no job details found for the given user
+ERROR: 2024/12/09 13:30:15 adminhandler.go:304: Failed to fetch job applied details: no job details found for the given user
+ERROR: 2024/12/09 13:31:41 adminhandler.go:304: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 13:31:46 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 13:32:38 adminhandler.go:312: Successfully fetched job details
+ERROR: 2024/12/09 13:33:12 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 13:33:17 adminhandler.go:312: Successfully fetched job details
+INFO: 2024/12/09 14:55:52 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 14:55:52 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 14:56:11 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 14:56:22 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 14:56:39 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 14:56:48 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 14:57:02 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 14:57:34 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 14:57:50 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 14:58:14 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 14:58:50 adminhandler.go:33: Cant able to get the JobPost Details
+ERROR: 2024/12/09 14:59:13 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 14:59:25 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 14:59:32 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:00:20 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:01:09 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 15:01:09 automigrate.go:15: Migrated tables Sucessfully
+ERROR: 2024/12/09 15:01:11 adminhandler.go:344: Error occured while getting values by admin
+INFO: 2024/12/09 15:01:57 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:02:14 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 15:02:35 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 15:03:05 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:03:12 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 15:04:24 adminhandler.go:335: Error occured in this validation of postdetails
+INFO: 2024/12/09 15:04:27 adminhandler.go:354: Sucessfully Get the Details by Admin
+INFO: 2024/12/09 15:04:46 adminhandler.go:354: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 15:05:48 adminhandler.go:150: Error occured in this validation of postdetails
+ERROR: 2024/12/09 15:05:51 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 15:06:19 adminhandler.go:159: Can't able to get the Details Properly
+ERROR: 2024/12/09 15:06:37 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:06:41 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:06:44 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:07:00 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:07:03 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:07:06 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:08:12 usershandler.go:120: Error occured while creating values
+INFO: 2024/12/09 15:08:20 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:08:34 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:08:46 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:09:27 usershandler.go:144: Sucessfully Applied the Job
+ERROR: 2024/12/09 15:09:34 usershandler.go:120: Error occured while creating values
+INFO: 2024/12/09 15:09:45 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:10:13 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:10:24 usershandler.go:144: Sucessfully Applied the Job
+ERROR: 2024/12/09 15:10:29 usershandler.go:172: Error occured while getting values
+ERROR: 2024/12/09 15:10:39 usershandler.go:172: Error occured while getting values
+INFO: 2024/12/09 15:10:46 usershandler.go:182: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 15:11:58 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 15:13:25 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 15:13:35 usershandler.go:88: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 15:13:48 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 15:13:48 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 15:15:25 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 15:15:25 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 15:15:40 adminhandler.go:223: Validation failed: invalid user-User have not access to view this details
+ERROR: 2024/12/09 15:15:49 adminhandler.go:223: Validation failed: invalid user-User have not access to view this details
+ERROR: 2024/12/09 15:15:59 adminhandler.go:223: Validation failed: invalid user-User have not access to view this details
+ERROR: 2024/12/09 15:16:15 adminhandler.go:232: Failed to fetch job details: not have access to view this details
+ERROR: 2024/12/09 15:16:19 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 15:16:23 adminhandler.go:223: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 15:16:38 adminhandler.go:232: Failed to fetch job details: not have access to view this details
+ERROR: 2024/12/09 15:16:49 adminhandler.go:232: Failed to fetch job details: not have access to view this details
+ERROR: 2024/12/09 15:16:58 adminhandler.go:232: Failed to fetch job details: not have access to view this details
+ERROR: 2024/12/09 15:17:04 adminhandler.go:232: Failed to fetch job details: no applications found for this job role
+ERROR: 2024/12/09 15:17:13 adminhandler.go:232: Failed to fetch job details: no applications found for this job role
+INFO: 2024/12/09 15:17:16 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 15:17:24 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 15:17:31 adminhandler.go:265: Successfully fetched job details
+INFO: 2024/12/09 15:17:44 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 15:18:28 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 15:18:32 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 15:18:37 adminhandler.go:305: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 15:18:41 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 15:18:53 adminhandler.go:305: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 15:18:58 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 15:19:15 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 15:19:19 adminhandler.go:313: Successfully fetched job details
+INFO: 2024/12/09 15:19:21 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 15:19:26 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 15:19:40 adminhandler.go:313: Successfully fetched job details
+INFO: 2024/12/09 15:22:38 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 15:22:39 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 15:22:42 adminhandler.go:313: Successfully fetched job details
+INFO: 2024/12/09 15:27:43 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 15:27:43 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 15:49:28 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 15:49:28 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 15:49:35 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:49:45 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:50:01 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:50:10 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:50:26 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:50:42 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:51:01 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:51:27 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:52:25 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:52:29 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:53:16 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:53:25 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 15:53:44 adminhandler.go:354: Sucessfully Get the Details by Admin
+INFO: 2024/12/09 15:53:55 adminhandler.go:354: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 15:53:58 adminhandler.go:335: Error occured in this validation of postdetails
+INFO: 2024/12/09 15:54:00 adminhandler.go:354: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 15:54:19 usershandler.go:120: Error occured while creating values
+ERROR: 2024/12/09 15:54:22 usershandler.go:120: Error occured while creating values
+INFO: 2024/12/09 15:54:40 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:54:44 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:54:48 usershandler.go:144: Sucessfully Applied the Job
+ERROR: 2024/12/09 15:54:59 usershandler.go:120: Error occured while creating values
+INFO: 2024/12/09 15:55:07 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 15:55:11 usershandler.go:144: Sucessfully Applied the Job
+ERROR: 2024/12/09 15:55:57 usershandler.go:154: Error occured while getting values
+ERROR: 2024/12/09 15:56:04 usershandler.go:172: Error occured while getting values
+INFO: 2024/12/09 15:56:09 usershandler.go:182: Sucessfully Get the details by thier own userIds
+ERROR: 2024/12/09 15:56:22 usershandler.go:172: Error occured while getting values
+INFO: 2024/12/09 15:56:25 usershandler.go:182: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 15:56:37 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 15:56:41 usershandler.go:63: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 15:56:55 usershandler.go:182: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 15:57:01 usershandler.go:88: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/09 15:57:07 usershandler.go:78: Error occured while getting values
+INFO: 2024/12/09 15:57:53 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 15:57:53 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 15:58:15 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:58:24 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:58:39 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:58:47 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 15:58:53 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:59:14 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:59:29 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 15:59:48 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:00:43 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:00:52 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:01:05 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:01:17 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:02:47 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 16:02:47 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 16:02:51 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:02:58 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:03:04 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:03:09 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:03:15 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:03:33 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:03:43 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:04:01 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:04:18 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:04:38 authhandler.go:128: Login Sucessfully
+ERROR: 2024/12/09 16:05:08 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 16:05:11 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:05:16 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 16:05:46 adminhandler.go:44: Error occured in this validation of postdetails
+ERROR: 2024/12/09 16:05:50 adminhandler.go:44: Error occured in this validation of postdetails
+INFO: 2024/12/09 16:06:05 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:06:41 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 16:07:06 usershandler.go:120: Error occured while creating values
+INFO: 2024/12/09 16:07:13 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:07:20 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:07:24 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:07:41 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:07:47 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:07:52 usershandler.go:144: Sucessfully Applied the Job
+ERROR: 2024/12/09 16:08:13 usershandler.go:154: Error occured while getting values
+ERROR: 2024/12/09 16:08:23 usershandler.go:172: Error occured while getting values
+INFO: 2024/12/09 16:09:22 usershandler.go:38: Sucessfuly Get the all created Post Details
+INFO: 2024/12/09 16:09:46 adminhandler.go:354: Sucessfully Get the Details by Admin
+ERROR: 2024/12/09 16:10:04 usershandler.go:172: Error occured while getting values
+INFO: 2024/12/09 16:10:09 usershandler.go:182: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 16:10:27 usershandler.go:88: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 16:10:32 usershandler.go:88: Sucessfully Get the JobDetails By thier roles
+INFO: 2024/12/09 16:10:46 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:10:46 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:10:46 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:11:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:11:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:11:43 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:19 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:19 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:19 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:36 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:36 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:36 adminhandler.go:189: Successfully fetched job details
+ERROR: 2024/12/09 16:13:46 adminhandler.go:150: Error occured in this validation of postdetails
+ERROR: 2024/12/09 16:13:55 adminhandler.go:150: Error occured in this validation of postdetails
+INFO: 2024/12/09 16:13:58 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:58 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:13:58 adminhandler.go:189: Successfully fetched job details
+INFO: 2024/12/09 16:15:54 connection.go:37: Connected sucessfully
+INFO: 2024/12/09 16:15:54 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/09 16:16:21 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:16:31 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:16:37 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:16:43 authhandler.go:82: Sucessfully Created the Details
+INFO: 2024/12/09 16:16:51 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:17:07 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:17:23 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:17:37 authhandler.go:128: Login Sucessfully
+INFO: 2024/12/09 16:18:16 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:18:33 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:18:58 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:19:00 adminhandler.go:60: Sucessfully Created the Details
+INFO: 2024/12/09 16:19:42 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:19:48 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:20:06 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:20:11 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:20:15 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:20:28 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:20:46 adminhandler.go:313: Successfully fetched job details
+INFO: 2024/12/09 16:21:20 usershandler.go:182: Sucessfully Get the details by thier own userIds
+INFO: 2024/12/09 16:22:03 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 16:22:14 adminhandler.go:305: Failed to fetch job applied details: no job details found for the given user
+ERROR: 2024/12/09 16:22:18 adminhandler.go:305: Failed to fetch job applied details: no job details found for the given user
+INFO: 2024/12/09 16:22:22 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 16:22:49 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+INFO: 2024/12/09 16:22:53 adminhandler.go:313: Successfully fetched job details
+INFO: 2024/12/09 16:23:11 adminhandler.go:313: Successfully fetched job details
+INFO: 2024/12/09 16:23:48 adminhandler.go:60: Sucessfully Created the Details
+ERROR: 2024/12/09 16:24:40 usershandler.go:120: Error occured while creating values
+INFO: 2024/12/09 16:24:58 usershandler.go:144: Sucessfully Applied the Job
+INFO: 2024/12/09 16:25:29 adminhandler.go:313: Successfully fetched job details
+ERROR: 2024/12/09 16:25:47 adminhandler.go:296: Validation failed: invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It
+ERROR: 2024/12/09 16:26:19 adminhandler.go:232: Failed to fetch job details: no applications found for this job role
+ERROR: 2024/12/09 16:26:23 adminhandler.go:232: Failed to fetch job details: no applications found for this job role
+ERROR: 2024/12/09 16:26:28 adminhandler.go:232: Failed to fetch job details: not have access to view this details
+INFO: 2024/12/09 16:26:46 adminhandler.go:265: Successfully fetched job details

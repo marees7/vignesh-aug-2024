@@ -6,28 +6,32 @@ import (
 )
 
 type AuthService interface {
-	ServiceRepoemail(user *models.UserDetails, count int64) (int64, error)
-	ServiceCreate(user *models.UserDetails) error
-	ServiceLoginEmail(user *models.UserDetails, founduser *models.UserDetails) error
-	ServicePhoneForm(user *models.UserDetails, count int64) (int64, error)
+	CheckEmailIsExists(user *models.UserDetails, count int64) (int64, error)
+	CreateUserDetails(user *models.UserDetails) error
+	CheckEmailWhileLogin(user *models.UserDetails, founduser *models.UserDetails) error
+	CheckPhoneNumberIsExists(user *models.UserDetails, count int64) (int64, error)
 }
 
 type authservice struct {
 	*repository.UserRepository
 }
 
-func (service *authservice) ServiceRepoemail(user *models.UserDetails, count int64) (int64, error) {
-	return service.Auth.RepoEmailForm(user, count)
+// check email is exixts or not in DB
+func (service *authservice) CheckEmailIsExists(user *models.UserDetails, count int64) (int64, error) {
+	return service.Auth.CheckEmailAddress(user, count)
 }
 
-func (service *authservice) ServicePhoneForm(user *models.UserDetails, count int64) (int64, error) {
-	return service.Auth.RepoPhoneForm(user, count)
+// check phone number is exists or not in DB
+func (service *authservice) CheckPhoneNumberIsExists(user *models.UserDetails, count int64) (int64, error) {
+	return service.Auth.CheckPhoneNumber(user, count)
 }
 
-func (service *authservice) ServiceCreate(user *models.UserDetails) error {
-	return service.Auth.RepoCreate(user)
+// create user details By their roles
+func (service *authservice) CreateUserDetails(user *models.UserDetails) error {
+	return service.Auth.CreateDetailsByTheirRoles(user)
 }
 
-func (service *authservice) ServiceLoginEmail(user *models.UserDetails, founduser *models.UserDetails) error {
-	return service.Auth.RepoLoginEmail(user, founduser)
+// Check Email address while Login with their email ID
+func (service *authservice) CheckEmailWhileLogin(user *models.UserDetails, founduser *models.UserDetails) error {
+	return service.Auth.LoginEmailCheckExists(user, founduser)
 }
