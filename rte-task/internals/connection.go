@@ -20,13 +20,8 @@ func ConnectingDatabase() {
 		loggers.ErrorData.Println("Error failed to load the env file ")
 		return
 	}
-	host := os.Getenv("DB_host")
-	user := os.Getenv("DB_user")
-	port := os.Getenv("DB_port")
-	password := os.Getenv("DB_password")
-	dbname := os.Getenv("DB_dbname")
 
-	path := fmt.Sprintf("host=%s user=%s port=%s password=%s dbname=%s", host, user, port, password, dbname)
+	path := fmt.Sprintf("host=%s user=%s port=%s password=%s dbname=%s", os.Getenv("DB_host"), os.Getenv("DB_user"), os.Getenv("DB_port"), os.Getenv("DB_password"), os.Getenv("DB_dbname"))
 	Connection, err := gorm.Open(postgres.Open(path), &gorm.Config{})
 	if err != nil {
 		panic(err)

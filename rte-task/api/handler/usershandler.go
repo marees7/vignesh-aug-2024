@@ -19,10 +19,10 @@ type UserHan struct {
 // user or admin get all job details
 func (database UserHan) GetAllJobPosts(c *gin.Context) {
 	var user []models.JobCreation
-	userType := c.GetString("role_type")
+	tokenType := c.GetString("role_type")
 
 	// get their all post details by admin or users
-	err := database.GetAllPostsByAdminOrUsers(&user, userType)
+	err := database.GetAllPostsByAdminOrUsers(&user, tokenType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -41,13 +41,13 @@ func (database UserHan) GetAllJobPosts(c *gin.Context) {
 // user or admin get all jobrole and country
 func (database UserHan) GetJobByRole(c *gin.Context) {
 	var user []models.JobCreation
-	jobs := c.Param("job_title")
-	country := c.Param("country")
+	paramJobTitle := c.Param("job_title")
+	paramJobCountry := c.Param("country")
 
-	userType := c.GetString("role_type")
+	tokenType := c.GetString("role_type")
 
 	//get thier job details by their JobRole
-	err := database.GetPostDetailsByTheirRoles(&user, jobs, country, userType)
+	err := database.GetPostDetailsByTheirRoles(&user, paramJobTitle, paramJobCountry, tokenType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -67,11 +67,11 @@ func (database UserHan) GetJobByRole(c *gin.Context) {
 func (database UserHan) GetByCompanyname(c *gin.Context) {
 	var user []models.JobCreation
 
-	CompanyName := c.Param("company_name")
-	userType := c.GetString("role_type")
+	paramCompanyName := c.Param("company_name")
+	tokenType := c.GetString("role_type")
 
 	//users get by thier Company Names by particular Details
-	err := database.GetPostDetailsByCompanyNames(&user, CompanyName, userType)
+	err := database.GetPostDetailsByCompanyNames(&user, paramCompanyName, tokenType)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
@@ -93,8 +93,8 @@ func (database UserHan) UsersApplyForJobs(c *gin.Context) {
 	var user models.UserJobDetails
 	var newpost models.JobCreation
 
-	value := c.Param("user_id")
-	paramid, err := strconv.Atoi(value)
+	paramUserId := c.Param("user_id")
+	UserId, err := strconv.Atoi(paramUserId)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
@@ -109,11 +109,11 @@ func (database UserHan) UsersApplyForJobs(c *gin.Context) {
 		return
 	}
 
-	tokentype := c.GetString("role_type")
-	tokenid := c.GetInt("user_id")
+	tokenType := c.GetString("role_type")
+	tokenId := c.GetInt("user_id")
 
 	// Valid their User JobPost with Fields
-	err = validation.ValidationUserJob(user, tokentype, tokenid, paramid)
+	err = validation.ValidationUserJob(user, tokenType, tokenId, UserId)
 	if err != nil {
 		c.JSON(500, models.CommonResponse{
 			Error: err.Error()})
@@ -155,17 +155,17 @@ func (database UserHan) UsersGetTheirDetailsByTheirownIds(c *gin.Context) {
 		return
 	}
 
-	value := c.Param("user_id")
-	values, err := strconv.Atoi(value)
+	paramUserId := c.Param("user_id")
+	userId, err := strconv.Atoi(paramUserId)
 	if err != nil {
 		c.JSON(404, models.CommonResponse{
 			Error: err,
 		})
 	}
-	userid := c.GetInt("user_id")
+	tokenId := c.GetInt("user_id")
 
 	//get their Details by userIds
-	err = database.GetJobAppliedDetailsByUserId(&user, values, userid)
+	err = database.GetJobAppliedDetailsByUserId(&user, userId, tokenId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.CommonResponse{
 			Error: err.Error()})
