@@ -16,7 +16,7 @@ type UserDetails struct {
 
 type JobCreation struct {
 	JobId        int       `json:"job_id"  gorm:"primarykey;autoIncrement"`
-	DomainID     int       `json:"domain_id"  gorm:"foreignKey:DomainID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	AdminID      int       `json:"admin_id"  gorm:"column:admin_id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	CompanyName  string    `json:"company_name" gorm:"column:company_name;type:varchar(100)"`
 	CompanyEmail string    `json:"company_email"   gorm:"column:company_email;type:varchar(100)"`
 	JobTitle     string    `json:"job_title"   gorm:"column:job_title;type:varchar(100)"`
@@ -53,8 +53,23 @@ type UserJobDetails struct {
 	Job        *JobCreation `json:"Job,omitempty" gorm:"foreignKey:JobID"`
 }
 
-type CommonResponse struct {
+type Response struct {
 	Message string      `json:"message,omitempty"`
 	Error   interface{} `json:"error,omitempty"`
 	Data    interface{} `json:"data,omitempty"`
+}
+
+type ApplicantDetail struct {
+	UserId      int       `json:"user_id,omitempty"`
+	JobID       int       `json:"job_id,omitempty"`
+	Experience  int       `json:"experience,omitempty"`
+	Skills      string    `json:"skills,omitempty"`
+	Language    string    `json:"language,omitempty"`
+	Country     string    `json:"country,omitempty"`
+	JobRole     string    `json:"job_role,omitempty"`
+	CreatedAt   time.Time `json:"created_at,omitempty"`
+	UpdatedAt   time.Time `json:"updated_at,omitempty"`
+	Name        string    `json:"name,omitempty"`
+	Email       string    `json:"email,omitempty"`
+	PhoneNumber string    `json:"phone_number,omitempty"`
 }

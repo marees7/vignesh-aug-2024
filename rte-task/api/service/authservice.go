@@ -5,33 +5,39 @@ import (
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 )
 
-type AuthService interface {
-	CheckEmailIsExists(user *models.UserDetails, count int64) (int64, error)
-	CreateUserDetails(user *models.UserDetails) error
-	CheckEmailWhileLogin(user *models.UserDetails, founduser *models.UserDetails) error
-	CheckPhoneNumberIsExists(user *models.UserDetails, count int64) (int64, error)
+type I_AuthService interface {
+	GetLoginEmail(user *models.UserDetails) error
+	CreateUser(user *models.UserDetails) error
+	GetUserMail(user *models.UserDetails, founduser *models.UserDetails) error
+	GetSignupNumber(user *models.UserDetails) error
 }
 
-type authservice struct {
-	*repository.UserRepository
+type AuthService struct {
+	repository.I_AuthRepo
+}
+
+func GetAuthService(db repository.I_AuthRepo) I_AuthService {
+	return &AuthService{
+		db,
+	}
 }
 
 // check email is exixts or not in DB
-func (service *authservice) CheckEmailIsExists(user *models.UserDetails, count int64) (int64, error) {
-	return service.Auth.CheckEmailAddress(user, count)
+func (repo *AuthService) GetLoginEmail(user *models.UserDetails) error {
+	return repo.GetValidEmailAddress(user)
 }
 
 // check phone number is exists or not in DB
-func (service *authservice) CheckPhoneNumberIsExists(user *models.UserDetails, count int64) (int64, error) {
-	return service.Auth.CheckPhoneNumber(user, count)
+func (repo *AuthService) GetSignupNumber(user *models.UserDetails) error {
+	return repo.GetPhoneNumber(user)
 }
 
 // create user details By their roles
-func (service *authservice) CreateUserDetails(user *models.UserDetails) error {
-	return service.Auth.CreateDetailsByTheirRoles(user)
+func (repo *AuthService) CreateUser(user *models.UserDetails) error {
+	return repo.CreateUsers(user)
 }
 
 // Check Email address while Login with their email ID
-func (service *authservice) CheckEmailWhileLogin(user *models.UserDetails, founduser *models.UserDetails) error {
-	return service.Auth.LoginEmailCheckExists(user, founduser)
+func (repo *AuthService) GetUserMail(user *models.UserDetails, founduser *models.UserDetails) error {
+	return repo.GetUserMails(user, founduser)
 }

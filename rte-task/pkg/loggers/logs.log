@@ -1,0 +1,15 @@
+INFO: 2024/12/16 16:52:25 connection.go:29: Connected sucessfully
+INFO: 2024/12/16 16:52:25 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/16 16:52:25 main.go:34: Server started on port
+INFO: 2024/12/16 16:52:51 connection.go:29: Connected sucessfully
+INFO: 2024/12/16 16:52:51 main.go:34: Server started on port
+INFO: 2024/12/16 17:14:41 connection.go:29: Connected sucessfully
+INFO: 2024/12/16 17:14:41 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/16 17:14:41 main.go:34: Server started on port
+ERROR: 2024/12/16 17:14:59 authhandler.go:58: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/16 17:15:05 authhandler.go:75: Sucessfully Created the Details
+INFO: 2024/12/16 17:16:02 connection.go:29: Connected sucessfully
+INFO: 2024/12/16 17:16:02 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/16 17:16:02 main.go:34: Server started on port
+ERROR: 2024/12/16 17:16:16 authhandler.go:58: PhoneNumber is already registred ,Enter another PhoneNumber
+INFO: 2024/12/16 17:16:21 authhandler.go:75: Sucessfully Created the Details

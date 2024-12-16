@@ -5,35 +5,25 @@ import (
 	"os"
 
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
-	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-var (
-	GlobalConnection *gorm.DB
-)
+type ConnectionNew struct {
+	*gorm.DB
+}
 
-func ConnectingDatabase() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		loggers.ErrorData.Println("Error failed to load the env file ")
-		return
-	}
-
-	path := fmt.Sprintf("host=%s user=%s port=%s password=%s dbname=%s", os.Getenv("DB_host"), os.Getenv("DB_user"), os.Getenv("DB_port"), os.Getenv("DB_password"), os.Getenv("DB_dbname"))
+func ConnectingDatabase() *ConnectionNew {
+	path := fmt.Sprintf("host=%s user=%s port=%s password=%s dbname=%s", os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PORT"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_DBNAME"))
 	Connection, err := gorm.Open(postgres.Open(path), &gorm.Config{})
 	if err != nil {
 		panic(err)
 	}
-
-	GlobalConnection = Connection
 	defer HandlePanic()
 	loggers.InfoData.Println("Connected sucessfully")
-}
-
-func GetConnection() *gorm.DB {
-	return GlobalConnection
+	return &ConnectionNew{
+		Connection,
+	}
 }
 
 func HandlePanic() {

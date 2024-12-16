@@ -11,39 +11,31 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type AuthConnect struct {
-	service.AuthService
+type AuthHandler struct {
+	service.I_AuthService
 }
 
 // create their details
-func (database AuthConnect) SignUp(c *gin.Context) {
+func (service AuthHandler) SignUp(c *gin.Context) {
 	var user models.UserDetails
-	var count int64
-
 	if err := c.BindJSON(&user); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": err.Error()})
+		c.JSON(http.StatusBadRequest, models.Response{
+			Error: err.Error()})
 		return
 	}
 	//signup their each fields
 	err := validation.ValidationSignUp(user)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": err.Error()})
+		c.JSON(http.StatusBadRequest, models.Response{
+			Error: err.Error()})
 		return
 	}
 
 	//check email is exixts or not in DB
-	counts, err := database.CheckEmailIsExists(&user, count)
+	err = service.GetLoginEmail(&user)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Error occured in this email"})
-		return
-	}
-	if counts > 0 {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"Error": "Email is already registered by someones's ,Try another mail"})
-		loggers.ErrorData.Println("This email is already registred and Enter another mail")
+		c.JSON(http.StatusInternalServerError, models.Response{
+			Error: err.Error()})
 		return
 	}
 
@@ -52,17 +44,11 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	user.Password = password
 
 	//check phone number is exists or not in DB
-	countPhone, err := database.CheckPhoneNumberIsExists(&user, count)
+	err = service.GetSignupNumber(&user)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Error occured in this PhoneNumber"})
+		c.JSON(http.StatusInternalServerError, models.Response{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Error occured in this PhoneNumber")
-		return
-	}
-	if countPhone > 0 {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"Error": "PhoneNumber is already registred ,Enter another PhoneNumber"})
-		loggers.ErrorData.Println("PhoneNumber is already registred ,Enter another PhoneNumber")
 		return
 	}
 
@@ -70,34 +56,35 @@ func (database AuthConnect) SignUp(c *gin.Context) {
 	user.UpdatedAt, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 
 	//create user details By their roles
-	err = database.CreateUserDetails(&user)
+	err = service.CreateUser(&user)
 	if err != nil {
-		c.JSON(500, gin.H{
-			"Error": "Can't able to create your data"})
+		c.JSON(http.StatusInternalServerError, models.Response{
+			Error: err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"Message": "Sucessfully Created the Details",
-		"Data":    user})
+
+	c.JSON(http.StatusOK, models.Response{
+		Message: "Sucessfully Created the Details",
+		Data:    user})
 	loggers.InfoData.Println("Sucessfully Created the Details")
 }
 
 // Login with their Details
-func (database AuthConnect) Login(c *gin.Context) {
+func (service AuthHandler) Login(c *gin.Context) {
 	var user models.UserDetails
 	var founduser models.UserDetails
 
 	if err := c.BindJSON(&user); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Error occured"})
+		c.JSON(http.StatusBadRequest, models.Response{
+			Error: "Error occured while Binding the data"})
 		return
 	}
 
 	//Check Email address while Login with their email ID
-	err := database.CheckEmailWhileLogin(&user, &founduser)
+	err := service.GetUserMail(&user, &founduser)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Cant't Find Your MailId"})
+		c.JSON(http.StatusInternalServerError, models.Response{
+			Error: err.Error()})
 		loggers.ErrorData.Println("Cant't Find Your MailId")
 		return
 	}
@@ -105,24 +92,24 @@ func (database AuthConnect) Login(c *gin.Context) {
 	//verify their password is match with signup password
 	Password, data := validation.VerifyPassword(user.Password, founduser.Password)
 	if !Password {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": data})
+		c.JSON(http.StatusBadRequest, models.Response{
+			Error: data})
 		return
 	}
 	//Generate new token here
 	token, err := validation.GenerateToken(founduser.Email, founduser.Name, founduser.RoleType, founduser.UserId)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"Error": "Cant't Match Your MailId"})
-		loggers.ErrorData.Println("Cant't Match Your MailId")
+		c.JSON(http.StatusInternalServerError, models.Response{
+			Error: "Cant't able to Generate token ,check it"})
+		loggers.ErrorData.Println("Cant't able to Generate token ,check it")
 		return
 	}
 	user.Token = token
 
-	c.JSON(http.StatusAccepted, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"Message":  "Login Sucessfully",
 		"Token":    user.Token,
-		"CommonID": founduser.UserId,
+		"ID":       founduser.UserId,
 		"RoleType": founduser.RoleType,
 	})
 	loggers.InfoData.Println("Login Sucessfully")

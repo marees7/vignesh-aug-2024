@@ -5,44 +5,50 @@ import (
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 )
 
-type AdminService interface {
-	CreatePostForUsers(user *models.JobCreation) error
-	UpdatePosts(user *models.JobCreation, jobid int, adminId int) error
-	GetJobAppliedDetailsbyRole(user *[]models.UserJobDetails, roletype string, adminid int) error
-	GetAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int, adminid int) error
-	GetPostDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error
-	GetPostDetailsByAdmin(user *[]models.JobCreation, adminid int) error
+type I_AdminService interface {
+	CreateJobPosts(user *models.JobCreation) error
+	UpdatePosts(user *models.JobCreation, jobid int) error
+	GetAllPostsByRole(roleType string, roleID int) ([]models.UserJobDetails, error)
+	GetAllPostsByJobID(jobid int, roleID int) ([]models.UserJobDetails, error)
+	GetAllPostsByUserID(userID int, roleID int) ([]models.UserJobDetails, error)
+	GetOwnPost(roleID int) ([]models.JobCreation, error)
 }
-type adminservice struct {
-	*repository.UserRepository
+type AdminService struct {
+	repository.I_AdminRepo
+}
+
+func GetAdminService(db repository.I_AdminRepo) I_AdminService {
+	return &AdminService{
+		db,
+	}
 }
 
 // create their Jobposts
-func (service *adminservice) CreatePostForUsers(user *models.JobCreation) error {
-	return service.Admin.CreatePostDetailsByAdmin(user)
+func (repo *AdminService) CreateJobPosts(user *models.JobCreation) error {
+	return repo.CreatePostForUser(user)
 }
 
 // update their job post by their IDs
-func (service *adminservice) UpdatePosts(user *models.JobCreation, jobid int, adminID int) error {
-	return service.Admin.UpdateJobPostsByAdmin(user, jobid, adminID)
+func (repo *AdminService) UpdatePosts(user *models.JobCreation, jobid int) error {
+	return repo.UpdateJobPost(user, jobid)
 }
 
 // get their postdetails jobDetailsBy role
-func (service *adminservice) GetJobAppliedDetailsbyRole(user *[]models.UserJobDetails, jobrole string, adminid int) error {
-	return service.Admin.GetDetailsByRoleByAdmin(user, jobrole, adminid)
+func (repo *AdminService) GetAllPostsByRole(roleType string, roleID int) ([]models.UserJobDetails, error) {
+	return repo.GetByRoles(roleType, roleID)
 }
 
 // get their applied details by their JobIds
-func (service *adminservice) GetAppliedDetailsByJobId(user *[]models.UserJobDetails, jobid int, adminid int) error {
-	return service.Admin.GetJobDetailsByJobIdByAdmin(user, jobid, adminid)
+func (repo *AdminService) GetAllPostsByJobID(jobid int, roleID int) ([]models.UserJobDetails, error) {
+	return repo.GetByJobID(jobid, roleID)
 }
 
 // get their User's particular jobs By their userID's
-func (service *adminservice) GetPostDetailsByUserId(user *[]models.UserJobDetails, roleid int, adminvalues int) error {
-	return service.Admin.GetJobDetailsByUserIdByAdmin(user, roleid, adminvalues)
+func (repo *AdminService) GetAllPostsByUserID(userID int, roleID int) ([]models.UserJobDetails, error) {
+	return repo.GetByUserID(userID, roleID)
 }
 
 // get thier own post details By admin
-func (service *adminservice) GetPostDetailsByAdmin(user *[]models.JobCreation, adminid int) error {
-	return service.Admin.GetOwnPostDetailsByAdmin(user, adminid)
+func (repo *AdminService) GetOwnPost(roleID int) ([]models.JobCreation, error) {
+	return repo.GetAllOwnPosts(roleID)
 }

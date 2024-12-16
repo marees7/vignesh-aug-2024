@@ -5,45 +5,51 @@ import (
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 )
 
-type UserServices interface {
-	GetAllPostsByAdminOrUsers(user *[]models.JobCreation, usertype string) error
-	GetPostDetailsByTheirRoles(user *[]models.JobCreation, jobrole string, country string, usertype string) error
-	ApplyJobPost(user *models.UserJobDetails) error
-	GetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, userid int) error
-	CheckJobId(user *models.UserJobDetails, newpost *models.JobCreation) error
-	GetPostDetailsByCompanyNames(user *[]models.JobCreation, company string, usertype string) error
+type I_UserService interface {
+	GetAllPosts() ([]models.JobCreation, error)
+	GetPostByRoles(jobrole string, country string) ([]models.JobCreation, error)
+	CreateApplicationJob(user *models.UserJobDetails) error
+	GetUserJobs(roleID int) ([]models.UserJobDetails, error)
+	GetUserID(user *models.UserJobDetails) error
+	GetByCompany(company string) ([]models.JobCreation, error)
 }
 
-type userservice struct {
-	*repository.UserRepository
+type Userservice struct {
+	repository.I_UserRepo
+}
+
+func GetUserService(db repository.I_UserRepo) I_UserService {
+	return &Userservice{
+		db,
+	}
 }
 
 // get their all post details by admin or users
-func (service *userservice) GetAllPostsByAdminOrUsers(user *[]models.JobCreation, usertype string) error {
-	return service.User.GetAllPostsByAllUsers(user, usertype)
+func (repo *Userservice) GetAllPosts() ([]models.JobCreation, error) {
+	return repo.GetAllPost()
 }
 
 // get thier job details by their JobRole by users or admin
-func (service *userservice) GetPostDetailsByTheirRoles(user *[]models.JobCreation, jobrole string, country string, usertype string) error {
-	return service.User.GetAllPostDetailsByTheirRoles(user, jobrole, country, usertype)
+func (repo *Userservice) GetPostByRoles(jobrole string, country string) ([]models.JobCreation, error) {
+	return repo.GetPostsByRoles(jobrole, country)
 }
 
 // get by thier Company Names by particular Details by users or admin
-func (service *userservice) GetPostDetailsByCompanyNames(user *[]models.JobCreation, company string, usertype string) error {
-	return service.User.GetAllPostDetailsByCompanyNames(user, company, usertype)
+func (repo *Userservice) GetByCompany(company string) ([]models.JobCreation, error) {
+	return repo.GetByCompanys(company)
 }
 
 // users apply for the job post
-func (service *userservice) ApplyJobPost(user *models.UserJobDetails) error {
-	return service.User.UsersApplyForTheJobPosts(user)
+func (repo *Userservice) CreateApplicationJob(user *models.UserJobDetails) error {
+	return repo.CreateJobApplication(user)
 }
 
 // users get thier applied details by their own Ids
-func (service *userservice) GetJobAppliedDetailsByUserId(user *[]models.UserJobDetails, roleid int, userid int) error {
-	return service.User.UserGetJobAppliedDetailsByUserId(user, roleid, userid)
+func (repo *Userservice) GetUserJobs(roleID int) ([]models.UserJobDetails, error) {
+	return repo.GetUserJob(roleID)
 }
 
 // Check if user ID is applied for the Job or Not
-func (service *userservice) CheckJobId(user *models.UserJobDetails, newpost *models.JobCreation) error {
-	return service.User.CheckUserJobId(user, newpost)
+func (repo *Userservice) GetUserID(user *models.UserJobDetails) error {
+	return repo.GetUserId(user)
 }

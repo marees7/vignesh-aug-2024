@@ -5,8 +5,7 @@ import (
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 )
 
-func Automigration() {
-	Connection := GetConnection()
+func (Connection ConnectionNew) Automigration() {
 	err := Connection.AutoMigrate(&models.UserDetails{}, &models.JobCreation{}, &models.UserJobDetails{})
 	if err != nil {
 		loggers.ErrorData.Println(err)

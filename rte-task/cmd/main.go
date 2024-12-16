@@ -4,39 +4,31 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Vigneshwartt/golang-rte-task/api/repository"
 	"github.com/Vigneshwartt/golang-rte-task/api/routers"
-	"github.com/Vigneshwartt/golang-rte-task/api/service"
 	"github.com/Vigneshwartt/golang-rte-task/internals"
+	"github.com/Vigneshwartt/golang-rte-task/internals/config"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
-	//first Load the db connection
-	internals.ConnectingDatabase()
-	//migrate the tables
-	internals.Automigration()
+	config.LoadEnv()
+	loggers.LoggerFiles()
 }
+
 func main() {
-	//Connect the Db
-	dbconnection := internals.GetConnection()
+	//Connect the Dbs
+	dbconnection := internals.ConnectingDatabase()
 
-	//send the Db connection to repos
-	adminRepos := repository.GetAdminRepository(dbconnection)
-	authrepo := repository.GetAuthRepository(dbconnection)
-	userrepo := repository.GetUserRepository(dbconnection)
-
-	// send the repos to service
-	adminservice := service.GetAdminService(adminRepos)
-	authservice := service.GetAuthService(authrepo)
-	userservice := service.GetUserService(userrepo)
+	//migrate the tables
+	dbconnection.Automigration()
 
 	//send the service to handlers
 	newrouter := gin.Default()
-	routers.AuthRoutes(newrouter, authservice)
-	routers.UserRoutes(newrouter, userservice)
-	routers.AdminRouter(newrouter, adminservice)
+
+	routers.AdminRoutes(newrouter, dbconnection)
+	routers.AuthRoutes(newrouter, dbconnection)
+	routers.UserRoutes(newrouter, dbconnection)
 
 	//start the server
 	loggers.InfoData.Println("Server started on port")
