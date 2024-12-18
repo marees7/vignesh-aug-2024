@@ -73,3 +73,8 @@ type ApplicantDetail struct {
 	Email       string    `json:"email,omitempty"`
 	PhoneNumber string    `json:"phone_number,omitempty"`
 }
+
+type ErrorResponse struct {
+	Error      error
+	StatusCode int
+}

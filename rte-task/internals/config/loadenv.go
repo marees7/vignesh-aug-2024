@@ -1,16 +1,16 @@
 package config
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
+	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/joho/godotenv"
 )
 
 func recoverPanic() {
 	if r := recover(); r != nil {
-		fmt.Println("recovered from ", r)
+		loggers.WarnData.Println("recovered from ", r)
 	}
 }
 
@@ -18,7 +18,6 @@ func LoadEnv() {
 	defer recoverPanic()
 
 	wd, err := os.Getwd()
-	fmt.Println("wd", wd)
 	if err != nil {
 		panic(err)
 	}

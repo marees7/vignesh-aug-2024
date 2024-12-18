@@ -1,15 +1,208 @@
-INFO: 2024/12/16 16:52:25 connection.go:29: Connected sucessfully
-INFO: 2024/12/16 16:52:25 automigrate.go:14: Migrated tables Sucessfully
-INFO: 2024/12/16 16:52:25 main.go:34: Server started on port
-INFO: 2024/12/16 16:52:51 connection.go:29: Connected sucessfully
-INFO: 2024/12/16 16:52:51 main.go:34: Server started on port
-INFO: 2024/12/16 17:14:41 connection.go:29: Connected sucessfully
-INFO: 2024/12/16 17:14:41 automigrate.go:14: Migrated tables Sucessfully
-INFO: 2024/12/16 17:14:41 main.go:34: Server started on port
-ERROR: 2024/12/16 17:14:59 authhandler.go:58: PhoneNumber is already registred ,Enter another PhoneNumber
-INFO: 2024/12/16 17:15:05 authhandler.go:75: Sucessfully Created the Details
-INFO: 2024/12/16 17:16:02 connection.go:29: Connected sucessfully
-INFO: 2024/12/16 17:16:02 automigrate.go:14: Migrated tables Sucessfully
-INFO: 2024/12/16 17:16:02 main.go:34: Server started on port
-ERROR: 2024/12/16 17:16:16 authhandler.go:58: PhoneNumber is already registred ,Enter another PhoneNumber
-INFO: 2024/12/16 17:16:21 authhandler.go:75: Sucessfully Created the Details
+INFO: 2024/12/17 20:33:46 connection.go:23: Connected sucessfully
+INFO: 2024/12/17 20:33:46 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/17 20:33:46 main.go:34: Server started on port
+INFO: 2024/12/17 20:52:23 connection.go:23: Connected sucessfully
+INFO: 2024/12/17 20:52:24 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/17 20:52:24 main.go:34: Server started on port
+INFO: 2024/12/17 20:52:30 auth_handler.go:113: Login Sucessfully
+ERROR: 2024/12/17 20:52:34 auth_handler.go:84: Cant't Find Your MailId
+INFO: 2024/12/17 20:52:44 auth_handler.go:113: Login Sucessfully
+INFO: 2024/12/17 20:57:38 connection.go:23: Connected sucessfully
+INFO: 2024/12/17 20:57:39 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/17 20:57:39 main.go:34: Server started on port
+INFO: 2024/12/17 20:57:42 auth_handler.go:113: Login Sucessfully
+INFO: 2024/12/17 20:57:48 auth_handler.go:113: Login Sucessfully
+INFO: 2024/12/17 21:03:04 connection.go:23: Connected sucessfully
+INFO: 2024/12/17 21:03:05 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/17 21:03:05 main.go:34: Server started on port
+INFO: 2024/12/17 21:03:13 auth_handler.go:113: Login Sucessfully
+ERROR: 2024/12/17 21:03:46 auth_handler.go:50: Error occured in this PhoneNumber
+INFO: 2024/12/18 10:57:03 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 10:57:03 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 10:57:03 main.go:34: Server started on port
+INFO: 2024/12/18 10:57:11 auth_handler.go:110: Login Sucessfully
+INFO: 2024/12/18 10:57:18 auth_handler.go:110: Login Sucessfully
+INFO: 2024/12/18 10:57:34 admin_handler.go:239: Successfully fetched job details
+ERROR: 2024/12/18 10:57:38 admin_handler.go:231: Failed to fetch job applied details: <nil>
+INFO: 2024/12/18 10:59:48 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 10:59:48 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 10:59:48 main.go:34: Server started on port
+INFO: 2024/12/18 10:59:51 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:07:15 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:07:15 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:07:15 main.go:34: Server started on port
+INFO: 2024/12/18 11:07:18 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:07:25 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:07:29 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:10:10 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:10:10 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:10:10 main.go:34: Server started on port
+INFO: 2024/12/18 11:10:13 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:10:19 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:13:13 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:13:13 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:13:13 main.go:34: Server started on port
+INFO: 2024/12/18 11:13:16 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:18:23 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:18:23 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:18:23 main.go:34: Server started on port
+INFO: 2024/12/18 11:18:26 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:21:16 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:21:16 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:21:16 main.go:34: Server started on port
+ERROR: 2024/12/18 11:21:18 admin_handler.go:231: Failed to fetch job applied details: <nil>
+INFO: 2024/12/18 11:22:11 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:22:11 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:22:11 main.go:34: Server started on port
+INFO: 2024/12/18 11:22:16 admin_handler.go:239: Successfully fetched job details
+INFO: 2024/12/18 11:26:20 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:26:20 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:26:20 main.go:34: Server started on port
+INFO: 2024/12/18 11:26:23 admin_handler.go:239: Successfully fetched job details
+ERROR: 2024/12/18 11:26:25 admin_handler.go:231: Failed to fetch job applied details: <nil>
+ERROR: 2024/12/18 11:26:28 admin_handler.go:231: Failed to fetch job applied details: <nil>
+INFO: 2024/12/18 11:28:29 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:28:29 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:28:29 main.go:34: Server started on port
+INFO: 2024/12/18 11:28:47 admin_handler.go:199: Successfully fetched job details
+ERROR: 2024/12/18 11:28:50 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:29:01 admin_handler.go:199: Successfully fetched job details
+INFO: 2024/12/18 11:29:19 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:29:19 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:29:19 main.go:34: Server started on port
+INFO: 2024/12/18 11:29:24 admin_handler.go:199: Successfully fetched job details
+ERROR: 2024/12/18 11:29:27 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:29:56 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:29:56 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:29:56 main.go:34: Server started on port
+ERROR: 2024/12/18 11:29:58 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:30:07 auth_handler.go:110: Login Sucessfully
+ERROR: 2024/12/18 11:30:20 admin_handler.go:178: Failed to fetch job details: <nil>
+ERROR: 2024/12/18 11:30:28 admin_handler.go:178: Failed to fetch job details: <nil>
+ERROR: 2024/12/18 11:30:33 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:30:50 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:30:50 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:30:50 main.go:34: Server started on port
+ERROR: 2024/12/18 11:30:56 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:31:22 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:31:22 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:31:22 main.go:34: Server started on port
+ERROR: 2024/12/18 11:31:24 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:31:35 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:31:35 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:31:35 main.go:34: Server started on port
+ERROR: 2024/12/18 11:31:37 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:32:29 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:32:29 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:32:29 main.go:34: Server started on port
+ERROR: 2024/12/18 11:32:31 admin_handler.go:178: Failed to fetch job details: <nil>
+ERROR: 2024/12/18 11:32:34 admin_handler.go:178: Failed to fetch job details: <nil>
+ERROR: 2024/12/18 11:32:36 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:32:44 admin_handler.go:199: Successfully fetched job details
+INFO: 2024/12/18 11:32:48 admin_handler.go:199: Successfully fetched job details
+ERROR: 2024/12/18 11:32:50 admin_handler.go:178: Failed to fetch job details: <nil>
+ERROR: 2024/12/18 11:32:54 admin_handler.go:178: Failed to fetch job details: <nil>
+INFO: 2024/12/18 11:36:47 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 11:36:47 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 11:36:47 main.go:34: Server started on port
+INFO: 2024/12/18 11:37:06 admin_handler.go:269: Sucessfully Get the Details by Admin
+INFO: 2024/12/18 11:37:54 admin_handler.go:269: Sucessfully Get the Details by Admin
+INFO: 2024/12/18 11:38:10 auth_handler.go:65: Sucessfully Created the Details
+INFO: 2024/12/18 11:38:28 auth_handler.go:110: Login Sucessfully
+ERROR: 2024/12/18 11:38:37 admin_handler.go:261: Error occured while getting values by admin
+INFO: 2024/12/18 12:46:23 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 12:46:23 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 12:46:23 main.go:34: Server started on port
+INFO: 2024/12/18 12:48:06 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 12:48:06 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 12:48:06 main.go:34: Server started on port
+INFO: 2024/12/18 12:49:00 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 12:49:00 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 12:49:00 main.go:34: Server started on port
+INFO: 2024/12/18 12:50:07 auth_handler.go:113: Login Sucessfully
+INFO: 2024/12/18 12:59:20 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 12:59:20 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 12:59:20 main.go:34: Server started on port
+INFO: 2024/12/18 12:59:47 admin_handler.go:132: Successfully fetched job details
+INFO: 2024/12/18 13:02:19 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:02:19 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:02:19 main.go:34: Server started on port
+INFO: 2024/12/18 13:02:21 admin_handler.go:132: Successfully fetched job details
+ERROR: 2024/12/18 13:02:24 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:02:39 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:02:39 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:02:39 main.go:34: Server started on port
+ERROR: 2024/12/18 13:02:41 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:04:43 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:04:43 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:04:43 main.go:34: Server started on port
+ERROR: 2024/12/18 13:05:18 admin_handler.go:125: Can't able to get the Details Properly
+ERROR: 2024/12/18 13:05:28 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:05:30 admin_handler.go:132: Successfully fetched job details
+INFO: 2024/12/18 13:05:36 admin_handler.go:132: Successfully fetched job details
+ERROR: 2024/12/18 13:05:39 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:05:43 admin_handler.go:132: Successfully fetched job details
+ERROR: 2024/12/18 13:05:48 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:06:55 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:06:55 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:06:55 main.go:34: Server started on port
+ERROR: 2024/12/18 13:06:57 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:16:05 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:16:05 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:16:05 main.go:34: Server started on port
+ERROR: 2024/12/18 13:16:08 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:16:11 admin_handler.go:132: Successfully fetched job details
+ERROR: 2024/12/18 13:16:32 admin_handler.go:36: Error occured in this validation of postdetails
+ERROR: 2024/12/18 13:16:37 admin_handler.go:36: Error occured in this validation of postdetails
+INFO: 2024/12/18 13:16:49 admin_handler.go:52: Sucessfully Created the Details
+INFO: 2024/12/18 13:17:11 admin_handler.go:239: Sucessfully Get the Details by Admin
+INFO: 2024/12/18 13:17:27 admin_handler.go:132: Successfully fetched job details
+ERROR: 2024/12/18 13:17:29 admin_handler.go:125: Can't able to get the Details Properly
+INFO: 2024/12/18 13:17:32 admin_handler.go:132: Successfully fetched job details
+ERROR: 2024/12/18 13:17:51 admin_handler.go:201: Failed to fetch job applied details: <nil>
+INFO: 2024/12/18 13:17:54 admin_handler.go:209: Successfully fetched job details
+INFO: 2024/12/18 13:18:26 user_handler.go:55: Sucessfully Get the JobDetails By thier roles
+ERROR: 2024/12/18 13:18:30 user_handler.go:47: Error occured while getting values
+ERROR: 2024/12/18 13:18:35 user_handler.go:47: Error occured while getting values
+ERROR: 2024/12/18 13:18:48 auth_handler.go:85: Cant't Find Your MailId
+INFO: 2024/12/18 13:19:30 auth_handler.go:113: Login Sucessfully
+ERROR: 2024/12/18 13:19:33 auth_handler.go:85: Cant't Find Your MailId
+INFO: 2024/12/18 13:21:46 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:21:46 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:21:46 main.go:34: Server started on port
+ERROR: 2024/12/18 13:21:48 auth_handler.go:85: Cant't Find Your MailId
+ERROR: 2024/12/18 13:22:08 auth_handler.go:85: Cant't Find Your MailId
+INFO: 2024/12/18 13:22:18 auth_handler.go:113: Login Sucessfully
+ERROR: 2024/12/18 13:22:27 auth_handler.go:85: Cant't Find Your MailId
+INFO: 2024/12/18 13:24:21 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:24:21 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:24:21 main.go:34: Server started on port
+INFO: 2024/12/18 13:24:24 auth_handler.go:113: Login Sucessfully
+ERROR: 2024/12/18 13:24:27 auth_handler.go:85: Cant't Find Your MailId
+ERROR: 2024/12/18 13:24:31 auth_handler.go:85: Cant't Find Your MailId
+ERROR: 2024/12/18 13:25:03 auth_handler.go:52: Error occured in this PhoneNumber
+INFO: 2024/12/18 13:25:09 auth_handler.go:67: Sucessfully Created the Details
+INFO: 2024/12/18 13:25:16 auth_handler.go:113: Login Sucessfully
+ERROR: 2024/12/18 13:25:28 admin_handler.go:116: Error occured in this validation of postdetails
+INFO: 2024/12/18 13:28:34 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:28:34 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:28:34 main.go:34: Server started on port
+ERROR: 2024/12/18 13:28:39 admin_handler.go:116: Error occured in this validation of postdetails
+ERROR: 2024/12/18 13:28:46 admin_handler.go:116: Error occured in this validation of postdetails
+INFO: 2024/12/18 13:28:56 admin_handler.go:239: Sucessfully Get the Details by Admin
+ERROR: 2024/12/18 13:29:07 admin_handler.go:116: Error occured in this validation of postdetails
+ERROR: 2024/12/18 13:29:20 user_handler.go:113: Error occured while getting values
+INFO: 2024/12/18 13:30:24 connection.go:23: Connected sucessfully
+INFO: 2024/12/18 13:30:24 automigrate.go:14: Migrated tables Sucessfully
+INFO: 2024/12/18 13:30:24 main.go:34: Server started on port
+ERROR: 2024/12/18 13:30:26 user_handler.go:113: Error occured while getting values
+ERROR: 2024/12/18 13:30:44 admin_handler.go:116: Error occured in this validation of postdetails
+ERROR: 2024/12/18 13:30:50 user_handler.go:78: Error occured while creating values
+ERROR: 2024/12/18 13:31:01 user_handler.go:78: Error occured while creating values
+ERROR: 2024/12/18 13:31:03 user_handler.go:78: Error occured while creating values
+ERROR: 2024/12/18 13:31:04 user_handler.go:78: Error occured while creating values
+ERROR: 2024/12/18 13:31:07 user_handler.go:78: Error occured while creating values
+ERROR: 2024/12/18 13:31:08 user_handler.go:78: Error occured while creating values
+INFO: 2024/12/18 13:31:09 user_handler.go:102: Sucessfully Applied the Job
+ERROR: 2024/12/18 13:32:20 user_handler.go:26: Sorry! I can't get your posts details properly
+INFO: 2024/12/18 13:32:25 user_handler.go:55: Sucessfully Get the JobDetails By thier roles

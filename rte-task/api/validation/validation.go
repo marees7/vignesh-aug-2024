@@ -171,13 +171,9 @@ func ValidationJobPost(post models.JobCreation, roleID int, roleType string) err
 }
 
 // Valid their User JobPost with Fields
-func ValidationUserJob(user models.UserJobDetails, roleType string, roleID int, userID int) error {
+func ValidationUserJob(user models.UserJobDetails, roleType string, userID int) error {
 	if roleType != "USER" {
 		return fmt.Errorf("invalid Admin-Admin cannot have access to apply the post")
-	}
-
-	if roleID != userID {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
 	}
 
 	if user.UserId != userID {
@@ -219,6 +215,22 @@ func ValidationUpdatePost(post models.JobCreation, roleType string, roleID int) 
 	}
 	if post.Vacancy != 0 {
 		return fmt.Errorf("invalid vacancy,check it properly")
+	}
+	return nil
+}
+
+// check their roles by users
+func ValidateUserType(roleType string) error {
+	if roleType != "USER" {
+		return fmt.Errorf("invalid admin-Admin have not to access this details")
+	}
+	return nil
+}
+
+// check their roles by admin or users
+func ValidateRoleType(roleType string) error {
+	if roleType != "ADMIN" {
+		return fmt.Errorf("invalid user-User have not access to view this details")
 	}
 	return nil
 }

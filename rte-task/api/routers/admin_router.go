@@ -11,32 +11,32 @@ import (
 
 func AdminRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 	//send the Db connection to repos
-	adminRepos := repository.GetAdminRepository(dbconnection)
+	adminRepos := repository.InitAdminRepo(dbconnection)
 
 	// send the repos to service
-	adminservice := service.GetAdminService(adminRepos)
+	adminservice := service.InitAdminService(adminRepos)
 
 	//send service to handler
-	admin := &handler.AdminNewHandler{I_AdminService: adminservice}
+	admin := &handler.AdminHandler{Service: adminservice}
 	r := router.Group("/admin")
 	{
 		r.Use(middleware.Authenticate())
 		//admin creates new JobPost
 		r.POST("insert", admin.CreateJobPost)
 
+		//admins update by jobid and amin id
+		r.PUT("/update/:job_id", admin.UpdateJobPost)
+
 		//admin get by jobid userid
 		r.GET("userjobsbyid/:job_id", admin.GetPostByJobID)
-
-		//admin get by userid
-		r.GET("userid/:user_id", admin.GetPostByUserID)
 
 		//get by role and userid
 		r.GET("userdetails/:job_role", admin.GetPostByRole)
 
-		//admins update by jobid and amin id
-		r.PUT("/update/:job_id", admin.UpdatePost)
+		//admin get by userid
+		r.GET("userid/:user_id", admin.GetPostByUserID)
 
 		//admin get by his id to know about how many psot created
-		r.GET("postdetails", admin.GetOwnPosts)
+		r.GET("postdetails", admin.GetPosts)
 	}
 }

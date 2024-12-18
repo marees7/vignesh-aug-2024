@@ -10,19 +10,19 @@ import (
 
 func AuthRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 	//send the Db connection to repos
-	authrepo := repository.GetAuthRepository(dbconnection)
+	authrepo := repository.InitAuthRepo(dbconnection)
 
 	// send the repos to service
-	authservice := service.GetAuthService(authrepo)
+	authservice := service.InitAuthService(authrepo)
 
 	//send service to handler
-	auth := &handler.AuthHandler{I_AuthService: authservice}
+	auth := &handler.AuthHandler{Service: authservice}
 	r := router.Group("/auth")
 	{
 		//sign up their details
-		r.POST("/signup", auth.SignUp)
+		r.POST("/signup", auth.CreateUser)
 
 		// Login with their Details
-		r.POST("/login", auth.Login)
+		r.POST("/login", auth.GetUserDetail)
 	}
 }
