@@ -2,14 +2,16 @@ package helpers
 
 import (
 	"fmt"
+	"strconv"
 
-	"github.com/gin-gonic/gin"
+	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 )
 
-func CheckuserType(c *gin.Context, role string) error {
-	usertype := c.GetString("role_type")
-	if usertype != role {
-		return fmt.Errorf("unauthorized to access the resource")
+func StringConvertion(jobIDStr string) (int, error) {
+	jobID, err := strconv.Atoi(jobIDStr)
+	if err != nil {
+		loggers.ErrorData.Println("error occured while String Convertion,Please check properly")
+		return 0, fmt.Errorf("error occured while String Convertion,Please check properly")
 	}
-	return nil
+	return jobID, nil
 }
