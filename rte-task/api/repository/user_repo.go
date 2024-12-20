@@ -1,19 +1,20 @@
 package repository
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 
 	"github.com/Vigneshwartt/golang-rte-task/internals"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
+	"gorm.io/gorm"
 )
 
 type IUserRepo interface {
-	GetAllJobPosts(company string) ([]models.JobCreation, *models.ErrorResponse)
-	GetJobByRole(jobrole string, country string) ([]models.JobCreation, *models.ErrorResponse)
 	CreateApplication(userJobDetails *models.UserJobDetails) *models.ErrorResponse
-	GetUserAppliedJobs(roleID int) ([]models.UserJobDetails, *models.ErrorResponse)
-	GetUserID(user *models.UserJobDetails) *models.ErrorResponse
+	GetAllJobPosts(searchJobs map[string]interface{}) ([]models.JobCreation, *models.ErrorResponse, int64)
+	GetUserAppliedJobs(userJobs map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64)
+	GetUserByID(userJobDetails *models.UserJobDetails) *models.ErrorResponse
 }
 
 type Userrepo struct {
@@ -21,141 +22,164 @@ type Userrepo struct {
 }
 
 func InitUserRepo(db *internals.ConnectionNew) IUserRepo {
-	return Userrepo{
+	return &Userrepo{
 		db,
 	}
 }
 
-// get their all post details by admin or users
-func (database Userrepo) GetAllJobPosts(company string) ([]models.JobCreation, *models.ErrorResponse) {
-	var jobCreation []models.JobCreation
-	if company == "" {
-		db := database.Find(&jobCreation)
-		if db.Error != nil {
-			return nil, &models.ErrorResponse{
-				StatusCode: http.StatusNotFound,
-				Error:      fmt.Errorf("error occured in while getting the post details"),
-			}
-		}
-		return jobCreation, nil
-	} else {
-		data := database.
-			Where("company_name=?", company).
-			First(&jobCreation)
-
-		if data.Error != nil {
-			return nil, &models.ErrorResponse{
-				StatusCode: http.StatusNotFound,
-				Error:      fmt.Errorf("no one can post the job for in this Company"),
-			}
-		}
-
-		datas := database.Where(&models.JobCreation{CompanyName: company}).Find(&jobCreation)
-		if datas.Error != nil {
-			return nil, &models.ErrorResponse{
-				StatusCode: http.StatusNotFound,
-				Error:      fmt.Errorf("cant'able to find your jobs in that company,Give him correctly"),
-			}
-		}
-		return jobCreation, nil
-	}
-}
-
-// retrive thier job details by their JobRole by users or admin
-func (database Userrepo) GetJobByRole(jobrole string, country string) ([]models.JobCreation, *models.ErrorResponse) {
-	var jobCreation []models.JobCreation
-
-	db := database.
-		Where("job_title=?", jobrole).
-		First(&jobCreation)
-
-	if db.Error != nil {
-		return nil, &models.ErrorResponse{
-			StatusCode: http.StatusNotFound,
-			Error:      fmt.Errorf("cant'able to find your Jobrole Properly,Check it once"),
-		}
-	}
-
-	data := database.
-		Where(&models.JobCreation{Country: country}).
-		First(&jobCreation)
-
-	if data.Error != nil {
-		return nil, &models.ErrorResponse{
-			StatusCode: http.StatusNotFound,
-			Error:      fmt.Errorf("cant'able to find your country Properly,Check it "),
-		}
-	}
-
-	datas := database.
-		Where(&models.JobCreation{JobTitle: jobrole, Country: country}).
-		Find(&jobCreation)
-
-	if datas.Error != nil {
-		return nil, &models.ErrorResponse{
-			StatusCode: http.StatusBadRequest,
-			Error:      fmt.Errorf("cant'able to find your details properly,Give him correctly"),
-		}
-	}
-	return jobCreation, nil
-}
-
 // users apply for the job post
-func (database Userrepo) CreateApplication(user *models.UserJobDetails) *models.ErrorResponse {
-	db := database.Create(user)
+func (database Userrepo) CreateApplication(userJobDetails *models.UserJobDetails) *models.ErrorResponse {
+	db := database.Debug().Create(&userJobDetails)
+
 	if db.Error != nil {
 		return &models.ErrorResponse{
 			StatusCode: http.StatusInternalServerError,
-			Error:      fmt.Errorf("can't able to apply the job post here,please Check"),
+			Error:      db.Error,
 		}
 	}
+
 	return nil
 }
 
+// get their all post details by admin or users
+func (database *Userrepo) GetAllJobPosts(searchJobs map[string]interface{}) ([]models.JobCreation, *models.ErrorResponse, int64) {
+	var jobCreation []models.JobCreation
+	var count int64
+
+	limit := searchJobs["Limit"].(int)
+	offset := searchJobs["Offset"].(int)
+	jobRole := searchJobs["Role"].(string)
+	country := searchJobs["Country"].(string)
+	company := searchJobs["Company"].(string)
+
+	query := database.Debug()
+
+	if company != "" {
+		result := database.Where(&models.JobCreation{CompanyName: company}).First(&jobCreation)
+
+		if result.Error != nil {
+			if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+				return nil, &models.ErrorResponse{
+					StatusCode: http.StatusNotFound,
+					Error:      fmt.Errorf("unable to fetch the specified company, please check it"),
+				}, 0
+			}
+			return nil, &models.ErrorResponse{
+				StatusCode: http.StatusInternalServerError,
+				Error:      result.Error,
+			}, 0
+		}
+
+		query = query.Where(&models.JobCreation{CompanyName: company}).Find(&jobCreation)
+	}
+
+	if jobRole != "" {
+		dbRole := database.Where(&models.JobCreation{JobRole: jobRole}).First(&models.JobCreation{})
+
+		if dbRole.Error != nil {
+			if errors.Is(dbRole.Error, gorm.ErrRecordNotFound) {
+				return nil, &models.ErrorResponse{
+					StatusCode: http.StatusNotFound,
+					Error:      fmt.Errorf("unable to fetch the specified Jobrole, please check it"),
+				}, 0
+			}
+			return nil, &models.ErrorResponse{
+				StatusCode: http.StatusInternalServerError,
+				Error:      dbRole.Error,
+			}, 0
+		}
+
+		query = query.Where(&models.JobCreation{JobRole: jobRole}).Find(&jobCreation)
+	}
+
+	if country != "" {
+		dbCountry := database.Where(&models.JobCreation{Country: country}).First(&models.JobCreation{})
+
+		if dbCountry.Error != nil {
+			if errors.Is(dbCountry.Error, gorm.ErrRecordNotFound) {
+				return nil, &models.ErrorResponse{
+					StatusCode: http.StatusNotFound,
+					Error:      fmt.Errorf("unable to fetch the specified Country, please check it"),
+				}, 0
+			}
+			return nil, &models.ErrorResponse{
+				StatusCode: http.StatusInternalServerError,
+				Error:      dbCountry.Error,
+			}, 0
+		}
+
+		query = query.Where(&models.JobCreation{Country: country}).Find(&jobCreation)
+	}
+
+	result := query.Debug().Limit(limit).Offset(offset).Find(&jobCreation).Count(&count)
+
+	if result.Error != nil {
+		return nil, &models.ErrorResponse{
+			StatusCode: http.StatusNotFound,
+			Error:      result.Error,
+		}, 0
+	} else if len(jobCreation) == 0 {
+		return nil, &models.ErrorResponse{
+			StatusCode: http.StatusNotFound,
+			Error:      fmt.Errorf("unable to fetch Job Details properly, based on your Criteria"),
+		}, 0
+	}
+
+	return jobCreation, nil, count
+}
+
 // users get thier applied details by their own Ids
-func (database Userrepo) GetUserAppliedJobs(roleID int) ([]models.UserJobDetails, *models.ErrorResponse) {
+func (database *Userrepo) GetUserAppliedJobs(userJobs map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64) {
 	var userJobDetails []models.UserJobDetails
+	var count int64
+
+	limit := userJobs["Limit"].(int)
+	offset := userJobs["Offset"].(int)
+	userID := userJobs["UserID"].(int)
+
 	db := database.
-		Where("user_id=?", roleID).
+		Where("user_id=?", userID).
 		First(&userJobDetails)
 
 	if db.Error != nil {
 		return nil, &models.ErrorResponse{
 			StatusCode: http.StatusNotFound,
-			Error:      fmt.Errorf("cant'able to find your UserId ,Give him correctly"),
-		}
+			Error:      fmt.Errorf("unable to fetch the User Applied Jobs properly,Check it UserId once"),
+		}, 0
 	}
 
 	data := database.
 		Preload("Job").
-		Where("user_id = ?", roleID).
-		Find(&userJobDetails)
+		Where("user_id = ?", userID).Limit(limit).Offset(offset).
+		Find(&userJobDetails).Count(&count)
 
 	if data.Error != nil {
 		return nil, &models.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
 			Error:      fmt.Errorf("cant'able to create your details ,Give him correctly"),
-		}
+		}, 0
 	}
-	return userJobDetails, nil
+
+	return userJobDetails, nil, count
 }
 
 // Check if user ID is applied for the Job or Not
-func (database Userrepo) GetUserID(user *models.UserJobDetails) *models.ErrorResponse {
+func (database *Userrepo) GetUserByID(userJobDetails *models.UserJobDetails) *models.ErrorResponse {
 	var count int64
 	var jobCreation *models.JobCreation
 
 	jobID := database.
 		Model(&models.JobCreation{}).
-		Where("job_id=? ", user.JobID).
+		Where("job_id=? ", userJobDetails.JobID).
 		First(&jobCreation)
 
 	if jobID.Error != nil {
 		return &models.ErrorResponse{
 			StatusCode: http.StatusNotFound,
-			Error:      fmt.Errorf("unable to fetch Job Details properly,Check it JobId once"),
+			Error:      fmt.Errorf("unable to fetch User Details,Check it UserID once"),
 		}
 	}
+
 	if jobCreation.JobStatus == "COMPLETED" {
 		return &models.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
@@ -165,7 +189,7 @@ func (database Userrepo) GetUserID(user *models.UserJobDetails) *models.ErrorRes
 
 	db := database.
 		Model(&models.UserJobDetails{}).
-		Where("user_id=? AND job_id=?", user.UserId, user.JobID).
+		Where("user_id=? AND job_id=?", userJobDetails.UserID, userJobDetails.JobID).
 		Count(&count)
 
 	if count > 0 {
@@ -174,11 +198,13 @@ func (database Userrepo) GetUserID(user *models.UserJobDetails) *models.ErrorRes
 			Error:      fmt.Errorf("already registered,You have applied for this job"),
 		}
 	}
+
 	if db.Error != nil {
 		return &models.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
 			Error:      db.Error,
 		}
 	}
+
 	return nil
 }

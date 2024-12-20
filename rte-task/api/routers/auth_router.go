@@ -17,7 +17,7 @@ func AuthRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 
 	//send service to handler
 	auth := &handler.AuthHandler{Service: authservice}
-	r := router.Group("/auth")
+	r := router.Group("/v1/auth")
 	{
 		//sign up their details
 		r.POST("/signup", auth.CreateUser)

@@ -18,25 +18,26 @@ func AdminRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 
 	//send service to handler
 	admin := &handler.AdminHandler{Service: adminservice}
-	r := router.Group("/admin")
+	r := router.Group("/v1/admin")
 	{
 		r.Use(middleware.Authenticate())
+
 		//admin creates new JobPost
-		r.POST("insert", admin.CreateJobPost)
+		r.POST("", admin.CreateJobPost)
+
+		//get by jobrole and jobID
+		r.GET("jobs", admin.GetApplicantAndJobDetails)
+
+		//admin get by userid
+		r.GET("/:user_id", admin.GetJobsAppliedByUser)
+
+		//admin get by his id to know about how many post created
+		r.GET("posts", admin.GetJobsCreated)
 
 		//admins update by jobid and amin id
 		r.PUT("/update/:job_id", admin.UpdateJobPost)
 
-		//admin get by jobid userid
-		r.GET("userjobsbyid/:job_id", admin.GetPostByJobID)
-
-		//get by role and userid
-		r.GET("userdetails/:job_role", admin.GetPostByRole)
-
-		//admin get by userid
-		r.GET("userid/:user_id", admin.GetPostByUserID)
-
-		//admin get by his id to know about how many psot created
-		r.GET("postdetails", admin.GetPosts)
+		//automaticaly delete jobPost
+		r.DELETE("/delete", admin.DeleteJobPost)
 	}
 }

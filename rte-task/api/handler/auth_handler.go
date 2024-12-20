@@ -5,6 +5,7 @@ import (
 
 	"github.com/Vigneshwartt/golang-rte-task/api/service"
 	"github.com/Vigneshwartt/golang-rte-task/api/validation"
+	"github.com/Vigneshwartt/golang-rte-task/common/helpers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"github.com/gin-gonic/gin"
@@ -25,7 +26,7 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 	}
 
 	//signup their each fields
-	err := validation.ValidationSignUp(userDetails)
+	err := validation.ValidateSignUp(userDetails)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.Response{
 			Error: err.Error()})
@@ -33,7 +34,7 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 	}
 
 	//check email is exixts or not in DB
-	errorResponse := handler.Service.GetSignUpMail(userDetails.Email)
+	errorResponse := handler.Service.GetUserMail(userDetails.Email)
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
@@ -41,11 +42,11 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 	}
 
 	//Hashing the password here
-	password := validation.HashPassword(userDetails.Password)
+	password := helpers.HashPassword(userDetails.Password)
 	userDetails.Password = password
 
 	//check phone number is exists or not in DB
-	errorResponse = handler.Service.GetSignupNumber(userDetails.PhoneNumber)
+	errorResponse = handler.Service.GetUserPhoneNumber(userDetails.PhoneNumber)
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
@@ -60,25 +61,25 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 			Error: errorResponse.Error.Error()})
 		return
 	}
+	loggers.InfoData.Println("Sucessfully Created the User Detail")
 
 	c.JSON(http.StatusCreated, models.Response{
-		Message: "Sucessfully Created the Details",
+		Message: "Sucessfully Created the User Detail",
 		Data:    userDetails})
-	loggers.InfoData.Println("Sucessfully Created the Details")
 }
 
 // GetUserDetail with their Details
 func (handler AuthHandler) GetUserDetail(c *gin.Context) {
-	var userDetails models.UserDetails
+	var userDetail models.UserDetails
 
-	if err := c.BindJSON(&userDetails); err != nil {
+	if err := c.BindJSON(&userDetail); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, models.Response{
 			Error: "Error occured while Binding the data"})
 		return
 	}
 
 	//Check Email address while Login with their email ID
-	foundUser, errorResponse := handler.Service.GetUserDetail(&userDetails)
+	userLoginDetail, errorResponse := handler.Service.GetUserDetail(&userDetail)
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
@@ -87,7 +88,7 @@ func (handler AuthHandler) GetUserDetail(c *gin.Context) {
 	}
 
 	//verify their password is match with signup password
-	password, data := validation.VerifyPassword(userDetails.Password, foundUser.Password)
+	password, data := validation.VerifyPassword(userDetail.Password, userLoginDetail.Password)
 	if !password {
 		c.JSON(http.StatusBadRequest, models.Response{
 			Error: data})
@@ -95,20 +96,20 @@ func (handler AuthHandler) GetUserDetail(c *gin.Context) {
 	}
 
 	//Generate new token here
-	token, err := validation.GenerateToken(foundUser.Email, foundUser.Name, foundUser.RoleType, foundUser.UserId)
+	token, err := validation.GenerateToken(userLoginDetail.Email, userLoginDetail.Name, userLoginDetail.RoleType, userLoginDetail.UserID)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, models.Response{
 			Error: "Cant't able to Generate token ,check it"})
 		loggers.ErrorData.Println("Cant't able to Generate token ,check it")
 		return
 	}
-	userDetails.Token = token
+	// userDetails.Token = token
 
-	c.JSON(http.StatusOK, gin.H{
-		"Message":  "Login Sucessfully",
-		"Token":    userDetails.Token,
-		"ID":       foundUser.UserId,
-		"RoleType": foundUser.RoleType,
-	})
 	loggers.InfoData.Println("Login Sucessfully")
+	c.JSON(http.StatusOK, models.LoginUser{
+		Message:  "Login Sucessfully",
+		Token:    token,
+		ID:       userLoginDetail.UserID,
+		RoleType: userLoginDetail.RoleType,
+	})
 }

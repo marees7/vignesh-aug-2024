@@ -9,7 +9,7 @@ import (
 )
 
 // signup their each fields
-func ValidationSignUp(user models.UserDetails) error {
+func ValidateSignUp(user models.UserDetails) error {
 	if len(user.Name) == 0 {
 		return fmt.Errorf(" missing Name,I need much Longer !Buddy")
 	}
@@ -71,18 +71,8 @@ func VerifyPassword(first, second string) (bool, string) {
 	return check, msg
 }
 
-// Hashing the password here
-func HashPassword(password string) string {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	if err != nil {
-		panic(err)
-	}
-
-	return string(bytes)
-}
-
 // Valid their Job Post with Fields
-func ValidationJobPost(post models.JobCreation, roleID int, roleType string) error {
+func ValidateJobPost(post models.JobCreation, roleID int, roleType string) error {
 	if roleType != "ADMIN" {
 		return fmt.Errorf("invalid user-User have not access to create the post")
 	}
@@ -100,11 +90,11 @@ func ValidationJobPost(post models.JobCreation, roleID int, roleType string) err
 		return fmt.Errorf("invalid Email Id-Your EmailId is not in proper way")
 	}
 
-	if len(post.JobTitle) == 0 {
+	if len(post.JobRole) == 0 {
 		return fmt.Errorf(" missing JobTitle,I need much Longer !Buddy")
 	}
 
-	if len(post.JobTitle) > 20 {
+	if len(post.JobRole) > 20 {
 		return fmt.Errorf(" your JobTitle will be larger,I need much shorter, !Buddy")
 	}
 
@@ -171,12 +161,12 @@ func ValidationJobPost(post models.JobCreation, roleID int, roleType string) err
 }
 
 // Valid their User JobPost with Fields
-func ValidationUserJob(user models.UserJobDetails, roleType string, userID int) error {
+func ValidateUserApplicaton(user models.UserJobDetails, roleType string, userID int) error {
 	if roleType != "USER" {
 		return fmt.Errorf("invalid Admin-Admin cannot have access to apply the post")
 	}
 
-	if user.UserId != userID {
+	if user.UserID != userID {
 		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
 	}
 
@@ -202,7 +192,7 @@ func ValidationUserJob(user models.UserJobDetails, roleType string, userID int) 
 }
 
 // valid their JobFields in JobPosts
-func ValidationUpdatePost(post models.JobCreation, roleType string, roleID int) error {
+func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) error {
 	if roleType != "ADMIN" {
 		return fmt.Errorf("invalid user-User have not access to view this details")
 	}

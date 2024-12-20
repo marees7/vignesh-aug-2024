@@ -19,19 +19,16 @@ func UserRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 	//send service to handler
 	user := handler.UserHandler{Service: userservice}
 
-	r := router.Group("/user")
+	r := router.Group("/v1/user")
 	{
 
 		//user apply the job in that posts
-		r.POST("create", middleware.Authenticate(), user.CreateApplication)
+		r.POST("", middleware.Authenticate(), user.CreateApplication)
 
 		//user or admin get all job details
-		r.GET("allposts", user.GetAllJobPosts)
-
-		//user or admin get all jobrole and country
-		r.GET("jobs/:job_title/:country", user.GetJobByRole)
+		r.GET("posts", user.GetAllJobPosts)
 
 		//user get by their userowndetails
-		r.GET("userid", middleware.Authenticate(), user.GetUserAppliedJobs)
+		r.GET("users", middleware.Authenticate(), user.GetUserAppliedJobs)
 	}
 }
