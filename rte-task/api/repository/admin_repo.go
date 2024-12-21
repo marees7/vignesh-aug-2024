@@ -6,18 +6,19 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/Vigneshwartt/golang-rte-task/common/dto"
 	"github.com/Vigneshwartt/golang-rte-task/internals"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"gorm.io/gorm"
 )
 
 type IAdminRepo interface {
-	CreateJobPost(jobCreation *models.JobCreation) *models.ErrorResponse
-	GetApplicantAndJobDetails(jobDetails map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64)
-	GetJobsAppliedByUser(userIDJobs map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64)
-	GetJobsCreated(createdPosts map[string]interface{}) ([]models.JobCreation, *models.ErrorResponse, int64)
-	UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *models.ErrorResponse
-	DeleteJobPost() *models.ErrorResponse
+	CreateJobPost(jobCreation *models.JobCreation) *dto.ErrorResponse
+	GetApplicantAndJobDetails(jobDetails map[string]interface{}) ([]models.UserJobDetails, *dto.ErrorResponse, int64)
+	GetJobsAppliedByUser(userIDJobs map[string]interface{}) ([]models.UserJobDetails, *dto.ErrorResponse, int64)
+	GetJobsCreated(createdPosts map[string]interface{}) ([]models.JobCreation, *dto.ErrorResponse, int64)
+	UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *dto.ErrorResponse
+	DeleteJobPost() *dto.ErrorResponse
 }
 type AdminRepo struct {
 	*internals.NewConnection
@@ -30,16 +31,15 @@ func InitAdminRepo(db *internals.NewConnection) IAdminRepo {
 }
 
 // Admin creates new post in this case
-func (database *AdminRepo) CreateJobPost(jobCreation *models.JobCreation) *models.ErrorResponse {
+func (database *AdminRepo) CreateJobPost(jobCreation *models.JobCreation) *dto.ErrorResponse {
 	db := database.Create(jobCreation)
-
 	if errors.Is(db.Error, gorm.ErrInvalidData) {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
 			Error:      fmt.Errorf("can't able to create the jobPost"),
 		}
 	} else if db.Error != nil {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusInternalServerError,
 			Error:      db.Error,
 		}
@@ -48,7 +48,7 @@ func (database *AdminRepo) CreateJobPost(jobCreation *models.JobCreation) *model
 	return nil
 }
 
-func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64) {
+func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]interface{}) ([]models.UserJobDetails, *dto.ErrorResponse, int64) {
 	var userJobDetails []models.UserJobDetails
 	var count int64
 
@@ -64,15 +64,14 @@ func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]inter
 		result := database.
 			Where(&models.UserJobDetails{JobRole: jobRole}).
 			First(&userJobDetails)
-
 		if result.Error != nil {
 			if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-				return nil, &models.ErrorResponse{
+				return nil, &dto.ErrorResponse{
 					StatusCode: http.StatusNotFound,
 					Error:      fmt.Errorf("unable to fetch the job applications for Job Role"),
 				}, 0
 			}
-			return nil, &models.ErrorResponse{
+			return nil, &dto.ErrorResponse{
 				StatusCode: http.StatusInternalServerError,
 				Error:      result.Error,
 			}, 0
@@ -89,12 +88,12 @@ func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]inter
 			First(&userJobDetails)
 		if result.Error != nil {
 			if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-				return nil, &models.ErrorResponse{
+				return nil, &dto.ErrorResponse{
 					StatusCode: http.StatusNotFound,
 					Error:      fmt.Errorf("unable to fetch the job applications for Job ID"),
 				}, 0
 			}
-			return nil, &models.ErrorResponse{
+			return nil, &dto.ErrorResponse{
 				StatusCode: http.StatusInternalServerError,
 				Error:      result.Error,
 			}, 0
@@ -104,8 +103,9 @@ func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]inter
 			Where("job_id = ? AND job_id IN (SELECT job_id FROM job_creations WHERE admin_id = ? )", jobID, userID).
 			Find(&userJobDetails)
 	}
+
 	if err := query.Count(&count).Error; err != nil {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			StatusCode: http.StatusInternalServerError,
 			Error:      fmt.Errorf("failed to count job details: %v", err),
 		}, 0
@@ -113,12 +113,12 @@ func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]inter
 
 	result := query.Limit(limit).Offset(offset).Find(&userJobDetails)
 	if result.Error != nil {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			StatusCode: http.StatusNotFound,
 			Error:      result.Error,
 		}, 0
 	} else if len(userJobDetails) == 0 {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			StatusCode: http.StatusNotFound,
 			Error:      fmt.Errorf("your not access to view this Details"),
 		}, 0
@@ -128,7 +128,7 @@ func (database *AdminRepo) GetApplicantAndJobDetails(jobDetails map[string]inter
 }
 
 // Admin get Job applied details by USER ID
-func (database *AdminRepo) GetJobsAppliedByUser(userIDJobs map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64) {
+func (database *AdminRepo) GetJobsAppliedByUser(userIDJobs map[string]interface{}) ([]models.UserJobDetails, *dto.ErrorResponse, int64) {
 	var userJobdetails []models.UserJobDetails
 	var count int64
 
@@ -139,9 +139,8 @@ func (database *AdminRepo) GetJobsAppliedByUser(userIDJobs map[string]interface{
 
 	query := database.Model(&models.UserJobDetails{}).
 		Where("user_id = ? AND job_id IN (SELECT job_id FROM job_creations WHERE admin_id = ?)", applicantID, userID)
-
 	if err := query.Count(&count).Error; err != nil {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			StatusCode: http.StatusInternalServerError,
 			Error:      fmt.Errorf("failed to count job details: %v", err),
 		}, 0
@@ -150,16 +149,15 @@ func (database *AdminRepo) GetJobsAppliedByUser(userIDJobs map[string]interface{
 	data := query.Preload("Job").
 		Limit(limit).Offset(offset).
 		Find(&userJobdetails)
-
 	if errors.Is(data.Error, gorm.ErrRecordNotFound) {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			StatusCode: http.StatusNotFound,
 			Error:      fmt.Errorf("failed to fetch job details: %s", data.Error),
 		}, 0
 	}
 
 	if len(userJobdetails) == 0 {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			StatusCode: http.StatusNotFound,
 			Error:      fmt.Errorf("no job details found for the given user"),
 		}, 0
@@ -169,7 +167,7 @@ func (database *AdminRepo) GetJobsAppliedByUser(userIDJobs map[string]interface{
 }
 
 // Admin get their Own Post details
-func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]models.JobCreation, *models.ErrorResponse, int64) {
+func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]models.JobCreation, *dto.ErrorResponse, int64) {
 	var jobCreation []models.JobCreation
 	var count int64
 
@@ -183,15 +181,14 @@ func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]
 
 	if jobRole != "" {
 		dbRole := database.Where(&models.JobCreation{JobRole: jobRole}).First(&models.JobCreation{})
-
 		if dbRole.Error != nil {
 			if errors.Is(dbRole.Error, gorm.ErrRecordNotFound) {
-				return nil, &models.ErrorResponse{
+				return nil, &dto.ErrorResponse{
 					StatusCode: http.StatusNotFound,
 					Error:      fmt.Errorf("unable to fetch the specified Jobrole, please check it"),
 				}, 0
 			}
-			return nil, &models.ErrorResponse{
+			return nil, &dto.ErrorResponse{
 				StatusCode: http.StatusInternalServerError,
 				Error:      dbRole.Error,
 			}, 0
@@ -202,15 +199,14 @@ func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]
 
 	if country != "" {
 		dbCountry := database.Where(&models.JobCreation{Country: country}).First(&models.JobCreation{})
-
 		if dbCountry.Error != nil {
 			if errors.Is(dbCountry.Error, gorm.ErrRecordNotFound) {
-				return nil, &models.ErrorResponse{
+				return nil, &dto.ErrorResponse{
 					StatusCode: http.StatusNotFound,
 					Error:      fmt.Errorf("unable to fetch the specified Country, please check it"),
 				}, 0
 			}
-			return nil, &models.ErrorResponse{
+			return nil, &dto.ErrorResponse{
 				StatusCode: http.StatusInternalServerError,
 				Error:      dbCountry.Error,
 			}, 0
@@ -221,15 +217,14 @@ func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]
 
 	if userID < 0 {
 		dbUserId := database.Where(&models.JobCreation{AdminID: userID}).First(&models.JobCreation{})
-
 		if dbUserId.Error != nil {
 			if errors.Is(dbUserId.Error, gorm.ErrRecordNotFound) {
-				return nil, &models.ErrorResponse{
+				return nil, &dto.ErrorResponse{
 					StatusCode: http.StatusNotFound,
 					Error:      fmt.Errorf("unable to fetch the specified Country, please check it"),
 				}, 0
 			}
-			return nil, &models.ErrorResponse{
+			return nil, &dto.ErrorResponse{
 				StatusCode: http.StatusInternalServerError,
 				Error:      dbUserId.Error,
 			}, 0
@@ -239,9 +234,8 @@ func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]
 	}
 
 	result := query.Debug().Limit(limit).Offset(offset).Find(&jobCreation)
-
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
-		return nil, &models.ErrorResponse{
+		return nil, &dto.ErrorResponse{
 			Error:      result.Error,
 			StatusCode: http.StatusBadRequest,
 		}, 0
@@ -251,15 +245,14 @@ func (database *AdminRepo) GetJobsCreated(searchMaps map[string]interface{}) ([]
 }
 
 // Admin updates their job posts
-func (database *AdminRepo) UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *models.ErrorResponse {
+func (database *AdminRepo) UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *dto.ErrorResponse {
 	var jobUpdate models.JobCreation
 
 	db := database.
 		Where("job_id = ?", jobID).
 		First(&jobUpdate)
-
 	if errors.Is(db.Error, gorm.ErrRecordNotFound) {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusNotFound,
 			Error:      db.Error,
 		}
@@ -269,14 +262,13 @@ func (database *AdminRepo) UpdateJobPost(jobData *models.JobCreation, jobID int,
 		"JobStatus": jobData.JobStatus,
 		"Vacancy":   jobData.Vacancy,
 	})
-
 	if errors.Is(updatDb.Error, gorm.ErrInvalidData) {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
 			Error:      db.Error,
 		}
 	} else if updatDb.RowsAffected == 0 {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusBadGateway,
 			Error:      fmt.Errorf("can't able to update jobPost"),
 		}
@@ -285,20 +277,20 @@ func (database *AdminRepo) UpdateJobPost(jobData *models.JobCreation, jobID int,
 	return nil
 }
 
-func (database *AdminRepo) DeleteJobPost() *models.ErrorResponse {
+func (database *AdminRepo) DeleteJobPost() *dto.ErrorResponse {
 	var jobDeletion []models.JobCreation
 
 	now := time.Now()
-	year := now.Format(time.DateTime)
+	lastYear := now.AddDate(-1, 0, 0)
 
-	result := database.Select("created_at").Where("created_at < ?", year).Find(&jobDeletion).Delete(&jobDeletion)
+	result := database.Debug().Select("created_at").Where("created_at <= ?", lastYear).Find(&jobDeletion).Delete(&jobDeletion)
 	if result.Error != nil {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusInternalServerError,
 			Error:      result.Error,
 		}
 	} else if result.RowsAffected == 0 {
-		return &models.ErrorResponse{
+		return &dto.ErrorResponse{
 			StatusCode: http.StatusNotModified,
 			Error:      fmt.Errorf("no data are deleted here"),
 		}

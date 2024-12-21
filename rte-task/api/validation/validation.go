@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"regexp"
 
+	"github.com/Vigneshwartt/golang-rte-task/common/constants"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -73,7 +74,7 @@ func VerifyPassword(first, second string) (bool, error) {
 
 // Valid their Job Post with Fields
 func ValidateJobPost(post models.JobCreation, roleID int, roleType string) error {
-	if roleType != "ADMIN" {
+	if roleType != constants.AdminType {
 		return fmt.Errorf("invalid user-User have not access to create the post")
 	}
 
@@ -98,7 +99,7 @@ func ValidateJobPost(post models.JobCreation, roleID int, roleType string) error
 		return fmt.Errorf(" your JobTitle will be larger,I need much shorter, !Buddy")
 	}
 
-	if post.JobStatus != "IN PROGRESS" && post.JobStatus != "COMPLETED" && post.JobStatus != "ON GOING" {
+	if post.JobStatus != constants.ProgresStatus && post.JobStatus != constants.CompleteStatus && post.JobStatus != constants.JobStatus {
 		return fmt.Errorf("invalid jobstatus-It should be either IN PROGRESS OR ON GOING")
 	}
 
@@ -162,7 +163,7 @@ func ValidateJobPost(post models.JobCreation, roleID int, roleType string) error
 
 // Valid their User JobPost with Fields
 func ValidateUserApplicaton(user models.UserJobDetails, roleType string, userID int) error {
-	if roleType != "USER" {
+	if roleType != constants.UserType {
 		return fmt.Errorf("invalid Admin-Admin cannot have access to apply the post")
 	}
 
@@ -193,7 +194,7 @@ func ValidateUserApplicaton(user models.UserJobDetails, roleType string, userID 
 
 // valid their JobFields in JobPosts
 func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) error {
-	if roleType != "ADMIN" {
+	if roleType != constants.UserType{
 		return fmt.Errorf("invalid user-User have not access to view this details")
 	}
 
@@ -211,7 +212,7 @@ func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) er
 
 // check their roles by users
 func ValidateUserType(roleType string) error {
-	if roleType != "USER" {
+	if roleType !=constants.UserType{
 		return fmt.Errorf("invalid admin-Admin have not to access this details")
 	}
 	return nil
@@ -219,7 +220,7 @@ func ValidateUserType(roleType string) error {
 
 // check their roles by admin or users
 func ValidateRoleType(roleType string) error {
-	if roleType != "ADMIN" {
+	if roleType != constants.AdminType{
 		return fmt.Errorf("invalid user-User have not access to view this details")
 	}
 	return nil

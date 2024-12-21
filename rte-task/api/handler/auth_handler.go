@@ -5,6 +5,7 @@ import (
 
 	"github.com/Vigneshwartt/golang-rte-task/api/service"
 	"github.com/Vigneshwartt/golang-rte-task/api/validation"
+	"github.com/Vigneshwartt/golang-rte-task/common/dto"
 	"github.com/Vigneshwartt/golang-rte-task/common/helpers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
@@ -20,27 +21,27 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 	var userDetail models.UserDetails
 
 	if err := c.BindJSON(&userDetail); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, models.Response{
+		c.JSON(http.StatusUnprocessableEntity, dto.Response{
 			Error: err.Error()})
-		loggers.WarnData.Println("Can't able to Bind the data", err)
+		loggers.WarnData.Println("Can't able to Bind the data-", err)
 		return
 	}
 
 	//signup their each fields
 	err := validation.ValidateSignUp(userDetail)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, models.Response{
+		c.JSON(http.StatusBadRequest, dto.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("can't able to validate the user ", err)
+		loggers.ErrorData.Println("can't able to validate the user-", err)
 		return
 	}
 
 	//check email is exixts or not in DB
 	errorResponse := handler.Service.GetUserMail(userDetail.Email)
 	if errorResponse != nil {
-		c.JSON(errorResponse.StatusCode, models.Response{
+		c.JSON(errorResponse.StatusCode, dto.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Error Occured", errorResponse.Error)
+		loggers.ErrorData.Println("Error Occured when fetching user mail-", errorResponse.Error)
 		return
 	}
 
@@ -51,23 +52,23 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 	//check phone number is exists or not in DB
 	errorResponse = handler.Service.GetUserPhoneNumber(userDetail.PhoneNumber)
 	if errorResponse != nil {
-		c.JSON(errorResponse.StatusCode, models.Response{
+		c.JSON(errorResponse.StatusCode, dto.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Error occured in this PhoneNumber", errorResponse.Error)
+		loggers.ErrorData.Println("Error occured when fetching user PhoneNumber-", errorResponse.Error)
 		return
 	}
 
 	//create user details By their roles
 	errorResponse = handler.Service.CreateUser(&userDetail)
 	if errorResponse != nil {
-		c.JSON(errorResponse.StatusCode, models.Response{
+		c.JSON(errorResponse.StatusCode, dto.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Can't create the user", errorResponse.Error)
+		loggers.ErrorData.Println("Can't create the user-", errorResponse.Error)
 		return
 	}
 
-	loggers.InfoData.Println("Sucessfully Created the User Detail", userDetail.UserID)
-	c.JSON(http.StatusCreated, models.Response{
+	loggers.InfoData.Println("Sucessfully Created the User Detail-", userDetail.UserID)
+	c.JSON(http.StatusCreated, dto.Response{
 		Message: "Sucessfully Created the User Detail",
 		Data:    userDetail})
 }
@@ -77,42 +78,42 @@ func (handler AuthHandler) GetUserDetail(c *gin.Context) {
 	var userDetail models.UserDetails
 
 	if err := c.BindJSON(&userDetail); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, models.Response{
+		c.JSON(http.StatusUnprocessableEntity, dto.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Can't Get the Details", err.Error())
+		loggers.ErrorData.Println("Can't Get the Details-", err.Error())
 		return
 	}
 
 	//Check Email address while Login with their email ID
 	userLogin, errorResponse := handler.Service.GetUserDetail(&userDetail)
 	if errorResponse != nil {
-		c.JSON(errorResponse.StatusCode, models.Response{
+		c.JSON(errorResponse.StatusCode, dto.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Cant't Find Your MailId", errorResponse.Error)
+		loggers.ErrorData.Println("Cant't Find Your MailID-", errorResponse.Error)
 		return
 	}
 
 	//verify their password is match with signup password
 	password, err := validation.VerifyPassword(userDetail.Password, userLogin.Password)
 	if !password {
-		c.JSON(http.StatusBadRequest, models.Response{
+		c.JSON(http.StatusBadRequest, dto.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured", err.Error())
+		loggers.ErrorData.Println("Error occured when verifying password-", err.Error())
 		return
 	}
 
 	//Generate new token here
 	token, err := validation.GenerateToken(userLogin.Email, userLogin.Name, userLogin.RoleType, userLogin.UserID)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, models.Response{
+		c.JSON(http.StatusInternalServerError, dto.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Cant't able to Generate token ,check it", err)
+		loggers.ErrorData.Println("Cant't able to Generate token ,check it-", err)
 		return
 	}
 	// userDetails.Token = token
 
 	loggers.InfoData.Println("Login Sucessfully", userLogin.UserID)
-	c.JSON(http.StatusOK, models.LoginUser{
+	c.JSON(http.StatusOK, dto.LoginUser{
 		Message:  "Login Sucessfully",
 		Token:    token,
 		ID:       userLogin.UserID,

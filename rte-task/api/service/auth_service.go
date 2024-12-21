@@ -2,14 +2,15 @@ package service
 
 import (
 	"github.com/Vigneshwartt/golang-rte-task/api/repository"
+	"github.com/Vigneshwartt/golang-rte-task/common/dto"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 )
 
 type IAuthService interface {
-	CreateUser(userDetails *models.UserDetails) *models.ErrorResponse
-	GetUserMail(userEmail string) *models.ErrorResponse
-	GetUserPhoneNumber(userPhoneNumber string) *models.ErrorResponse
-	GetUserDetail(userDetails *models.UserDetails) (*models.UserDetails, *models.ErrorResponse)
+	CreateUser(userDetails *models.UserDetails) *dto.ErrorResponse
+	GetUserMail(userEmail string) *dto.ErrorResponse
+	GetUserPhoneNumber(userPhoneNumber string) *dto.ErrorResponse
+	GetUserDetail(userDetails *models.UserDetails) (*models.UserDetails, *dto.ErrorResponse)
 }
 
 type AuthService struct {
@@ -23,21 +24,21 @@ func InitAuthService(db repository.IAuthRepo) IAuthService {
 }
 
 // create user details By their roles
-func (service *AuthService) CreateUser(userDetails *models.UserDetails) *models.ErrorResponse {
+func (service *AuthService) CreateUser(userDetails *models.UserDetails) *dto.ErrorResponse {
 	return service.repo.CreateUser(userDetails)
 }
 
 // check email is exixts or not in DB
-func (service *AuthService) GetUserMail(userEmail string) *models.ErrorResponse {
+func (service *AuthService) GetUserMail(userEmail string) *dto.ErrorResponse {
 	return service.repo.GetUserMail(userEmail)
 }
 
 // check phone number is exists or not in DB
-func (service *AuthService) GetUserPhoneNumber(userPhoneNumber string) *models.ErrorResponse {
+func (service *AuthService) GetUserPhoneNumber(userPhoneNumber string) *dto.ErrorResponse {
 	return service.repo.GetUserPhoneNumber(userPhoneNumber)
 }
 
 // Check Email address while Login with their email ID
-func (service *AuthService) GetUserDetail(userDetails *models.UserDetails) (*models.UserDetails, *models.ErrorResponse) {
+func (service *AuthService) GetUserDetail(userDetails *models.UserDetails) (*models.UserDetails, *dto.ErrorResponse) {
 	return service.repo.GetUserDetail(userDetails)
 }

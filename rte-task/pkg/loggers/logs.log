@@ -1,0 +1,23 @@
+INFO: 2024/12/21 11:37:34 connection.go:24: Connected sucessfully
+INFO: 2024/12/21 11:37:34 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/21 11:37:34 main.go:34: Server started on port
+INFO: 2024/12/21 11:37:44 auth_handler.go:114: Login Sucessfully 4
+INFO: 2024/12/21 11:37:50 auth_handler.go:114: Login Sucessfully 1
+ERROR: 2024/12/21 11:38:34 admin_handler.go:294: Failed to Delete post ERROR: update or delete on table "job_creations" violates foreign key constraint "fk_user_job_details_job" on table "user_job_details" (SQLSTATE 23503)
+INFO: 2024/12/21 11:40:44 connection.go:24: Connected sucessfully
+INFO: 2024/12/21 11:40:44 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/21 11:40:44 main.go:34: Server started on port
+INFO: 2024/12/21 11:40:49 admin_handler.go:298: Sucessfully Deleted the JobPost
+INFO: 2024/12/21 11:41:33 connection.go:24: Connected sucessfully
+INFO: 2024/12/21 11:41:33 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/21 11:41:33 main.go:34: Server started on port
+INFO: 2024/12/21 11:41:37 admin_handler.go:298: Sucessfully Deleted the JobPost
+INFO: 2024/12/21 11:50:33 connection.go:24: Connected sucessfully
+INFO: 2024/12/21 11:50:33 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/21 11:50:33 main.go:34: Server started on port
+ERROR: 2024/12/21 11:50:37 admin_handler.go:294: Failed to Delete post no data are deleted here
+INFO: 2024/12/21 13:13:00 connection.go:24: Connected sucessfully
+INFO: 2024/12/21 13:13:00 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/21 13:13:00 main.go:34: Server started on port
+ERROR: 2024/12/21 13:14:16 admin_handler.go:295: Failed to Delete post no data are deleted here
+ERROR: 2024/12/21 13:15:03 admin_handler.go:295: Failed to Delete post ERROR: update or delete on table "job_creations" violates foreign key constraint "fk_user_job_details_job" on table "user_job_details" (SQLSTATE 23503)

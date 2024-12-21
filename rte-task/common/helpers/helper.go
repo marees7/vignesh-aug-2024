@@ -6,8 +6,8 @@ import (
 	"strconv"
 
 	"github.com/Vigneshwartt/golang-rte-task/common/constants"
+	"github.com/Vigneshwartt/golang-rte-task/common/dto"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
-	"github.com/Vigneshwartt/golang-rte-task/pkg/models"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -31,12 +31,12 @@ func HashPassword(password string) string {
 }
 
 // by using limit and offset using pagination
-func Pagination(offsetStr, limitStr string) (int, int, *models.ErrorResponse) {
+func Pagination(offsetStr, limitStr string) (int, int, *dto.ErrorResponse) {
 	offset, err := strconv.Atoi(offsetStr)
 	if offsetStr == "" {
 		offset = constants.DefaultOffset
 	} else if err != nil {
-		return 0, 0, &models.ErrorResponse{
+		return 0, 0, &dto.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
 			Error:      err,
 		}
@@ -46,7 +46,7 @@ func Pagination(offsetStr, limitStr string) (int, int, *models.ErrorResponse) {
 	if limitStr == "" {
 		limit = constants.DefaultLimit
 	} else if err != nil {
-		return 0, 0, &models.ErrorResponse{
+		return 0, 0, &dto.ErrorResponse{
 			StatusCode: http.StatusBadRequest,
 			Error:      err,
 		}
