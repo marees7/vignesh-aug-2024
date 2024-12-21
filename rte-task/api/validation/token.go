@@ -1,7 +1,6 @@
 package validation
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -31,7 +30,6 @@ func GenerateToken(email, name, roletype string, userid int) (token string, err 
 	}
 	token, err = jwt.NewWithClaims(jwt.SigningMethodHS256, claims).SignedString([]byte(SECRET_KEY))
 	if err != nil {
-		fmt.Println("Error occured")
 		return
 	}
 	return token, err

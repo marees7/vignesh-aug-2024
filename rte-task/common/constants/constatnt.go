@@ -2,5 +2,5 @@ package constants
 
 const (
 	DefaultLimit  = 10
-	DefaultOffset = 0
+	DefaultOffset = 1
 )

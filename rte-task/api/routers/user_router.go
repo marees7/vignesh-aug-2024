@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func UserRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
+func UserRoutes(router *gin.Engine, dbconnection *internals.NewConnection) {
 	//send the Db connection to repos
 	userrepo := repository.InitUserRepo(dbconnection)
 
@@ -29,6 +29,6 @@ func UserRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 		r.GET("posts", user.GetAllJobPosts)
 
 		//user get by their userowndetails
-		r.GET("users", middleware.Authenticate(), user.GetUserAppliedJobs)
+		r.GET("", middleware.Authenticate(), user.GetUserAppliedJobs)
 	}
 }

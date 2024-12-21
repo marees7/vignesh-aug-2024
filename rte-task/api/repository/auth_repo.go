@@ -16,10 +16,10 @@ type IAuthRepo interface {
 }
 
 type AuthRepo struct {
-	*internals.ConnectionNew
+	*internals.NewConnection
 }
 
-func InitAuthRepo(db *internals.ConnectionNew) IAuthRepo {
+func InitAuthRepo(db *internals.NewConnection) IAuthRepo {
 	return &AuthRepo{
 		db,
 	}
@@ -53,6 +53,7 @@ func (database *AuthRepo) GetUserMail(userEmail string) *models.ErrorResponse {
 			Error:      fmt.Errorf("error occured while searching the email "),
 		}
 	}
+
 	if count > 0 {
 		return &models.ErrorResponse{
 			StatusCode: http.StatusAlreadyReported,

@@ -60,15 +60,15 @@ func ValidateSignUp(user models.UserDetails) error {
 }
 
 // verify their password is match with signup password
-func VerifyPassword(first, second string) (bool, string) {
+func VerifyPassword(first, second string) (bool, error) {
 	err := bcrypt.CompareHashAndPassword([]byte(second), []byte(first))
 	check := true
-	msg := ""
+	// msg := ""
 	if err != nil {
-		msg = "Invalid password-Password is Not Match "
+		// msg = "Invalid password-Password is Not Match "
 		check = false
 	}
-	return check, msg
+	return check, err
 }
 
 // Valid their Job Post with Fields

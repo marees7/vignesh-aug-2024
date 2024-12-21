@@ -54,7 +54,7 @@ type UserJobDetails struct {
 
 type Response struct {
 	Message   string      `json:"message,omitempty"`
-	Error     interface{} `json:"error,omitempty"`
+	Error     string      `json:"error,omitempty"`
 	Data      interface{} `json:"data,omitempty"`
 	Total     int64       `json:"total,omitempty"`
 	Limit     int         `json:"limit,omitempty"`
@@ -76,7 +76,6 @@ type ApplicantDetail struct {
 	Name        string    `json:"name,omitempty"`
 	Email       string    `json:"email,omitempty"`
 	PhoneNumber string    `json:"phone_number,omitempty"`
-	// CreatedAt   int       `json:"year,omitempty`
 }
 
 type ErrorResponse struct {

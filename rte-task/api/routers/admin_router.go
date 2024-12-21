@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func AdminRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
+func AdminRoutes(router *gin.Engine, dbconnection *internals.NewConnection) {
 	//send the Db connection to repos
 	adminRepos := repository.InitAdminRepo(dbconnection)
 
@@ -32,12 +32,12 @@ func AdminRoutes(router *gin.Engine, dbconnection *internals.ConnectionNew) {
 		r.GET("/:user_id", admin.GetJobsAppliedByUser)
 
 		//admin get by his id to know about how many post created
-		r.GET("posts", admin.GetJobsCreated)
+		r.GET("", admin.GetJobsCreated)
 
 		//admins update by jobid and amin id
-		r.PUT("/update/:job_id", admin.UpdateJobPost)
+		r.PUT("/:job_id", admin.UpdateJobPost)
 
 		//automaticaly delete jobPost
-		r.DELETE("/delete", admin.DeleteJobPost)
+		r.DELETE("", admin.DeleteJobPost)
 	}
 }

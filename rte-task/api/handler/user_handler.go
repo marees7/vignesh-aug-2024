@@ -23,7 +23,7 @@ func (handler UserHandler) CreateApplication(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, models.Response{
 			Error: err.Error(),
 		})
-		loggers.ErrorData.Println("Failed to Invalid request payload")
+		loggers.ErrorData.Println("Failed to Invalid request payload", err)
 		return
 	}
 
@@ -35,7 +35,7 @@ func (handler UserHandler) CreateApplication(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured while creating values")
+		loggers.ErrorData.Println("Error Occured", err)
 		return
 	}
 
@@ -52,11 +52,11 @@ func (handler UserHandler) CreateApplication(c *gin.Context) {
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Error occured while creating values")
+		loggers.ErrorData.Println("Error occured while creating values", errorResponse.Error)
 		return
 	}
-	loggers.InfoData.Println("Sucessfully Applied the Job")
 
+	loggers.InfoData.Println("Sucessfully Applied the Job",userJobDetails.JobID)
 	c.JSON(http.StatusCreated, models.Response{
 		Message: "Sucessfully Applied Job ",
 		Data:    userJobDetails})
@@ -64,20 +64,26 @@ func (handler UserHandler) CreateApplication(c *gin.Context) {
 
 // user or admin get all job details
 func (handler UserHandler) GetAllJobPosts(c *gin.Context) {
-	companyName := c.Query("CompanyName")
-	jobRole := c.Query("JobRole")
-	jobCountry := c.Query("Country")
-	limitStr := c.Query("Limit")
-	offsetStr := c.Query("Offset")
+	companyName := c.Query("company_name")
+	jobRole := c.Query("job_role")
+	jobCountry := c.Query("country")
+	limitStr := c.Query("limit")
+	offsetStr := c.Query("offset")
 
-	limit, offset := helpers.Pagination(offsetStr, limitStr)
+	limit, offset, errorResponse := helpers.Pagination(offsetStr, limitStr)
+	if errorResponse != nil {
+		c.JSON(errorResponse.StatusCode, models.Response{
+			Error: errorResponse.Error.Error()})
+		loggers.ErrorData.Println("Error Occured", errorResponse.Error)
+		return
+	}
 
 	searchJobs := map[string]interface{}{
-		"Company": companyName,
-		"Role":    jobRole,
-		"Country": jobCountry,
-		"Limit":   limit,
-		"Offset":  offset,
+		"company": companyName,
+		"role":    jobRole,
+		"country": jobCountry,
+		"limit":   limit,
+		"offset":  offset,
 	}
 
 	jobCreation, errorResponse, count := handler.Service.GetAllJobPosts(searchJobs)
@@ -86,11 +92,11 @@ func (handler UserHandler) GetAllJobPosts(c *gin.Context) {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error(),
 		})
-		loggers.ErrorData.Println("Sorry! I can't get your posts details properly")
+		loggers.ErrorData.Println("Sorry! I can't get your posts details properly", errorResponse.Error)
 		return
 	}
-	loggers.InfoData.Println("Sucessfully fetched the JobPosts ")
 
+	loggers.InfoData.Println("Sucessfully fetched the JobPosts")
 	// Respond with the fetched data
 	c.JSON(http.StatusOK, models.Response{
 		Message: "Hurray! Successfully fetched the JobPosts",
@@ -105,21 +111,28 @@ func (handler UserHandler) GetAllJobPosts(c *gin.Context) {
 func (handler UserHandler) GetUserAppliedJobs(c *gin.Context) {
 	roleType := c.GetString("role_type")
 	userID := c.GetInt("user_id")
-	limitStr := c.Query("Limit")
-	offsetStr := c.Query("Offset")
+	limitStr := c.Query("limit")
+	offsetStr := c.Query("offset")
 
 	if err := validation.ValidateUserType(roleType); err != nil {
 		c.JSON(http.StatusForbidden, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured while getting values")
+		loggers.ErrorData.Println("Error occured while getting values", err)
 		return
 	}
-	limit, offset := helpers.Pagination(offsetStr, limitStr)
+
+	limit, offset, errorResponse := helpers.Pagination(offsetStr, limitStr)
+	if errorResponse != nil {
+		c.JSON(errorResponse.StatusCode, models.Response{
+			Error: errorResponse.Error.Error()})
+		loggers.ErrorData.Println("Error Occured", errorResponse.Error)
+		return
+	}
 
 	userJobs := map[string]interface{}{
-		"UserID": userID,
-		"Limit":  limit,
-		"Offset": offset,
+		"userID": userID,
+		"limit":  limit,
+		"offset": offset,
 	}
 
 	//get their Details by userIds
@@ -127,11 +140,11 @@ func (handler UserHandler) GetUserAppliedJobs(c *gin.Context) {
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Error occured while getting values")
+		loggers.ErrorData.Println("Error occured while getting values", errorResponse.Error)
 		return
 	}
-	loggers.InfoData.Println("Sucessfully Get the details by thier ID")
 
+	loggers.InfoData.Println("Sucessfully Get the details by thier ID", userID)
 	c.JSON(http.StatusOK, models.Response{
 		Message: "Sucessfully Get the details by thier ID",
 		Data:    userJobDetails,

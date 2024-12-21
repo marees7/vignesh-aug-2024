@@ -23,7 +23,7 @@ func (handler AdminHandler) CreateJobPost(c *gin.Context) {
 	if err := c.BindJSON(&jobCreation); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Cant able to get the JobPost Details")
+		loggers.ErrorData.Println("Cant able to get the JobPost Detail", err)
 		return
 	}
 
@@ -35,7 +35,7 @@ func (handler AdminHandler) CreateJobPost(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		loggers.ErrorData.Println("Error occured in this validation of postdetail", err)
 		return
 	}
 
@@ -43,14 +43,14 @@ func (handler AdminHandler) CreateJobPost(c *gin.Context) {
 	errorResponse := handler.Service.CreateJobPost(&jobCreation)
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
-			Error: errorResponse})
-		loggers.ErrorData.Println("OOPS! Your Id or roletype is Mismatching Here,Check It Once Again")
+			Error: errorResponse.Error.Error()})
+		loggers.ErrorData.Println(" Error occured,", errorResponse.Error)
 		return
 	}
 
-	loggers.InfoData.Println("Sucessfully Created the Details")
+	loggers.InfoData.Println("Sucessfully Created the JobPost Detail", jobCreation.JobID)
 	c.JSON(http.StatusCreated, models.Response{
-		Message: "Sucessfully Created the Details",
+		Message: "Sucessfully Created the JobPost Detail",
 		Data:    jobCreation})
 }
 
@@ -59,15 +59,25 @@ func (handler AdminHandler) GetJobsCreated(c *gin.Context) {
 	roleType := c.GetString("role_type")
 	userID := c.GetInt("user_id")
 
-	limitStr := c.Query("Limit")
-	offsetStr := c.Query("Offset")
+	limitStr := c.Query("limit")
+	offsetStr := c.Query("offset")
+	jobRole := c.Query("job_role")
+	country := c.Query("country")
 
-	limit, offset := helpers.Pagination(offsetStr, limitStr)
+	limit, offset, errorResponse := helpers.Pagination(offsetStr, limitStr)
+	if errorResponse != nil {
+		c.JSON(errorResponse.StatusCode, models.Response{
+			Error: errorResponse.Error.Error()})
+		loggers.ErrorData.Println("Error Occured", errorResponse.Error)
+		return
+	}
 
-	createdPosts := map[string]int{
-		"Limit":  limit,
-		"Offset": offset,
-		"UserID": userID,
+	searchMap := map[string]interface{}{
+		"limit":   limit,
+		"offset":  offset,
+		"userID":  userID,
+		"jobRole": jobRole,
+		"country": country,
 	}
 
 	// Check their roles by admin or users
@@ -75,22 +85,22 @@ func (handler AdminHandler) GetJobsCreated(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusForbidden, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		loggers.ErrorData.Println("Error occured in this validation of postdetails", err)
 		return
 	}
 
 	//get thier own post details By admin
-	jobCreation, errorResponse, count := handler.Service.GetJobsCreated(createdPosts)
+	jobCreation, errorResponse, count := handler.Service.GetJobsCreated(searchMap)
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Failed to fetch job created details")
+		loggers.ErrorData.Println("Failed to fetch job created details", errorResponse.Error)
 		return
 	}
 
-	loggers.InfoData.Println("Sucessfully fetched the job Posted by Admin")
+	loggers.InfoData.Println("Sucessfully fetched the JobCreated Details", userID)
 	c.JSON(http.StatusOK, models.Response{
-		Message: "Sucessfully fetched the job posted by Admin",
+		Message: "Sucessfully fetched the Jobcreated Details",
 		Data:    jobCreation,
 		Limit:   limit,
 		Offset:  offset,
@@ -100,12 +110,18 @@ func (handler AdminHandler) GetJobsCreated(c *gin.Context) {
 
 // admin get their jobs by Role
 func (handler AdminHandler) GetApplicantAndJobDetails(c *gin.Context) {
-	jobRole := c.Query("JobRole")
-	jobIDStr := c.Query("JobID")
-	offsetStr := c.Query("Offset")
-	limitStr := c.Query("Limit")
+	jobRole := c.Query("job_role")
+	jobIDStr := c.Query("job_id")
+	offsetStr := c.Query("offset")
+	limitStr := c.Query("limit")
 
-	limit, offset := helpers.Pagination(offsetStr, limitStr)
+	limit, offset, errorResponse := helpers.Pagination(offsetStr, limitStr)
+	if errorResponse != nil {
+		c.JSON(errorResponse.StatusCode, models.Response{
+			Error: errorResponse.Error.Error()})
+		loggers.ErrorData.Println("Error Occured", errorResponse.Error)
+		return
+	}
 
 	jobID, _ := strconv.Atoi(jobIDStr)
 	roleType := c.GetString("role_type")
@@ -116,16 +132,16 @@ func (handler AdminHandler) GetApplicantAndJobDetails(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusForbidden, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		loggers.ErrorData.Println("Error occured in this validation of postdetails", err)
 		return
 	}
 
 	jobDetailsMap := map[string]interface{}{
-		"JobRole": jobRole,
-		"JobID":   jobID,
-		"UserID":  userID,
-		"Limit":   limit,
-		"Offset":  offset,
+		"jobRole": jobRole,
+		"jobID":   jobID,
+		"userID":  userID,
+		"limit":   limit,
+		"offset":  offset,
 	}
 
 	//get their jobDetailsBy role
@@ -133,7 +149,7 @@ func (handler AdminHandler) GetApplicantAndJobDetails(c *gin.Context) {
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error()})
-		loggers.ErrorData.Println("Can't able to get the Details Properly")
+		loggers.ErrorData.Println("Can't able to get the Details Properly", errorResponse.Error)
 		return
 	}
 
@@ -149,8 +165,8 @@ func (handler AdminHandler) GetApplicantAndJobDetails(c *gin.Context) {
 
 // admin get their jobs by UserId
 func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
-	limitStr := c.Query("Limit")
-	offsetStr := c.Query("Offset")
+	limitStr := c.Query("limit")
+	offsetStr := c.Query("offset")
 	roleType := c.GetString("role_type")
 	userID := c.GetInt("user_id")
 
@@ -162,7 +178,14 @@ func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
 		})
 		return
 	}
-	limit, offset := helpers.Pagination(offsetStr, limitStr)
+
+	limit, offset, errorResponse := helpers.Pagination(offsetStr, limitStr)
+	if errorResponse != nil {
+		c.JSON(errorResponse.StatusCode, models.Response{
+			Error: errorResponse.Error.Error()})
+		loggers.ErrorData.Println("Error Occured", errorResponse.Error)
+		return
+	}
 
 	//Check their roles by admin or users
 	if err := validation.ValidateRoleType(roleType); err != nil {
@@ -174,10 +197,10 @@ func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
 	}
 
 	userIDJobs := map[string]interface{}{
-		"Limit":     limit,
-		"Offset":    offset,
-		"Applicant": applicantID,
-		"UserID":    userID,
+		"limit":     limit,
+		"offset":    offset,
+		"applicant": applicantID,
+		"userID":    userID,
 	}
 
 	//get their User's particular jobs By their userID's
@@ -186,11 +209,11 @@ func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
 		c.JSON(errorResponse.StatusCode, models.Response{
 			Error: errorResponse.Error.Error(),
 		})
-		loggers.ErrorData.Println("Failed to fetch job applied details")
+		loggers.ErrorData.Println("Failed to fetch job applied details", errorResponse.Error)
 		return
 	}
 
-	loggers.InfoData.Println("Successfully fetched User applied Jobs")
+	loggers.InfoData.Println("Successfully fetched User applied Jobs", userID)
 	c.JSON(http.StatusOK, models.Response{
 		Message: "Successfully fetched User applied Jobs",
 		Data:    userJobDetails,
@@ -202,7 +225,7 @@ func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
 
 // admin updates their own JobPost
 func (handler AdminHandler) UpdateJobPost(c *gin.Context) {
-	var jobUpdation models.JobCreation
+	var jobData models.JobCreation
 
 	jobIDStr := c.Param("job_id")
 	jobID, err := helpers.StringConvertion(jobIDStr)
@@ -213,11 +236,11 @@ func (handler AdminHandler) UpdateJobPost(c *gin.Context) {
 		return
 	}
 
-	if err := c.ShouldBindJSON(&jobUpdation); err != nil {
+	if err := c.ShouldBindJSON(&jobData); err != nil {
 		c.JSON(http.StatusUnprocessableEntity, models.Response{
 			Error: err.Error(),
 		})
-		loggers.ErrorData.Println("Error occured while request payload")
+		loggers.ErrorData.Println("Error occured while request payload", err)
 		return
 	}
 
@@ -225,29 +248,29 @@ func (handler AdminHandler) UpdateJobPost(c *gin.Context) {
 	userID := c.GetInt("user_id")
 
 	//Validate each fields
-	err = validation.ValidateUpdatePost(jobUpdation, roleType, userID)
+	err = validation.ValidateUpdatePost(jobData, roleType, userID)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, models.Response{
 			Error: err.Error()})
-		loggers.ErrorData.Println("Error occured in this validation of postdetails")
+		loggers.ErrorData.Println("Error occured in this validation of postdetails", err)
 		return
 	}
 
 	//update their job post by their IDs
-	errorResponse := handler.Service.UpdateJobPost(&jobUpdation, jobID, userID)
+	errorResponse := handler.Service.UpdateJobPost(&jobData, jobID, userID)
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
-			Error: errorResponse.Error,
+			Error: errorResponse.Error.Error(),
 		})
-		loggers.ErrorData.Println("Failed to update post")
+		loggers.ErrorData.Println("Failed to update post", errorResponse.Error)
 		return
 	}
 
 	loggers.InfoData.Println("Sucessfully Updated the JobPost")
 	c.JSON(http.StatusOK, models.Response{
 		Message:   "Sucessfully Updated the JobPost",
-		JobStatus: jobUpdation.JobStatus,
-		Vacancy:   jobUpdation.Vacancy,
+		JobStatus: jobData.JobStatus,
+		Vacancy:   jobData.Vacancy,
 	})
 }
 
@@ -266,9 +289,9 @@ func (handler AdminHandler) DeleteJobPost(c *gin.Context) {
 	errorResponse := handler.Service.DeleteJobPost()
 	if errorResponse != nil {
 		c.JSON(errorResponse.StatusCode, models.Response{
-			Error: errorResponse.Error,
+			Error: errorResponse.Error.Error(),
 		})
-		loggers.ErrorData.Println("Failed to Delete post")
+		loggers.ErrorData.Println("Failed to Delete post", errorResponse.Error)
 		return
 	}
 

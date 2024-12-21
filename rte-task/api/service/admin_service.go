@@ -9,8 +9,8 @@ type IAdminService interface {
 	CreateJobPost(jobCreation *models.JobCreation) *models.ErrorResponse
 	GetApplicantAndJobDetails(jobDetailsMap map[string]interface{}) ([]models.ApplicantDetail, *models.ErrorResponse, int64)
 	GetJobsAppliedByUser(userIDJobs map[string]interface{}) ([]models.UserJobDetails, *models.ErrorResponse, int64)
-	GetJobsCreated(createdPosts map[string]int) ([]models.JobCreation, *models.ErrorResponse, int64)
-	UpdateJobPost(jobUpdation *models.JobCreation, jobID int, userID int) *models.ErrorResponse
+	GetJobsCreated(createdPosts map[string]interface{}) ([]models.JobCreation, *models.ErrorResponse, int64)
+	UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *models.ErrorResponse
 	DeleteJobPost() *models.ErrorResponse
 }
 type AdminService struct {
@@ -50,6 +50,7 @@ func (service *AdminService) GetApplicantAndJobDetails(jobDetailsMap map[string]
 			JobRole:     value.JobRole,
 		})
 	}
+
 	return applicantDetails, nil, count
 }
 
@@ -59,13 +60,13 @@ func (service *AdminService) GetJobsAppliedByUser(userIDJobs map[string]interfac
 }
 
 // get thier own post details By admin
-func (service *AdminService) GetJobsCreated(createdPosts map[string]int) ([]models.JobCreation, *models.ErrorResponse, int64) {
+func (service *AdminService) GetJobsCreated(createdPosts map[string]interface{}) ([]models.JobCreation, *models.ErrorResponse, int64) {
 	return service.repo.GetJobsCreated(createdPosts)
 }
 
 // update their job post by their IDs
-func (service *AdminService) UpdateJobPost(jobUpdation *models.JobCreation, jobID int, userID int) *models.ErrorResponse {
-	return service.repo.UpdateJobPost(jobUpdation, jobID, userID)
+func (service *AdminService) UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *models.ErrorResponse {
+	return service.repo.UpdateJobPost(jobData, jobID, userID)
 }
 
 func (service *AdminService) DeleteJobPost() *models.ErrorResponse {
