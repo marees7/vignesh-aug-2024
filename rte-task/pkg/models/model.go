@@ -3,23 +3,22 @@ package models
 import "time"
 
 type UserDetails struct {
-	UserId      int       `json:"user_id" gorm:"primarykey;autoIncrement"`
+	UserID      int       `json:"user_id" gorm:"primarykey;autoIncrement"`
 	Name        string    `json:"name"  gorm:"column:name;type:varchar(100)"`
 	Email       string    `json:"email"  gorm:"unique;type:varchar(100)"`
 	Password    string    `json:"password"  gorm:"column:password;type:varchar(255)"`
 	PhoneNumber string    `json:"phone_number"  gorm:"column:phone_number;type:varchar(15)"`
 	RoleType    string    `json:"role_type"  gorm:"column:role_type;type:varchar(25)"`
-	Token       string    `json:"token,omitempty" gorm:"column:token;type:varchar(255)"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
 type JobCreation struct {
-	JobId        int       `json:"job_id"  gorm:"primarykey;autoIncrement"`
-	DomainID     int       `json:"domain_id"  gorm:"foreignKey:DomainID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	JobID        int       `json:"job_id"  gorm:"primarykey;autoIncrement"`
+	AdminID      int       `json:"admin_id"  gorm:"column:admin_id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	CompanyName  string    `json:"company_name" gorm:"column:company_name;type:varchar(100)"`
 	CompanyEmail string    `json:"company_email"   gorm:"column:company_email;type:varchar(100)"`
-	JobTitle     string    `json:"job_title"   gorm:"column:job_title;type:varchar(100)"`
+	JobRole      string    `json:"job_role"   gorm:"column:job_role;type:varchar(100)"`
 	JobStatus    string    `json:"job_status"   gorm:"column:job_status;type:varchar(100);constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 	JobTime      string    `json:"job_time"   gorm:"column:job_time;type:varchar(50);constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
 	Description  string    `json:"description"   gorm:"column:description;type:text"`
@@ -40,8 +39,8 @@ type Address struct {
 }
 
 type UserJobDetails struct {
-	UserId     int          `json:"user_id"  gorm:"foreignKey:UserId;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
-	JobID      int          `json:"job_id"   gorm:"foreignKey:JobID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	UserID     int          `json:"user_id"  gorm:"foreignKey:UserID;constraint:OnUpdate:CASCADE"`
+	JobID      *int         `json:"job_id"   gorm:"null,foreignKey:JobID;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 	Experience int          `json:"experience" gorm:"column:experience;type:int"`
 	Skills     string       `json:"skills"   gorm:"column:skills;type:varchar(255)"`
 	Language   string       `json:"language" gorm:"column:language;type:varchar(255)"`
@@ -49,12 +48,44 @@ type UserJobDetails struct {
 	JobRole    string       `json:"job_role" gorm:"column:job_role;type:varchar(255)"`
 	CreatedAt  time.Time    `json:"created_at"`
 	UpdatedAt  time.Time    `json:"updated_at"`
-	User       *UserDetails `json:"User,omitempty" gorm:"foreignKey:UserId"`
-	Job        *JobCreation `json:"Job,omitempty" gorm:"foreignKey:JobID"`
+	User       *UserDetails `json:"User,omitempty" gorm:"foreignKey:UserID;"`
+	Job        *JobCreation `json:"Job,omitempty" gorm:"foreignKey:JobID ;"`
 }
 
-type CommonResponse struct {
-	Message string      `json:"message,omitempty"`
-	Error   interface{} `json:"error,omitempty"`
-	Data    interface{} `json:"data,omitempty"`
+type Response struct {
+	Message   string      `json:"message,omitempty"`
+	Error     string      `json:"error,omitempty"`
+	Data      interface{} `json:"data,omitempty"`
+	Total     int64       `json:"total,omitempty"`
+	Limit     int         `json:"limit,omitempty"`
+	Offset    int         `json:"offset,omitempty"`
+	Vacancy   int         `json:"vacancy,omitempty"`
+	JobStatus string      `json:"job_status,omitempty"`
+}
+
+type ApplicantDetail struct {
+	UserID      int       `json:"user_id,omitempty"`
+	JobID       int       `json:"job_id,omitempty"`
+	Experience  int       `json:"experience,omitempty"`
+	Skills      string    `json:"skills,omitempty"`
+	Language    string    `json:"language,omitempty"`
+	Country     string    `json:"country,omitempty"`
+	JobRole     string    `json:"job_role,omitempty"`
+	CreatedAt   int       `json:"created_at,omitempty"`
+	UpdatedAt   time.Time `json:"updated_at,omitempty"`
+	Name        string    `json:"name,omitempty"`
+	Email       string    `json:"email,omitempty"`
+	PhoneNumber string    `json:"phone_number,omitempty"`
+}
+
+type ErrorResponse struct {
+	Error      error
+	StatusCode int
+}
+
+type LoginUser struct {
+	Message  string `json:"message,omitempty"`
+	Token    string `json:"token,omitempty"`
+	ID       int    `json:"user_id,omitempty"`
+	RoleType string `json:"role_type,omitempty"`
 }

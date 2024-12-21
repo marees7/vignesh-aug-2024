@@ -9,13 +9,13 @@ import (
 )
 
 // signup their each fields
-func ValidationSignUp(user models.UserDetails) error {
+func ValidateSignUp(user models.UserDetails) error {
 	if len(user.Name) == 0 {
 		return fmt.Errorf(" missing Name,I need much Longer !Buddy")
 	}
 
 	if len(user.Name) > 30 {
-		return fmt.Errorf(" your Name should be larger,I need much shorter, !Buddy")
+		return fmt.Errorf(" your Name will be Larger,I need much shorter, !Buddy")
 	}
 
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
@@ -29,10 +29,10 @@ func ValidationSignUp(user models.UserDetails) error {
 	specialChar := regexp.MustCompile(`[@$!%*?&#^()]`)
 
 	if !lowercase.MatchString(user.Password) {
-		return fmt.Errorf("invalid Password- Enter Lowercase Letter")
+		return fmt.Errorf("invalid Password- Enter any Lowercase Letter")
 	}
 	if !uppercase.MatchString(user.Password) {
-		return fmt.Errorf("invalid Password- Enter Uppercase Letter")
+		return fmt.Errorf("invalid Password- Enter any Uppercase Letter")
 	}
 	if !digit.MatchString(user.Password) {
 		return fmt.Errorf("invalid Password- Enter any Numbers")
@@ -52,7 +52,7 @@ func ValidationSignUp(user models.UserDetails) error {
 	if len(user.PhoneNumber) < 10 {
 		return fmt.Errorf("invalid phonenumber, Less than 10 and Give proeprly")
 	}
-	
+
 	if user.RoleType != "USER" && user.RoleType != "ADMIN" {
 		return fmt.Errorf("role should be Either USER or ADMIN")
 	}
@@ -60,46 +60,29 @@ func ValidationSignUp(user models.UserDetails) error {
 }
 
 // verify their password is match with signup password
-func VerifyPassword(first, second string) (bool, string) {
+func VerifyPassword(first, second string) (bool, error) {
 	err := bcrypt.CompareHashAndPassword([]byte(second), []byte(first))
 	check := true
-	msg := ""
+	// msg := ""
 	if err != nil {
-		msg = "Invalid password-Password is Not Match "
+		// msg = "Invalid password-Password is Not Match "
 		check = false
 	}
-	return check, msg
-}
-
-// Hashing the password here
-func HashPassword(password string) string {
-	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
-	if err != nil {
-		panic(err)
-	}
-
-	return string(bytes)
+	return check, err
 }
 
 // Valid their Job Post with Fields
-func ValidationJobPost(post models.JobCreation, paramid int, tokenid int, tokentype string) error {
-	if tokentype != "ADMIN" {
+func ValidateJobPost(post models.JobCreation, roleID int, roleType string) error {
+	if roleType != "ADMIN" {
 		return fmt.Errorf("invalid user-User have not access to create the post")
 	}
-	if tokenid != paramid {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
-	}
 
-	if post.DomainID != paramid {
-		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
+	if post.AdminID != roleID {
+		return fmt.Errorf("invalid ID,Your Role ID and User ID is Mismatching Here,Check It")
 	}
 
 	if len(post.CompanyName) == 0 {
-		return fmt.Errorf("missing CompanyName,I need much Longer !Buddy")
-	}
-
-	if len(post.CompanyName) > 30 {
-		return fmt.Errorf("your CompanyName should be larger,I need much shorter, !Buddy")
+		return fmt.Errorf("missing CompanyName,I need your CompanyName Here !Buddy")
 	}
 
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
@@ -107,12 +90,12 @@ func ValidationJobPost(post models.JobCreation, paramid int, tokenid int, tokent
 		return fmt.Errorf("invalid Email Id-Your EmailId is not in proper way")
 	}
 
-	if len(post.JobTitle) == 0 {
+	if len(post.JobRole) == 0 {
 		return fmt.Errorf(" missing JobTitle,I need much Longer !Buddy")
 	}
 
-	if len(post.JobTitle) > 20 {
-		return fmt.Errorf(" your JobTitle should be larger,I need much shorter, !Buddy")
+	if len(post.JobRole) > 20 {
+		return fmt.Errorf(" your JobTitle will be larger,I need much shorter, !Buddy")
 	}
 
 	if post.JobStatus != "IN PROGRESS" && post.JobStatus != "COMPLETED" && post.JobStatus != "ON GOING" {
@@ -134,6 +117,7 @@ func ValidationJobPost(post models.JobCreation, paramid int, tokenid int, tokent
 	if len(post.Experience) == 0 {
 		return fmt.Errorf("missing Experience,It have some experience details")
 	}
+
 	if len(post.Experience) < 3 {
 		return fmt.Errorf("your experience should be much greater")
 	}
@@ -167,26 +151,22 @@ func ValidationJobPost(post models.JobCreation, paramid int, tokenid int, tokent
 	}
 
 	if len(post.Address.ZipCode) < 6 {
-		return fmt.Errorf("your ZipCode is smaller,I need much Longer,!Buddy")
+		return fmt.Errorf("your ZipCode is Smaller,I need only Six Digits,!Buddy")
 	}
 
 	if len(post.Address.ZipCode) > 6 {
-		return fmt.Errorf("your ZipCode is larger,I need only Six Numbers,!Buddy")
+		return fmt.Errorf("your ZipCode is  Larger,I need only Six Digits,!Buddy")
 	}
 	return nil
 }
 
 // Valid their User JobPost with Fields
-func ValidationUserJob(user models.UserJobDetails, tokentype string, tokenid int, parmid int) error {
-	if tokentype != "USER" {
+func ValidateUserApplicaton(user models.UserJobDetails, roleType string, userID int) error {
+	if roleType != "USER" {
 		return fmt.Errorf("invalid Admin-Admin cannot have access to apply the post")
 	}
 
-	if tokenid != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
-	}
-
-	if user.UserId != parmid {
+	if user.UserID != userID {
 		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
 	}
 
@@ -211,38 +191,36 @@ func ValidationUserJob(user models.UserJobDetails, tokentype string, tokenid int
 	return nil
 }
 
-// Valid their Admin JobPosts with Fields
-func ValidationAdminFields(post models.JobCreation, tokentype string, tokenid int, parmid int) error {
-	if tokentype != "ADMIN" {
-		return fmt.Errorf("invalid user-User have not access to view this details")
-	}
-	if tokenid != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
-	}
-	if post.DomainID != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and UserId is Mismatching Here,Check It")
-	}
-	return nil
-}
-
-// Valid their roles by admin or users
-func ValidationCheck(tokentype string, tokenid int, parmid int) error {
-	if tokentype != "ADMIN" {
-		return fmt.Errorf("invalid user-User have not access to view this details")
-	}
-	if tokenid != parmid {
-		return fmt.Errorf("invalid ID,Your Payload ID and RoleId is Mismatching Here,Check It")
-	}
-	return nil
-}
-
 // valid their JobFields in JobPosts
-func ValidationUpdatePost(post models.JobCreation) error {
+func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) error {
+	if roleType != "ADMIN" {
+		return fmt.Errorf("invalid user-User have not access to view this details")
+	}
+
+	if post.AdminID != roleID {
+		return fmt.Errorf("you are not authorized to update this job post")
+	}
 	if post.JobStatus != "COMPLETED" && post.JobStatus != "ON GOING" {
 		return fmt.Errorf("invalid jobstatus,Only Completed or On Going only")
 	}
 	if post.Vacancy != 0 {
 		return fmt.Errorf("invalid vacancy,check it properly")
+	}
+	return nil
+}
+
+// check their roles by users
+func ValidateUserType(roleType string) error {
+	if roleType != "USER" {
+		return fmt.Errorf("invalid admin-Admin have not to access this details")
+	}
+	return nil
+}
+
+// check their roles by admin or users
+func ValidateRoleType(roleType string) error {
+	if roleType != "ADMIN" {
+		return fmt.Errorf("invalid user-User have not access to view this details")
 	}
 	return nil
 }
