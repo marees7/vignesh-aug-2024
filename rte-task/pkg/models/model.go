@@ -15,7 +15,7 @@ type UserDetails struct {
 
 type JobCreation struct {
 	JobID        int       `json:"job_id"  gorm:"primarykey;autoIncrement"`
-	AdminID      int       `json:"admin_id"  gorm:"column:admin_id;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`
+	AdminID      int       `json:"admin_id"  gorm:"column:admin_id;constraint:OnUpdate:CASCADE,OnDelete:SET NULL"`
 	CompanyName  string    `json:"company_name" gorm:"column:company_name;type:varchar(100)"`
 	CompanyEmail string    `json:"company_email"   gorm:"column:company_email;type:varchar(100)"`
 	JobRole      string    `json:"job_role"   gorm:"column:job_role;type:varchar(100)"`
@@ -51,4 +51,3 @@ type UserJobDetails struct {
 	User       *UserDetails `json:"User,omitempty" gorm:"foreignKey:UserID;"`
 	Job        *JobCreation `json:"Job,omitempty" gorm:"foreignKey:JobID ;"`
 }
-

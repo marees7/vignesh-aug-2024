@@ -64,9 +64,7 @@ func ValidateSignUp(user models.UserDetails) error {
 func VerifyPassword(first, second string) (bool, error) {
 	err := bcrypt.CompareHashAndPassword([]byte(second), []byte(first))
 	check := true
-	// msg := ""
 	if err != nil {
-		// msg = "Invalid password-Password is Not Match "
 		check = false
 	}
 	return check, err
@@ -194,7 +192,7 @@ func ValidateUserApplicaton(user models.UserJobDetails, roleType string, userID 
 
 // valid their JobFields in JobPosts
 func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) error {
-	if roleType != constants.UserType{
+	if roleType != constants.UserType {
 		return fmt.Errorf("invalid user-User have not access to view this details")
 	}
 
@@ -212,7 +210,7 @@ func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) er
 
 // check their roles by users
 func ValidateUserType(roleType string) error {
-	if roleType !=constants.UserType{
+	if roleType != constants.UserType {
 		return fmt.Errorf("invalid admin-Admin have not to access this details")
 	}
 	return nil
@@ -220,7 +218,7 @@ func ValidateUserType(roleType string) error {
 
 // check their roles by admin or users
 func ValidateRoleType(roleType string) error {
-	if roleType != constants.AdminType{
+	if roleType != constants.AdminType {
 		return fmt.Errorf("invalid user-User have not access to view this details")
 	}
 	return nil
