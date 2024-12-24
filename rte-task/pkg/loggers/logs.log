@@ -1,8 +1,146 @@
-ERROR: 2024/12/23 11:47:12 user_handler.go:39: Error Occured validating user application- invalid ID,Your Payload ID and UserId is Mismatching Here,Check It
-INFO: 2024/12/23 11:48:07 user_handler.go:60: Sucessfully Applied the Job- 0xc0007002c8
-INFO: 2024/12/23 11:48:52 user_handler.go:145: Sucessfully Get the details by thier ID- 1
-ERROR: 2024/12/23 11:51:15 admin_handler.go:147: Can't able to get the Details Properly- unable to fetch the job applications for Job ID
-INFO: 2024/12/23 11:51:22 admin_handler.go:151: Successfully fetched Job Posts 
-ERROR: 2024/12/23 11:51:51 admin_handler.go:204: Failed to fetch job applied details- no job details found for the given user
-INFO: 2024/12/23 11:51:54 admin_handler.go:208: Successfully fetched User applied Jobs- 2
-ERROR: 2024/12/23 11:53:30 admin_handler.go:286: Failed to Delete post- ERROR: update or delete on table "job_creations" violates foreign key constraint "fk_user_job_details_job" on table "user_job_details" (SQLSTATE 23503)
+INFO: 2024/12/24 13:49:29 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 13:49:29 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 13:49:29 main.go:45: Server started on port
+INFO: 2024/12/24 13:49:53 user_handler.go:73: Sucessfully Applied the Job- 0xc0002223a8
+INFO: 2024/12/24 13:52:20 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 13:52:21 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 13:52:21 main.go:45: Server started on port
+INFO: 2024/12/24 13:52:34 user_handler.go:73: Sucessfully Applied the Job- 0xc000b98608
+INFO: 2024/12/24 13:52:53 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:53:03 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:53:13 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:53:26 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:53:37 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:53:50 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:53:59 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+INFO: 2024/12/24 13:54:09 user_handler.go:185: Sucessfully Get the details by thier ID- 6
+ERROR: 2024/12/24 13:55:16 auth_handler.go:114: Cant't Find Your MailID- cant' Match your MailId properly,check it once
+INFO: 2024/12/24 13:55:35 auth_handler.go:137: Login Sucessfully 1
+INFO: 2024/12/24 13:56:08 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 13:57:39 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 13:57:39 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 13:57:39 main.go:45: Server started on port
+INFO: 2024/12/24 13:59:01 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 13:59:01 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 13:59:01 main.go:45: Server started on port
+INFO: 2024/12/24 13:59:40 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 14:00:01 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 14:00:07 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 14:00:19 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 14:00:24 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 14:00:31 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+INFO: 2024/12/24 14:00:39 admin_handler.go:128: Sucessfully fetched the JobCreated Details- 1
+ERROR: 2024/12/24 14:00:59 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc0006738a0: Table not set, please set it like: db.Model(&user) or db.Table("users")
+ERROR: 2024/12/24 14:01:10 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc0005e97c0: Table not set, please set it like: db.Model(&user) or db.Table("users")
+ERROR: 2024/12/24 14:01:16 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000c0c130: Table not set, please set it like: db.Model(&user) or db.Table("users")
+ERROR: 2024/12/24 14:01:22 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000c0c490: Table not set, please set it like: db.Model(&user) or db.Table("users")
+INFO: 2024/12/24 14:01:30 admin_handler.go:196: Successfully fetched Job Posts 
+ERROR: 2024/12/24 14:01:44 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000c0c7f0: Table not set, please set it like: db.Model(&user) or db.Table("users")
+INFO: 2024/12/24 14:02:35 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 14:02:35 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 14:02:35 main.go:45: Server started on port
+ERROR: 2024/12/24 14:03:00 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000c8c760: Table not set, please set it like: db.Model(&user) or db.Table("users")
+ERROR: 2024/12/24 14:03:07 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000d0c220: Table not set, please set it like: db.Model(&user) or db.Table("users")
+ERROR: 2024/12/24 14:03:31 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000d0c390: Table not set, please set it like: db.Model(&user) or db.Table("users")
+INFO: 2024/12/24 14:03:34 admin_handler.go:196: Successfully fetched Job Posts 
+ERROR: 2024/12/24 14:03:56 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000b7b430: Table not set, please set it like: db.Model(&user) or db.Table("users")
+ERROR: 2024/12/24 14:04:01 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc0001fb7d0: Table not set, please set it like: db.Model(&user) or db.Table("users")
+INFO: 2024/12/24 14:04:03 admin_handler.go:196: Successfully fetched Job Posts 
+ERROR: 2024/12/24 14:04:07 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000b7b508: Table not set, please set it like: db.Model(&user) or db.Table("users")
+INFO: 2024/12/24 14:04:10 admin_handler.go:196: Successfully fetched Job Posts 
+ERROR: 2024/12/24 14:04:14 admin_handler.go:192: Can't able to get the Details Properly- unable to fetch the job applications for Job ID
+INFO: 2024/12/24 14:04:23 admin_handler.go:196: Successfully fetched Job Posts 
+ERROR: 2024/12/24 14:04:34 admin_handler.go:192: Can't able to get the Details Properly- failed to count job details: unsupported data type: 0xc000d0dd70: Table not set, please set it like: db.Model(&user) or db.Table("users")
+INFO: 2024/12/24 14:05:22 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 14:05:22 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 14:05:22 main.go:45: Server started on port
+INFO: 2024/12/24 14:05:43 admin_handler.go:196: Successfully fetched Job Posts 
+ERROR: 2024/12/24 14:05:52 admin_handler.go:192: Can't able to get the Details Properly- unable to fetch the job applications for Job ID
+INFO: 2024/12/24 14:05:58 admin_handler.go:196: Successfully fetched Job Posts 
+INFO: 2024/12/24 14:06:32 auth_handler.go:137: Login Sucessfully 1
+ERROR: 2024/12/24 14:07:14 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 14:07:23 auth_handler.go:137: Login Sucessfully 1
+ERROR: 2024/12/24 14:07:36 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:07:38 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 14:08:04 auth_handler.go:137: Login Sucessfully 1
+ERROR: 2024/12/24 14:10:26 admin_handler.go:263: Failed to fetch job applied details- no job details found for the given user
+INFO: 2024/12/24 14:10:31 admin_handler.go:267: Successfully fetched User applied Jobs- 1
+INFO: 2024/12/24 14:12:20 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 14:12:20 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 14:12:20 main.go:45: Server started on port
+ERROR: 2024/12/24 14:12:30 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:12:45 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:13:01 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 14:54:50 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 14:54:50 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 14:54:50 main.go:45: Server started on port
+ERROR: 2024/12/24 14:55:00 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:55:49 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 14:57:04 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 14:57:04 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 14:57:04 main.go:45: Server started on port
+ERROR: 2024/12/24 14:57:07 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:57:14 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:57:17 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:57:21 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:57:24 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:57:29 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 14:57:41 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 14:58:34 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 14:58:34 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 14:58:34 main.go:45: Server started on port
+INFO: 2024/12/24 14:58:49 auth_handler.go:82: Sucessfully Created the User Detail- 1
+INFO: 2024/12/24 14:59:02 auth_handler.go:82: Sucessfully Created the User Detail- 2
+INFO: 2024/12/24 14:59:10 auth_handler.go:137: Login Sucessfully 1
+INFO: 2024/12/24 14:59:19 auth_handler.go:137: Login Sucessfully 2
+INFO: 2024/12/24 14:59:34 admin_handler.go:65: Sucessfully Created the JobPost Detail- 1
+INFO: 2024/12/24 14:59:36 admin_handler.go:65: Sucessfully Created the JobPost Detail- 2
+INFO: 2024/12/24 14:59:38 admin_handler.go:65: Sucessfully Created the JobPost Detail- 3
+ERROR: 2024/12/24 14:59:53 user_handler.go:52: Error Occured validating user application- invalid ID,Your Payload ID and UserId is Mismatching Here,Check It
+INFO: 2024/12/24 14:59:58 user_handler.go:73: Sucessfully Applied the Job- 0xc000c00bf0
+ERROR: 2024/12/24 15:00:23 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 15:00:41 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 15:00:46 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+ERROR: 2024/12/24 15:00:48 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 15:01:22 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:01:22 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:01:22 main.go:45: Server started on port
+ERROR: 2024/12/24 15:01:26 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 15:02:13 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:02:13 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:02:13 main.go:45: Server started on port
+ERROR: 2024/12/24 15:02:16 admin_handler.go:320: Error occured in this validation of Post Details- invalid user-User have not access to view this details
+INFO: 2024/12/24 15:02:44 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:02:44 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:02:44 main.go:45: Server started on port
+INFO: 2024/12/24 15:02:47 admin_handler.go:334: Sucessfully Updated the JobPost
+INFO: 2024/12/24 15:04:08 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:04:08 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:04:08 main.go:45: Server started on port
+INFO: 2024/12/24 15:04:13 admin_handler.go:334: Sucessfully Updated the JobPost
+ERROR: 2024/12/24 15:04:20 admin_handler.go:330: Failed to update post- record not found
+INFO: 2024/12/24 15:04:24 admin_handler.go:334: Sucessfully Updated the JobPost
+INFO: 2024/12/24 15:04:57 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:04:57 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:04:57 main.go:45: Server started on port
+ERROR: 2024/12/24 15:05:27 admin_handler.go:308: Error occured while request payload- parsing time "string" as "2006-01-02T15:04:05Z07:00": cannot parse "string" as "2006"
+INFO: 2024/12/24 15:05:47 admin_handler.go:334: Sucessfully Updated the JobPost
+ERROR: 2024/12/24 15:05:56 admin_handler.go:320: Error occured in this validation of Post Details- you are not authorized to update this job post
+INFO: 2024/12/24 15:06:03 admin_handler.go:334: Sucessfully Updated the JobPost
+INFO: 2024/12/24 15:06:06 admin_handler.go:334: Sucessfully Updated the JobPost
+INFO: 2024/12/24 15:06:51 admin_handler.go:375: Sucessfully Deleted the JobPost
+INFO: 2024/12/24 15:16:19 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:16:19 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:16:19 main.go:48: Server started on port
+INFO: 2024/12/24 15:17:14 auth_handler.go:137: Login Sucessfully 2
+INFO: 2024/12/24 15:17:46 auth_handler.go:137: Login Sucessfully 2
+INFO: 2024/12/24 15:21:56 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:21:56 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:21:56 main.go:45: Server started on port
+INFO: 2024/12/24 15:23:32 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:23:32 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:23:32 main.go:45: Server started on port
+INFO: 2024/12/24 15:24:49 connection.go:24: Connected sucessfully
+INFO: 2024/12/24 15:24:50 automigrate.go:15: Migrated tables Sucessfully
+INFO: 2024/12/24 15:24:50 main.go:45: Server started on port
+INFO: 2024/12/24 15:25:09 user_handler.go:123: Sucessfully fetched the JobPosts

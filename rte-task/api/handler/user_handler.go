@@ -16,7 +16,20 @@ type UserHandler struct {
 	Service service.IUserService
 }
 
-// user apply the job in that posts
+// @Summary CreateApplication
+// @Description User apply the job in that posts
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param user body models.UserJobDetails true "UserJobs"
+// @Tags User
+// @Accept json
+// @Produce json
+// @Success 201 {object}  dto.Response
+// @Failure 500 {object} dto.Response
+// @Failure 422 {object} dto.Response
+// @Failure 404 {object} dto.Response
+// @Router /v1/user [post]
 func (handler UserHandler) CreateApplication(c *gin.Context) {
 	var userJobDetails models.UserJobDetails
 
@@ -63,7 +76,20 @@ func (handler UserHandler) CreateApplication(c *gin.Context) {
 		Data:    userJobDetails})
 }
 
-// user or admin get all job details
+// @Summary Get All Job Posts
+// @Description User or admin get all job details
+// @Param company_name query string false "Search by company_name"
+// @Param job_role query string false "Search by job_role"
+// @Param country query string false "Search by country"
+// @Param limit query int false "Search by limit"
+// @Param offset query int false "Search by offset"
+// @Tags User
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.Response
+// @Failure 500 {object} dto.Response
+// @Failure 404 {object} dto.Response
+// @Router /posts [get]
 func (handler UserHandler) GetAllJobPosts(c *gin.Context) {
 	companyName := c.Query("company_name")
 	jobRole := c.Query("job_role")
@@ -105,7 +131,21 @@ func (handler UserHandler) GetAllJobPosts(c *gin.Context) {
 	})
 }
 
-// user get by their userowndetails
+// @Summary GetUserAppliedJobs
+// @Description User get by their userowndetails
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param limit query int false "Search by limit"
+// @Param offset query int false "Search by offset"
+// @Tags User
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.Response
+// @Failure 403 {object} dto.Response
+// @Failure 404 {object} dto.Response
+// @Failure 500 {object} dto.Response
+// @Router /v1/user [get]
 func (handler UserHandler) GetUserAppliedJobs(c *gin.Context) {
 	roleType := c.GetString("role_type")
 	userID := c.GetInt("user_id")

@@ -5,18 +5,27 @@ import (
 	"os"
 
 	"github.com/Vigneshwartt/golang-rte-task/api/routers"
+	_ "github.com/Vigneshwartt/golang-rte-task/docs"
 	"github.com/Vigneshwartt/golang-rte-task/internals"
 	"github.com/Vigneshwartt/golang-rte-task/internals/config"
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
 	"github.com/gin-gonic/gin"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-func init() {
-	config.LoadEnv()
-	loggers.LoggerFiles()
-}
+// @title Documenting API (JOB SITE)
+// @version 1
+
+// @contact.name Vigneshwartt
+// @contact.url https://github.com/marees7/vignesh-aug-2024
+// @contact.email vigneshwart2002@gmail.com
+
+// @host localhost:8080
 
 func main() {
+	config.LoadEnv()
+	loggers.LoggerFiles()
 	//Connect the Dbs
 	dbconnection := internals.ConnectingDatabase()
 
@@ -26,9 +35,11 @@ func main() {
 	//send the service to handlers
 	newrouter := gin.Default()
 
-	routers.AdminRoutes(newrouter, dbconnection)
 	routers.AuthRoutes(newrouter, dbconnection)
+	routers.AdminRoutes(newrouter, dbconnection)
 	routers.UserRoutes(newrouter, dbconnection)
+
+	newrouter.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	//start the server
 	loggers.InfoData.Println("Server started on port")

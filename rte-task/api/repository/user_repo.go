@@ -142,7 +142,7 @@ func (database *Userrepo) GetUserByID(userJobDetails *models.UserJobDetails) *dt
 	if jobID.Error != nil {
 		return &dto.ErrorResponse{
 			StatusCode: http.StatusNotFound,
-			Error:      fmt.Errorf("unable to fetch User Details,Check it UserID once"),
+			Error:      fmt.Errorf("unable to fetch Job Detail,Check it JobID once"),
 		}
 	}
 

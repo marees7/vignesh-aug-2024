@@ -25,4 +25,5 @@ func AuthRoutes(router *gin.Engine, dbconnection *internals.NewConnection) {
 		// Login with their Details
 		r.POST("/login", auth.GetUserDetail)
 	}
+
 }
