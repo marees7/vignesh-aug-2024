@@ -1,6 +1,7 @@
 package config
 
 import (
+	"os"
 	"path/filepath"
 
 	"github.com/Vigneshwartt/golang-rte-task/pkg/loggers"
@@ -15,8 +16,11 @@ func recoverPanic() {
 
 func LoadEnv() {
 	defer recoverPanic()
-
-	if err := godotenv.Load(filepath.Join(".env")); err != nil {
+	wd, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	if err := godotenv.Load(filepath.Join(filepath.Dir(wd), ".env")); err != nil {
 		panic(err)
 	}
 }

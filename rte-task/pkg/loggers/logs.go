@@ -14,7 +14,11 @@ var (
 )
 
 func LoggerFiles() {
-	file, err := os.OpenFile(filepath.Join(os.Getenv("LOG_FILE_PATH")), os.O_CREATE|os.O_APPEND|os.O_WRONLY|os.O_RDONLY, 0777)
+	wd, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	file, err := os.OpenFile(filepath.Join(filepath.Dir(wd), os.Getenv("LOG_FILE_PATH")), os.O_CREATE|os.O_APPEND|os.O_WRONLY|os.O_RDONLY, 0777)
 	if err != nil {
 		fmt.Println("Error Occured", err)
 		return

@@ -16,16 +16,17 @@ import (
 
 // @title Documenting API (JOB SITE)
 // @version 1
-
 // @contact.name Vigneshwartt
 // @contact.url https://github.com/marees7/vignesh-aug-2024
 // @contact.email vigneshwart2002@gmail.com
-
 // @host localhost:8080
 
-func main() {
+func init() {
 	config.LoadEnv()
 	loggers.LoggerFiles()
+}
+
+func main() {
 	//Connect the Dbs
 	dbconnection := internals.ConnectingDatabase()
 

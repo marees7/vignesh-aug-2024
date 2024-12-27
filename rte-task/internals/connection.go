@@ -19,7 +19,7 @@ func ConnectingDatabase() *NewConnection {
 	if err != nil {
 		panic(err)
 	}
-	
+
 	defer HandlePanic()
 	loggers.InfoData.Println("Connected sucessfully")
 	return &NewConnection{
