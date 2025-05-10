@@ -18,6 +18,7 @@ func AdminRoutes(router *gin.Engine, dbconnection *internals.NewConnection) {
 
 	//send service to handler
 	admin := &handler.AdminHandler{Service: adminservice}
+
 	r := router.Group("/v1/admin")
 	{
 		r.Use(middleware.Authenticate())
@@ -34,7 +35,7 @@ func AdminRoutes(router *gin.Engine, dbconnection *internals.NewConnection) {
 		//admin get by his id to know about how many post created
 		r.GET("", admin.GetJobsCreated)
 
-		//admins update by jobid and amin id
+		//admins update by jobid and admin id
 		r.PUT("/:job_id", admin.UpdateJobPost)
 
 		//automaticaly delete jobPost

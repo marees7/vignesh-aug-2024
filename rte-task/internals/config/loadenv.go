@@ -16,13 +16,11 @@ func recoverPanic() {
 
 func LoadEnv() {
 	defer recoverPanic()
-
 	wd, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	}
-
-	if err = godotenv.Load(filepath.Join(filepath.Dir(wd), ".env")); err != nil {
+	if err := godotenv.Load(filepath.Join(filepath.Dir(wd), ".env")); err != nil {
 		panic(err)
 	}
 }

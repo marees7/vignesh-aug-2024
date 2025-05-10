@@ -15,7 +15,7 @@ type IAdminService interface {
 	DeleteJobPost() *dto.ErrorResponse
 }
 type AdminService struct {
-	repo repository.IAdminRepo
+	Repo repository.IAdminRepo
 }
 
 func InitAdminService(db repository.IAdminRepo) IAdminService {
@@ -26,12 +26,12 @@ func InitAdminService(db repository.IAdminRepo) IAdminService {
 
 // create their Jobposts
 func (service *AdminService) CreateJobPost(jobCreation *models.JobCreation) *dto.ErrorResponse {
-	return service.repo.CreateJobPost(jobCreation)
+	return service.Repo.CreateJobPost(jobCreation)
 }
 
 // get their postdetails jobDetailsBy role
 func (service *AdminService) GetApplicantAndJobDetails(jobDetailsMap map[string]interface{}) ([]*dto.ApplicantDetail, *dto.ErrorResponse, int64) {
-	userJobdetails, err, count := service.repo.GetApplicantAndJobDetails(jobDetailsMap)
+	userJobdetails, err, count := service.Repo.GetApplicantAndJobDetails(jobDetailsMap)
 	if err != nil {
 		return nil, err, 0
 	}
@@ -57,19 +57,19 @@ func (service *AdminService) GetApplicantAndJobDetails(jobDetailsMap map[string]
 
 // get their User's particular jobs By their userID's
 func (service *AdminService) GetJobsAppliedByUser(userIDJobs map[string]interface{}) ([]models.UserJobDetails, *dto.ErrorResponse, int64) {
-	return service.repo.GetJobsAppliedByUser(userIDJobs)
+	return service.Repo.GetJobsAppliedByUser(userIDJobs)
 }
 
 // get thier own post details By admin
 func (service *AdminService) GetJobsCreated(createdPosts map[string]interface{}) ([]models.JobCreation, *dto.ErrorResponse, int64) {
-	return service.repo.GetJobsCreated(createdPosts)
+	return service.Repo.GetJobsCreated(createdPosts)
 }
 
 // update their job post by their IDs
 func (service *AdminService) UpdateJobPost(jobData *models.JobCreation, jobID int, userID int) *dto.ErrorResponse {
-	return service.repo.UpdateJobPost(jobData, jobID, userID)
+	return service.Repo.UpdateJobPost(jobData, jobID, userID)
 }
 
 func (service *AdminService) DeleteJobPost() *dto.ErrorResponse {
-	return service.repo.DeleteJobPost()
+	return service.Repo.DeleteJobPost()
 }

@@ -16,7 +16,19 @@ type AuthHandler struct {
 	Service service.IAuthService
 }
 
-// create their details
+// @Summary signup
+// @Description Sign up their details
+// @Param user body models.UserDetails true "User"
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Success 201 {object}  models.UserDetails
+// @Failure 500 {object} dto.Response
+// @Failure 422 {object} dto.Response
+// @Failure 400 {object} dto.Response
+// @Failure 404 {object} dto.Response
+// @Failure 208 {object} dto.Response
+// @Router /v1/auth/signup [post]
 func (handler AuthHandler) CreateUser(c *gin.Context) {
 	var userDetail models.UserDetails
 
@@ -73,7 +85,17 @@ func (handler AuthHandler) CreateUser(c *gin.Context) {
 		Data:    userDetail})
 }
 
-// GetUserDetail with their Details
+// @Summary Loginuser
+// @Description  Login with their Details
+// @Param user body models.UserDetails true "User"
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.LoginUser
+// @Failure 500 {object} dto.Response
+// @Failure 404 {object} dto.Response
+// @Failure 400 {object} dto.Response
+// @Router /v1/auth/login [post]
 func (handler AuthHandler) GetUserDetail(c *gin.Context) {
 	var userDetail models.UserDetails
 

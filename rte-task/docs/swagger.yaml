@@ -1,0 +1,631 @@
+definitions:
+  dto.ApplicantDetail:
+    properties:
+      country:
+        type: string
+      created_at:
+        type: integer
+      email:
+        type: string
+      experience:
+        type: integer
+      job_id:
+        type: integer
+      job_role:
+        type: string
+      language:
+        type: string
+      name:
+        type: string
+      phone_number:
+        type: string
+      skills:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  dto.LoginUser:
+    properties:
+      message:
+        type: string
+      role_type:
+        type: string
+      token:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  dto.Response:
+    properties:
+      data: {}
+      error:
+        type: string
+      job_status:
+        type: string
+      limit:
+        type: integer
+      message:
+        type: string
+      offset:
+        type: integer
+      total:
+        type: integer
+      vacancy:
+        type: integer
+    type: object
+  models.Address:
+    properties:
+      city:
+        type: string
+      state:
+        type: string
+      street:
+        type: string
+      zip_code:
+        type: string
+    type: object
+  models.JobCreation:
+    properties:
+      address:
+        $ref: '#/definitions/models.Address'
+      admin_id:
+        type: integer
+      company_email:
+        type: string
+      company_name:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      description:
+        type: string
+      experience:
+        type: string
+      job_id:
+        type: integer
+      job_role:
+        type: string
+      job_status:
+        type: string
+      job_time:
+        type: string
+      skills:
+        type: string
+      updated_at:
+        type: string
+      vacancy:
+        type: integer
+    required:
+    - vacancy
+    type: object
+  models.UserDetails:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      phone_number:
+        type: string
+      role_type:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  models.UserJobDetails:
+    properties:
+      Job:
+        $ref: '#/definitions/models.JobCreation'
+      User:
+        $ref: '#/definitions/models.UserDetails'
+      country:
+        type: string
+      created_at:
+        type: string
+      experience:
+        type: integer
+      job_id:
+        type: integer
+      job_role:
+        type: string
+      language:
+        type: string
+      skills:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: vigneshwart2002@gmail.com
+    name: Vigneshwartt
+    url: https://github.com/marees7/vignesh-aug-2024
+  title: Documenting API (JOB SITE)
+  version: "1"
+paths:
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: User or admin get all job details
+      parameters:
+      - description: Search by company_name
+        in: query
+        name: company_name
+        type: string
+      - description: Search by job_role
+        in: query
+        name: job_role
+        type: string
+      - description: Search by country
+        in: query
+        name: country
+        type: string
+      - description: Search by limit
+        in: query
+        name: limit
+        type: integer
+      - description: Search by offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      summary: Get All Job Posts
+      tags:
+      - User
+  /v1/admin:
+    get:
+      consumes:
+      - application/json
+      description: Admin get by his id to know about how many post created
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Search by Job Role
+        in: query
+        name: job_role
+        type: string
+      - description: Search by Country
+        in: query
+        name: country
+        type: string
+      - description: Search by limit
+        in: query
+        name: limit
+        type: integer
+      - description: Search by offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: GetJobsCreated
+      tags:
+      - Admin
+    post:
+      consumes:
+      - application/json
+      description: admin creates new JobPost
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Job
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.JobCreation'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: CreateJobPost
+      tags:
+      - Admin
+  /v1/admin/:
+    delete:
+      consumes:
+      - application/json
+      description: Delete  Job Posts automatically
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "304":
+          description: Not Modified
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Job Posts
+      tags:
+      - Admin
+  /v1/admin/{job_id}:
+    put:
+      consumes:
+      - application/json
+      description: Admin update by jobid and admin id
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: JobID
+        in: path
+        name: job_id
+        required: true
+        type: integer
+      - description: Job
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.JobCreation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: UpdateJobPost
+      tags:
+      - Admin
+  /v1/admin/{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Admin get by userid
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: UserID
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      - description: Search by limit
+        in: query
+        name: limit
+        type: integer
+      - description: Search by offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: GetJobsAppliedByUser
+      tags:
+      - Admin
+  /v1/admin/jobs:
+    get:
+      consumes:
+      - application/json
+      description: Get by JobRole and JobID
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Search by jobRole
+        in: query
+        name: job_role
+        type: string
+      - description: Search by jobId
+        in: query
+        name: job_id
+        type: string
+      - description: Search by limit
+        in: query
+        name: limit
+        type: integer
+      - description: Search by offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ApplicantDetail'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: GetApplicantAndJobDetails
+      tags:
+      - Admin
+  /v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login with their Details
+      parameters:
+      - description: User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserDetails'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.LoginUser'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      summary: Loginuser
+      tags:
+      - Auth
+  /v1/auth/signup:
+    post:
+      consumes:
+      - application/json
+      description: Sign up their details
+      parameters:
+      - description: User
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserDetails'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.UserDetails'
+        "208":
+          description: Already Reported
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      summary: signup
+      tags:
+      - Auth
+  /v1/user:
+    get:
+      consumes:
+      - application/json
+      description: User get by their userowndetails
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: Search by limit
+        in: query
+        name: limit
+        type: integer
+      - description: Search by offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: GetUserAppliedJobs
+      tags:
+      - User
+    post:
+      consumes:
+      - application/json
+      description: User apply the job in that posts
+      parameters:
+      - default: Bearer
+        description: Insert your access token
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: UserJobs
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserJobDetails'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/dto.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/dto.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: CreateApplication
+      tags:
+      - User
+swagger: "2.0"

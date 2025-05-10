@@ -17,7 +17,20 @@ type AdminHandler struct {
 	Service service.IAdminService
 }
 
-// admin creates new JobPost
+// @Summary CreateJobPost
+// @Description admin creates new JobPost
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param user body models.JobCreation true "Job"
+// @Tags Admin
+// @Accept json
+// @Produce json
+// @Success 201 {object}  dto.Response
+// @Failure 422 {object}  dto.Response
+// @Failure 400 {object}  dto.Response
+// @Failure 500 {object}  dto.Response
+// @Router /v1/admin [post]
 func (handler AdminHandler) CreateJobPost(c *gin.Context) {
 	var jobCreation models.JobCreation
 
@@ -55,7 +68,23 @@ func (handler AdminHandler) CreateJobPost(c *gin.Context) {
 		Data:    jobCreation})
 }
 
-// admin get their own posts by Admin
+// @Summary  GetJobsCreated
+// @Description Admin get by his id to know about how many post created
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param job_role query string false "Search by Job Role"
+// @Param country query string false "Search by Country"
+// @Param limit query int false "Search by limit"
+// @Param offset query int false "Search by offset"
+// @Tags Admin
+// @Accept json
+// @Produce json
+// @Success 201 {object}  dto.Response
+// @Failure 403 {object}  dto.Response
+// @Failure 404 {object}  dto.Response
+// @Failure 500 {object}  dto.Response
+// @Router /v1/admin [get]
 func (handler AdminHandler) GetJobsCreated(c *gin.Context) {
 	roleType := c.GetString("role_type")
 	userID := c.GetInt("user_id")
@@ -106,7 +135,23 @@ func (handler AdminHandler) GetJobsCreated(c *gin.Context) {
 	})
 }
 
-// admin get their jobs by Role
+// @Summary GetApplicantAndJobDetails
+// @Description Get by JobRole and JobID
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param job_role query string false "Search by jobRole"
+// @Param job_id query string false "Search by jobId"
+// @Param limit query int false "Search by limit"
+// @Param offset query int false "Search by offset"
+// @Tags Admin
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.ApplicantDetail
+// @Failure 500 {object}  dto.Response
+// @Failure 404 {object}  dto.Response
+// @Failure 403 {object}  dto.Response
+// @Router /v1/admin/jobs [get]
 func (handler AdminHandler) GetApplicantAndJobDetails(c *gin.Context) {
 	jobRole := c.Query("job_role")
 	jobIDStr := c.Query("job_id")
@@ -158,7 +203,21 @@ func (handler AdminHandler) GetApplicantAndJobDetails(c *gin.Context) {
 	})
 }
 
-// admin get their jobs by UserId
+// @Summary GetJobsAppliedByUser
+// @Description Admin get by userid
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param user_id path int true "UserID"
+// @Param limit query int false "Search by limit"
+// @Param offset query int false "Search by offset"
+// @Tags Admin
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.Response
+// @Success 404 {object}  dto.Response
+// @Failure 500 {object} dto.Response
+// @Router /v1/admin/{user_id} [get]
 func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
 	limitStr := c.Query("limit")
 	offsetStr := c.Query("offset")
@@ -215,7 +274,21 @@ func (handler AdminHandler) GetJobsAppliedByUser(c *gin.Context) {
 	})
 }
 
-// admin updates their own JobPost
+// @Summary UpdateJobPost
+// @Description Admin update by jobid and admin id
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Param job_id path int true "JobID"
+// @Param user body models.JobCreation true "Job"
+// @Tags Admin
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.Response
+// @Failure 500 {object} dto.Response
+// @Failure 400 {object} dto.Response
+// @Failure 422 {object} dto.Response
+// @Router /v1/admin/{job_id} [put]
 func (handler AdminHandler) UpdateJobPost(c *gin.Context) {
 	var jobData models.JobCreation
 
@@ -266,6 +339,18 @@ func (handler AdminHandler) UpdateJobPost(c *gin.Context) {
 	})
 }
 
+// @Summary Delete Job Posts
+// @Description Delete  Job Posts automatically
+// @Security ApiKeyAuth
+// @Name Type Bearer
+// @Param Authorization header string true "Insert your access token" default(Bearer)
+// @Tags Admin
+// @Accept json
+// @Produce json
+// @Success 200 {object}  dto.Response
+// @Failure 500 {object} dto.Response
+// @Failure 304 {object} dto.Response
+// @Router /v1/admin/ [delete]
 func (handler AdminHandler) DeleteJobPost(c *gin.Context) {
 	roleType := c.GetString("role_type")
 

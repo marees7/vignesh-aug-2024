@@ -192,8 +192,8 @@ func ValidateUserApplicaton(user models.UserJobDetails, roleType string, userID 
 
 // valid their JobFields in JobPosts
 func ValidateUpdatePost(post models.JobCreation, roleType string, roleID int) error {
-	if roleType != constants.UserType {
-		return fmt.Errorf("invalid user-User have not access to view this details")
+	if roleType != constants.AdminType {
+		return fmt.Errorf("invalid user-User have not access to create the post")
 	}
 
 	if post.AdminID != roleID {
